@@ -1,0 +1,39 @@
+body {
+    background-color: #bed6bc !important;
+}
+
+nav {
+    background-color: #4cb060;
+}
+
+.nav-item {
+    float: right;
+}
+
+main {
+    margin-top: 70px;
+}
+
+#login1 {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.7)
+      ),url(../images/padel.jpg);
+    background-size: cover;
+}
+
+#login2 {
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.7)
+      ),url(../images/tenis.jpg);
+    background-size: cover;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #4cb060;
+}
