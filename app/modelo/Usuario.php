@@ -3,10 +3,10 @@
 class Usuario
 {
     
-    public static function loginUsuario($nombre,$contrasena)
+    public static function loginUsuario($usuario,$contrasena)
     {
         $sql = "SELECT * FROM usuario 
-        WHERE nombre = '$nombre' 
+        WHERE usuario = '$usuario' 
         AND contrasena = '$contrasena'";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);
@@ -14,20 +14,20 @@ class Usuario
         return $resultado;
     }
 
-    public static function datosUsuario($nombre)
+    public static function datosUsuario($usuario)
     {
         $sql = "SELECT * FROM usuario 
-        WHERE nombre = '$nombre'";
+        WHERE usuario = '$usuario'";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);
         $con->cerrarConexion();
         return $resultado;
     }
 
-    public static function registroUsuario($nombre,$contrasena,$email)
+    public static function registroUsuario($usuario,$contrasena,$nombre,$apellidos,$email)
     {
-        $sql = "INSERT INTO usuario (nombre,contrasena,email)
-        VALUES ('$nombre','$contrasena','$email')";
+        $sql = "INSERT INTO usuario (usuario,contrasena,nombre,apellidos,email)
+        VALUES ('$usuario','$contrasena','$nombre','$apellidos','$email')";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);
         $con->cerrarConexion();

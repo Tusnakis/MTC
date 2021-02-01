@@ -34,10 +34,10 @@ class UsuarioController
         {
             $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
             require __DIR__ . '/../templates/inicio.php';
-        } else if(empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['email'])){
+        } else if(empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['nombre']) || empty($_POST['apellidos']) || empty($_POST['email'])){
             require __DIR__ . '/../templates/mostrarRegistro.php';
         } else {
-            Usuario::registroUsuario($_POST['usuario'],$_POST['contrasena'],$_POST['email']);
+            Usuario::registroUsuario($_POST['usuario'],$_POST['contrasena'],$_POST['nombre'],$_POST['apellidos'],$_POST['email']);
             require __DIR__ . '/../templates/mostrarLogin.php';
         }
     }
@@ -53,7 +53,9 @@ class UsuarioController
                 require __DIR__ . '/../templates/mostrarLogin.php';
             } else {
                 $params['resultado'] = Usuario::loginUsuario($_POST['usuario'], $_POST['contrasena']);
-                $_SESSION['usuario'] = $params['resultado'][0]['nombre'];
+                $_SESSION['usuario'] = $params['resultado'][0]['usuario'];
+                $_SESSION['nombre'] = $params['resultado'][0]['nombre'];
+                $_SESSION['apellidos'] = $params['resultado'][0]['apellidos'];
                 $_SESSION['email'] = $params['resultado'][0]['email'];
                 $_SESSION['rol'] = $params['resultado'][0]['rol'];
                 if(empty($params['resultado'])) {

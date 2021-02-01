@@ -14,24 +14,27 @@
         </div>
     </div>
     <div class="col-12 col-lg-4 my-1">
-        <div class="card mx-auto" style="width: 20rem; height: 26rem;">
+        <div class="card mx-auto" style="width: 20rem; height: 25.5rem;">
             <div class="card-body">
                 <h5 class="card-title text-center"><strong>Registrate en Marc Tennis Club</strong></h5>
                 <br>
                 <form action="index.php?ruta=registro" method="POST">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Usuario</label>
-                        <input type="text" name="usuario" class="form-control" required>
+                        <input type="text" name="usuario" class="form-control form-control-sm" placeholder="Usuario" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Contraseña</label>
-                        <input type="password" name="contrasena" class="form-control" required>
+                        <input type="password" name="contrasena" class="form-control form-control-sm" placeholder="Contraseña" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Email</label>
-                        <input type="email" name="email" class="form-control" required>
+                        <input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <div class="form-group">
+                        <input type="text" name="apellidos" class="form-control form-control-sm" placeholder="Apellidos" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control form-control-sm" placeholder="Email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
                 </form>
             </div>
         </div>
