@@ -36,7 +36,7 @@
                                     <?php echo ucwords($_SESSION['usuario']) ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Editar perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
                                 </div>
@@ -50,7 +50,7 @@
                                     <?php echo ucwords($_SESSION['usuario']) ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Editar perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
                                 </div>
@@ -79,7 +79,7 @@
                                     <?php echo ucwords($_SESSION['usuario']) ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Editar perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?ruta=logout">Crearr sesión</a>
                                 </div>

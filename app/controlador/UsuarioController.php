@@ -70,6 +70,42 @@ class UsuarioController
         }
     }
 
+    public function mostrarPerfil() {
+        session_start();
+        if(isset($_SESSION['usuario']))
+        {
+            $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
+            $_SESSION['usuario'] = $params['resultado'][0]['usuario'];
+            $_SESSION['contrasena'] = $params['resultado'][0]['contrasena'];
+            $_SESSION['nombre'] = $params['resultado'][0]['nombre'];
+            $_SESSION['apellidos'] = $params['resultado'][0]['apellidos'];
+            $_SESSION['email'] = $params['resultado'][0]['email'];
+            require __DIR__ . '/../templates/mostrarPerfil.php';
+        } else {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
+
+    public function perfil() {
+        session_start();
+        if(isset($_SESSION['usuario']))
+        {
+            Usuario::actualizaUsuario($_SESSION['usuario'],$_POST['usuario'],$_POST['contrasena'],$_POST['nombre'],$_POST['apellidos'],$_POST['email']);
+            $_SESSION['usuario'] = $_POST['usuario'];
+            $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
+            $_SESSION['usuario'] = $params['resultado'][0]['usuario'];
+            $_SESSION['contrasena'] = $params['resultado'][0]['contrasena'];
+            $_SESSION['nombre'] = $params['resultado'][0]['nombre'];
+            $_SESSION['apellidos'] = $params['resultado'][0]['apellidos'];
+            $_SESSION['email'] = $params['resultado'][0]['email'];
+            require __DIR__ . '/../templates/inicio.php';
+        } else if(isset($_SESSION['usuario']) && (empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['nombre']) || empty($_POST['apellidos']) || empty($_POST['email']))){
+            require __DIR__ . '/../templates/mostrarPerfil.php';
+        } else {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
+
     public function logout()
     {
         session_start();

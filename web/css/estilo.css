@@ -30,6 +30,12 @@ main {
     background-size: cover;
 }
 
+#perfil {
+    background-image: url(../images/perfil.jpg);
+    background-repeat: no-repeat;
+    background-size: 300px 300px;
+}
+
 footer {
     position: fixed;
     left: 0;

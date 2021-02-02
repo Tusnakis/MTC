@@ -12,7 +12,9 @@ $map = array(
     'inicio' => array('controller' => 'UsuarioController', 'action' => 'inicio'),
     'logout' => array('controller' => 'UsuarioController', 'action' => 'logout'),
     'mostrarRegistro' => array('controller' => 'UsuarioController', 'action' => 'mostrarRegistro'),
-    'registro' => array('controller' => 'UsuarioController', 'action' => 'registro')
+    'registro' => array('controller' => 'UsuarioController', 'action' => 'registro'),
+    'mostrarPerfil' => array('controller' => 'UsuarioController', 'action' => 'mostrarPerfil'),
+    'perfil' => array('controller' => 'UsuarioController', 'action' => 'perfil')
 );
 
 // Parseo de la ruta 
