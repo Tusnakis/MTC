@@ -72,7 +72,7 @@
                                 <a class="nav-link text-white" href="#">Horarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Usuarios</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarUsuarios">Usuarios</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

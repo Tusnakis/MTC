@@ -106,6 +106,62 @@ class UsuarioController
         }
     }
 
+    public function mostrarUsuarios()
+    {
+        session_start();
+        if($_SESSION['rol'] == 'admin')
+        {
+            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            require __DIR__ . '/../templates/mostrarUsuarios.php';
+        } 
+        else if(isset($_SESSION['usuario']))
+        {
+            require __DIR__ . '/../templates/inicio.php';
+        }
+        else
+        {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
+
+    public function actualizarUsuarios()
+    {
+        session_start();
+        if($_SESSION['rol'] == 'admin')
+        {
+            Usuario::actualizarUsuarios($_POST['usuario'],$_POST['nuevoUsuario'],$_POST['contrasena'],$_POST['nombre'],$_POST['apellidos'],$_POST['email'],$_POST['rol']);
+            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            require __DIR__ . '/../templates/mostrarUsuarios.php';
+        }
+        else if(isset($_SESSION['usuario']))
+        {
+            require __DIR__ . '/../templates/inicio.php';
+        }
+        else
+        {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
+
+    public function eliminarUsuarios()
+    {
+        session_start();
+        if($_SESSION['rol'] == 'admin')
+        {
+            Usuario::eliminarUsuarios($_POST['usuario']);
+            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            require __DIR__ . '/../templates/mostrarUsuarios.php';
+        }
+        else if(isset($_SESSION['usuario']))
+        {
+            require __DIR__ . '/../templates/inicio.php';
+        }
+        else
+        {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
+
     public function logout()
     {
         session_start();
