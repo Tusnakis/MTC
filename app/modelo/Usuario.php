@@ -84,6 +84,36 @@ class Usuario
         $con->cerrarConexion();
         return $resultado;
     }
+
+    public static function listarUsuariosPorNombre($usuario)
+    {
+        $sql = "SELECT * FROM usuario
+        WHERE usuario = '$usuario'";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+    public static function listarUsuariosPorRol($rol)
+    {
+        $sql = "SELECT * FROM usuario
+        WHERE rol = '$rol'";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+
+    public static function listarUsuariosFiltrados($usuario,$rol)
+    {
+        $sql = "SELECT * FROM usuario
+        WHERE usuario = '$usuario'
+        AND rol = '$rol'";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
 }
 
 ?>

@@ -17,7 +17,8 @@ $map = array(
     'perfil' => array('controller' => 'UsuarioController', 'action' => 'perfil'),
     'mostrarUsuarios' => array('controller' => 'UsuarioController', 'action' => 'mostrarUsuarios'),
     'actualizarUsuarios' => array('controller' => 'UsuarioController', 'action' => 'actualizarUsuarios'),
-    'eliminarUsuarios' => array('controller' => 'UsuarioController', 'action' => 'eliminarUsuarios')
+    'eliminarUsuarios' => array('controller' => 'UsuarioController', 'action' => 'eliminarUsuarios'),
+    'mostrarUsuariosFiltrados' => array('controller' => 'UsuarioController', 'action' => 'mostrarUsuariosFiltrados')
 );
 
 // Parseo de la ruta 

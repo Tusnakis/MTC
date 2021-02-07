@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
 
-    let body = document.getElementsByTagName("body")[0];
+    var body = document.getElementsByTagName("body")[0];
+    var actualizar = document.getElementById("actualizar");
+    var eliminar = document.getElementById("eliminar");
 
     function startTime() {
         var today = new Date();
@@ -24,4 +26,14 @@ function init() {
       }
 
     body.addEventListener("load",startTime());
+
+    actualizar.tooltip({
+      placement: "top",
+      trigger: "focus"
+    });
+
+    eliminar.tooltip({
+      placement: "top",
+      trigger: "focus"
+    });
 }
