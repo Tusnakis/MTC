@@ -144,6 +144,20 @@ class UsuarioController
         }
     }
 
+    public function añadirEmpleado()
+    {
+        session_start();
+        if ($_SESSION['rol'] == 'admin') {
+            Usuario::añadirEmpleado($_POST['usuario'],$_POST['contrasena'],$_POST['nombre'],$_POST['apellidos'],$_POST['email'],$_POST['rol']);
+            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            require __DIR__ . '/../templates/mostrarUsuarios.php';
+        } else if (isset($_SESSION['usuario'])) {
+            require __DIR__ . '/../templates/inicio.php';
+        } else {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
+
     public function actualizarUsuarios()
     {
         session_start();

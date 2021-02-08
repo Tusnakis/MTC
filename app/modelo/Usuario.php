@@ -114,6 +114,16 @@ class Usuario
         $con->cerrarConexion();
         return $resultado;
     }
+
+    public static function añadirEmpleado($usuario,$contrasena,$nombre,$apellidos,$email,$rol)
+    {
+        $sql = "INSERT INTO usuario (usuario,contrasena,nombre,apellidos,email,rol)
+        VALUES ('$usuario','$contrasena','$nombre','$apellidos','$email','$rol')";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarNoConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
 }
 
 ?>

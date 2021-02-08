@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<h1>Perfil</h1>
+<h1 class="text-center">Perfil</h1>
 <div class="row">
     <div class="col-12 col-lg-6 my-4 d-flex justify-content-center">
         <form action="index.php?ruta=perfil" method="POST">
