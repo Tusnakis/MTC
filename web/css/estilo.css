@@ -36,6 +36,10 @@ main {
     background-size: 300px 300px;
 }
 
+.nav-tabs > .nav-item > .nav-link {
+    font-size: 12px;
+}
+
 footer {
     position: fixed;
     left: 0;
