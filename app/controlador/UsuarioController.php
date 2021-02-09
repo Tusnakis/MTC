@@ -86,7 +86,11 @@ class UsuarioController
     {
         session_start();
         if (isset($_SESSION['usuario'])) {
-            Usuario::actualizaUsuario($_SESSION['usuario'], $_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email']);
+            $tmp_name = $_FILES['imagen']["tmp_name"];
+            $name = $_FILES['imagen']["name"];
+            $nuevo_path = 'images/' . $name;
+            move_uploaded_file($tmp_name, $nuevo_path);
+            Usuario::actualizaUsuario($_SESSION['usuario'], $_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $nuevo_path);
             $_SESSION['usuario'] = $_POST['usuario'];
             $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
             $_SESSION['usuario'] = $params['resultado'][0]['usuario'];
@@ -94,6 +98,7 @@ class UsuarioController
             $_SESSION['nombre'] = $params['resultado'][0]['nombre'];
             $_SESSION['apellidos'] = $params['resultado'][0]['apellidos'];
             $_SESSION['email'] = $params['resultado'][0]['email'];
+            $_SESSION['foto'] = $params['resultado'][0]['foto'];
             require __DIR__ . '/../templates/inicio.php';
         } else if (isset($_SESSION['usuario']) && (empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['nombre']) || empty($_POST['apellidos']) || empty($_POST['email']))) {
             require __DIR__ . '/../templates/mostrarPerfil.php';
@@ -122,19 +127,19 @@ class UsuarioController
             if (empty($_POST['usuario']) && empty($_POST['rol'])) {
                 $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
                 require __DIR__ . '/../templates/mostrarUsuarios.php';
-            } else if(!empty($_POST['usuario']) && empty($_POST['rol'])) {
-                if($_POST['usuario'] == $_SESSION['usuario']) {
+            } else if (!empty($_POST['usuario']) && empty($_POST['rol'])) {
+                if ($_POST['usuario'] == $_SESSION['usuario']) {
                     $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
                     require __DIR__ . '/../templates/mostrarUsuarios.php';
                 } else {
                     $params['resultado'] = Usuario::listarUsuariosPorNombre($_POST['usuario']);
                     require __DIR__ . '/../templates/mostrarUsuarios.php';
                 }
-            } else if(empty($_POST['usuario']) && !empty($_POST['rol'])) {
+            } else if (empty($_POST['usuario']) && !empty($_POST['rol'])) {
                 $params['resultado'] = Usuario::listarUsuariosPorRol($_POST['rol']);
                 require __DIR__ . '/../templates/mostrarUsuarios.php';
             } else {
-                $params['resultado'] = Usuario::listarUsuariosFiltrados($_POST['usuario'],$_POST['rol']);
+                $params['resultado'] = Usuario::listarUsuariosFiltrados($_POST['usuario'], $_POST['rol']);
                 require __DIR__ . '/../templates/mostrarUsuarios.php';
             }
         } else if (isset($_SESSION['usuario'])) {
@@ -148,7 +153,7 @@ class UsuarioController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Usuario::añadirEmpleado($_POST['usuario'],$_POST['contrasena'],$_POST['nombre'],$_POST['apellidos'],$_POST['email'],$_POST['rol']);
+            Usuario::añadirEmpleado($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['rol']);
             $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
             require __DIR__ . '/../templates/mostrarUsuarios.php';
         } else if (isset($_SESSION['usuario'])) {
