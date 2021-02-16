@@ -3,7 +3,9 @@
 require_once __DIR__ . '/../app/Config.php';
 require_once __DIR__ . '/../app/modelo/Conexion.php';
 require_once __DIR__ . '/../app/modelo/Usuario.php';
+require_once __DIR__ . '/../app/modelo/TipoPista.php';
 require_once __DIR__ . '/../app/controlador/UsuarioController.php';
+require_once __DIR__ . '/../app/controlador/TipoPistaController.php';
 
 // RUTAS
 // Este array asociativo se usa para saber qué acción (función del controlador) se debe disparar
@@ -19,7 +21,12 @@ $map = array(
     'actualizarUsuarios' => array('controller' => 'UsuarioController', 'action' => 'actualizarUsuarios'),
     'eliminarUsuarios' => array('controller' => 'UsuarioController', 'action' => 'eliminarUsuarios'),
     'mostrarUsuariosFiltrados' => array('controller' => 'UsuarioController', 'action' => 'mostrarUsuariosFiltrados'),
-    'añadirEmpleado' => array('controller' => 'UsuarioController', 'action' => 'añadirEmpleado')
+    'añadirEmpleado' => array('controller' => 'UsuarioController', 'action' => 'añadirEmpleado'),
+    'mostrarTipoPista' => array('controller' => 'TipoPistaController', 'action' => 'mostrarTipoPista'),
+    'añadirTipoPista' => array('controller' => 'TipoPistaController', 'action' => 'añadirTipoPista'),
+    'actualizarTipoPista' => array('controller' => 'TipoPistaController', 'action' => 'actualizarTipoPista'),
+    'eliminarTipoPista' => array('controller' => 'TipoPistaController', 'action' => 'eliminarTipoPista'),
+    'listarTipoPistaFiltradas' => array('controller' => 'TipoPistaController', 'action' => 'listarTipoPistaFiltradas')
 );
 
 // Parseo de la ruta 
