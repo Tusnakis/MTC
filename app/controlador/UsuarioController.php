@@ -88,8 +88,19 @@ class UsuarioController
         if (isset($_SESSION['usuario'])) {
             $tmp_name = $_FILES['imagen']["tmp_name"];
             $name = $_FILES['imagen']["name"];
-            $nuevo_path = 'images/' . $name;
-            move_uploaded_file($tmp_name, $nuevo_path);
+            $array = explode('.',$name);
+            $ext = end($array);
+            $nuevo_path = 'images/foto_' . $_SESSION['usuario'] . '.' . $ext;
+            $arrayUsuario['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
+            if($arrayUsuario['resultado'][0]['foto'] == $nuevo_path)
+            {
+                move_uploaded_file($tmp_name, $nuevo_path);
+            }
+            else
+            {
+                unlink($arrayUsuario['resultado'][0]['foto']);
+                move_uploaded_file($tmp_name, $nuevo_path);
+            }
             Usuario::actualizaUsuario($_SESSION['usuario'], $_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $nuevo_path);
             $_SESSION['usuario'] = $_POST['usuario'];
             $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);

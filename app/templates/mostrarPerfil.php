@@ -44,7 +44,7 @@
         </form>
     </div>
     <div class="col-12 col-lg-6 my-3 d-flex justify-content-center">
-        <img src="<?php if (isset($_SESSION['foto'])) {
+        <img src="<?php if (isset($_SESSION['foto']) && file_exists($_SESSION['foto'])) {
                         echo $_SESSION['foto'];
                     } else {
                         echo 'images/perfil.jpg';
