@@ -60,7 +60,7 @@
                                 <a class="nav-link text-white" href="index.php?ruta=mostrarTipoPista">Tipo de pistas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Pistas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarPista">Pistas</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="#">Tarifas</a>

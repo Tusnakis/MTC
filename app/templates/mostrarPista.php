@@ -1,27 +1,26 @@
 <?php ob_start(); ?>
 
-<h1 class="text-center mt-2">Tipo de pista</h1>
+<h1 class="text-center mt-2">Pistas</h1>
 
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#buscar">Buscar tipo de pista</a>
+            <a class="nav-link active" data-toggle="tab" href="#buscar">Buscar pista</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#añadir">Añadir tipo de pista</a>
+            <a class="nav-link" data-toggle="tab" href="#añadir">Añadir pista</a>
         </li>
     </ul>
     <div class="tab-content bg-white">
         <div class="tab-pane fade show active" id="buscar">
             <br>
-            <form action="index.php?ruta=listarTipoPistaFiltradas" method="POST">
+            <form action="index.php?ruta=listarPistaFiltradas" method="POST">
                 <div class="form-group row">
                     <label for="inputTipoPista" class="col-12 col-sm-2 col-form-label mt-3">Tipo de pista</label>
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="inputTipoPista" class="form-control" name="tipoPista">
-                            <option value="">--</option>
-                            <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
-                                <option value="<?php echo $params['resultado'][$i]['nombre'] ?>"><?php echo ucwords($params['resultado'][$i]['nombre']) ?></option>
+                            <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
+                                <option value="<?php echo $params['resultado2'][$i]['id'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -31,11 +30,21 @@
         </div>
         <div class="tab-pane fade" id="añadir">
             <br>
-            <form action="index.php?ruta=añadirTipoPista" method="POST">
+            <form action="index.php?ruta=añadirPista" method="POST">
                 <div class="form-group row">
-                    <label for="inputTipoPista" class=" col-12 col-sm-2 col-form-label mt-3">Tipo de pista</label>
+                    <label for="inputTipoPista" class="col-12 col-sm-2 col-form-label mt-3">Tipo de pista</label>
                     <div class="col-12 col-sm-4 mt-3">
-                        <input type="text" class="form-control" id="inputTipoPista" name="nombre" required>
+                        <select id="inputTipoPista" class="form-control" name="tipoPista">
+                            <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
+                                <option value="<?php echo $params['resultado2'][$i]['id'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputNumPista" class=" col-12 col-sm-2 col-form-label mt-3">Número de pista</label>
+                    <div class="col-12 col-sm-4 mt-3">
+                        <input type="text" class="form-control" id="inputNumPista" name="numPista" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-secondary mt-3">Añadir</button>
@@ -50,6 +59,7 @@
             <thead class="thead bg-secondary text-white">
                 <tr>
                     <th class="text-center">Tipo de pista</th>
+                    <th class="text-center">Número de pista</th>
                     <th class="text-center"></th>
                     <th class="text-center"></th>
                 </tr>
@@ -57,9 +67,10 @@
             <tbody>
                 <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
                     <tr>
-                        <form action="index.php?ruta=actualizarTipoPista" method="POST">
-                            <td><input type="text" name="nuevoTipoPista" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['nombre'] ?>" required></td>
-                            <input type="hidden" name="idTipoPista" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                        <form action="index.php?ruta=actualizarPista" method="POST">
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
+                            <input type="hidden" name="pista" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                            <td><input type="text" name="numPista" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['num_pista'] ?>" required></td>
                             <td class="justify-content-center align-middle" style="width: 3rem;">
                                 <input data-toggle="tooltip" title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
                             </td>
