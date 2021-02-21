@@ -1,42 +1,31 @@
 <?php
 
-class Pista
+class Tarifa
 {
-    public static function listarPistas()
+    public static function listarTarifas()
     {
-        $sql = "SELECT p.id, tp.nombre, p.num_pista FROM pista p
-        INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id";
+        $sql = "SELECT t.id, tp.nombre, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);
         $con->cerrarConexion();
         return $resultado;
     }
 
-    public static function añadirPista($numPista,$idTipoPista)
+    public static function añadirTarifa($idTipoPista,$horaInicio,$horaFin,$precio)
     {
-        $sql = "INSERT into pista (num_pista,id_tipo_pista)
-        VALUES ($numPista,$idTipoPista)";
+        $sql = "INSERT INTO tarifa (id_tipo_pista,hora_inicio,hora_fin,precio)
+        VALUES ($idTipoPista,'$horaInicio','$horaFin',$precio)";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);
         $con->cerrarConexion();
         return $resultado;
     }
 
-    public static function listarPistaFiltradas($id)
+    public static function actualizarTarifa($id,$precio)
     {
-        $sql = "SELECT tp.nombre, p.num_pista FROM pista p
-        INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id
-        WHERE tp.id = $id";
-        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
-        $resultado = $con->ejecutarConsulta($sql);
-        $con->cerrarConexion();
-        return $resultado;
-    }
-
-    public static function actualizarPista($id,$numPista)
-    {
-        $sql = "UPDATE pista SET
-        num_pista = $numPista
+        $sql = "UPDATE tarifa SET
+        precio = $precio
         WHERE id = $id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);
@@ -44,9 +33,9 @@ class Pista
         return $resultado;
     }
 
-    public static function eliminarPista($id)
+    public static function eliminarTarifa($id)
     {
-        $sql = "DELETE FROM pista
+        $sql = "DELETE FROM tarifa
         WHERE id=$id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);

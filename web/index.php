@@ -5,9 +5,11 @@ require_once __DIR__ . '/../app/modelo/Conexion.php';
 require_once __DIR__ . '/../app/modelo/Usuario.php';
 require_once __DIR__ . '/../app/modelo/TipoPista.php';
 require_once __DIR__ . '/../app/modelo/Pista.php';
+require_once __DIR__ . '/../app/modelo/Tarifa.php';
 require_once __DIR__ . '/../app/controlador/UsuarioController.php';
 require_once __DIR__ . '/../app/controlador/TipoPistaController.php';
 require_once __DIR__ . '/../app/controlador/PistaController.php';
+require_once __DIR__ . '/../app/controlador/TarifaController.php';
 
 // RUTAS
 // Este array asociativo se usa para saber qué acción (función del controlador) se debe disparar
@@ -32,7 +34,12 @@ $map = array(
     'mostrarPista' => array('controller' => 'PistaController', 'action' => 'mostrarPista'),
     'añadirPista' => array('controller' => 'PistaController', 'action' => 'añadirPista'),
     'listarPistaFiltradas' => array('controller' => 'PistaController', 'action' => 'listarPistaFiltradas'),
-    'actualizarPista' => array('controller' => 'PistaController', 'action' => 'actualizarPista')
+    'actualizarPista' => array('controller' => 'PistaController', 'action' => 'actualizarPista'),
+    'eliminarPista' => array('controller' => 'PistaController', 'action' => 'eliminarPista'),
+    'mostrarTarifa' => array('controller' => 'TarifaController', 'action' => 'mostrarTarifa'),
+    'añadirTarifa' => array('controller' => 'TarifaController', 'action' => 'añadirTarifa'),
+    'actualizarTarifa' => array('controller' => 'TarifaController', 'action' => 'actualizarTarifa'),
+    'eliminarTarifa' => array('controller' => 'TarifaController', 'action' => 'eliminarTarifa')
 );
 
 // Parseo de la ruta 

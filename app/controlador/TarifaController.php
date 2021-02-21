@@ -1,14 +1,14 @@
 <?php
 
-class PistaController
+class TarifaController
 {
-    public function mostrarPista()
+    public function mostrarTarifa()
     {
         session_start();
         if($_SESSION['rol'] == 'admin') {
-            $params['resultado'] = Pista::listarPistas();
+            $params['resultado'] = Tarifa::listarTarifas();
             $params['resultado2'] = TipoPista::listarTipoPista();
-            require __DIR__ . '/../templates/mostrarPista.php';
+            require __DIR__ . '/../templates/mostrarTarifa.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
         } else {
@@ -16,14 +16,14 @@ class PistaController
         }
     }
 
-    public function añadirPista()
+    public function añadirTarifa()
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Pista::añadirPista($_POST['numPista'],$_POST['tipoPista']);
+            Tarifa::añadirTarifa($_POST['tipoPista'],$_POST['horaInicio'],$_POST['horaFin'],$_POST['precio']);
+            $params['resultado'] = Tarifa::listarTarifas();
             $params['resultado2'] = TipoPista::listarTipoPista();
-            $params['resultado'] = Pista::listarPistas();
-            require __DIR__ . '/../templates/mostrarPista.php';
+            require __DIR__ . '/../templates/mostrarTarifa.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
         } else {
@@ -31,28 +31,14 @@ class PistaController
         }
     }
 
-    public function listarPistaFiltradas()
-    {
-        session_start();
-        if($_SESSION['rol'] == 'admin') {
-            $params['resultado'] = Pista::listarPistaFiltradas($_POST['tipoPista']);
-            $params['resultado2'] = TipoPista::listarTipoPista();
-            require __DIR__ . '/../templates/mostrarPista.php';
-        } else if (isset($_SESSION['usuario'])) {
-            require __DIR__ . '/../templates/inicio.php';
-        } else {
-            require __DIR__ . '/../templates/mostrarLogin.php';
-        }
-    }
-
-    public function actualizarPista()
+    public function actualizarTarifa()
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Pista::actualizarPista($_POST['pista'],$_POST['numPista']);
+            Tarifa::actualizarTarifa($_POST['tarifa'],$_POST['precio']);
+            $params['resultado'] = Tarifa::listarTarifas();
             $params['resultado2'] = TipoPista::listarTipoPista();
-            $params['resultado'] = Pista::listarPistas();
-            require __DIR__ . '/../templates/mostrarPista.php';
+            require __DIR__ . '/../templates/mostrarTarifa.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
         } else {
@@ -60,14 +46,14 @@ class PistaController
         }
     }
 
-    public function eliminarPista()
+    public function eliminarTarifa()
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Pista::eliminarPista($_POST['idPista']);
-            $params['resultado'] = Pista::listarPistas();
+            Tarifa::eliminarTarifa($_POST['idTarifa']);
+            $params['resultado'] = Tarifa::listarTarifas();
             $params['resultado2'] = TipoPista::listarTipoPista();
-            require __DIR__ . '/../templates/mostrarPista.php';
+            require __DIR__ . '/../templates/mostrarTarifa.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
         } else {
