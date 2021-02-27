@@ -14,7 +14,7 @@
     <div class="tab-content bg-white">
         <div class="tab-pane fade show active" id="buscar">
             <br>
-            <form action="index.php?ruta=listarPistaFiltradas" method="POST">
+            <form action="index.php?ruta=listarTarifasFiltradas" method="POST">
                 <div class="form-group row">
                     <label for="inputTipoPista" class="col-12 col-sm-2 col-form-label mt-3">Tipo de pista</label>
                     <div class="col-12 col-sm-4 mt-3">

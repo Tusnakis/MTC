@@ -26,10 +26,10 @@
                     <ul class="navbar-nav">
                         <?php if ($_SESSION['rol'] == 'user') { ?>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Reservas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas">Reservas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Reservar pista</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservaPistas">Reservar pista</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +66,7 @@
                                 <a class="nav-link text-white" href="index.php?ruta=mostrarTarifa">Tarifas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Reservas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas">Reservas</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="#">Horarios</a>

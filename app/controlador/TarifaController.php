@@ -60,6 +60,20 @@ class TarifaController
             require __DIR__ . '/../templates/mostrarLogin.php';
         }
     }
+
+    public function listarTarifasFiltradas()
+    {
+        session_start();
+        if($_SESSION['rol'] == 'admin') {
+            $params['resultado'] = Tarifa::listarTarifasFiltradas($_POST['tipoPista']);
+            $params['resultado2'] = TipoPista::listarTipoPista();
+            require __DIR__ . '/../templates/mostrarTarifa.php';
+        } else if (isset($_SESSION['usuario'])) {
+            require __DIR__ . '/../templates/inicio.php';
+        } else {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
 }
 
 ?>

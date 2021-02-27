@@ -33,7 +33,7 @@ class TipoPistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            TipoPista::actualizarTipoPista($_POST['idTipoPista'], $_POST['nuevoTipoPista']);
+            TipoPista::actualizarTipoPista($_POST['tipoPista'], $_POST['nuevoTipoPista']);
             $params['resultado'] = TipoPista::listarTipoPista();
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
