@@ -15,7 +15,7 @@ class Conexion
             echo $mvc_bd_conexion->connect_error."</p>"; 
             exit();
         } 
-        $this->conexion = $mvc_bd_conexion; 
+        $this->conexion = $mvc_bd_conexion;
     }
 
     //Esta función recibe por parámetro una sentencia SELECT y devuelve un array de alimentos

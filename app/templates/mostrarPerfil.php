@@ -7,31 +7,31 @@
             <div class="form-group row">
                 <label for="exampleInputUser" class="col-sm-3 col-form-label">Usuario</label>
                 <div class="col-sm-9">
-                    <input type="text" name="usuario" class="form-control" value="<?php echo $_SESSION['usuario'] ?>" required>
+                    <input type="text" name="usuario" class="form-control" value="<?php echo $params['resultado'][0]['usuario'] ?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputPassword1" class="col-sm-3 col-form-label">Contraseña</label>
                 <div class="col-sm-9">
-                    <input type="password" name="contrasena" class="form-control" value="<?php echo $_SESSION['contrasena'] ?>" required>
+                    <input type="password" name="contrasena" class="form-control" value="<?php echo $params['resultado'][0]['contrasena'] ?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputName" class="col-sm-3 col-form-label">Nombre</label>
                 <div class="col-sm-9">
-                    <input type="text" name="nombre" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" required>
+                    <input type="text" name="nombre" class="form-control" value="<?php echo $params['resultado'][0]['nombre'] ?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputSurname" class="col-sm-3 col-form-label">Apellidos</label>
                 <div class="col-sm-9">
-                    <input type="text" name="apellidos" class="form-control" value="<?php echo $_SESSION['apellidos'] ?>" required>
+                    <input type="text" name="apellidos" class="form-control" value="<?php echo $params['resultado'][0]['apellidos'] ?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="exampleInputEmail" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                    <input type="email" name="email" class="form-control" value="<?php echo $_SESSION['email'] ?>" required>
+                    <input type="email" name="email" class="form-control" value="<?php echo $params['resultado'][0]['email'] ?>" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -44,8 +44,8 @@
         </form>
     </div>
     <div class="col-12 col-lg-6 my-3 d-flex justify-content-center">
-        <img src="<?php if (isset($_SESSION['foto']) && file_exists($_SESSION['foto'])) {
-                        echo $_SESSION['foto'];
+        <img src="<?php if (/*isset($_SESSION['foto']) && */file_exists($params['resultado'][0]['foto'])) {
+                        echo $params['resultado'][0]['foto'];
                     } else {
                         echo 'images/perfil.jpg';
                     } ?>" alt="perfil" width="300" height="300" />

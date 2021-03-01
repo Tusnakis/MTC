@@ -71,11 +71,11 @@ class UsuarioController
         session_start();
         if (isset($_SESSION['usuario'])) {
             $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
-            $_SESSION['usuario'] = $params['resultado'][0]['usuario'];
+            /*$_SESSION['usuario'] = $params['resultado'][0]['usuario'];
             $_SESSION['contrasena'] = $params['resultado'][0]['contrasena'];
             $_SESSION['nombre'] = $params['resultado'][0]['nombre'];
             $_SESSION['apellidos'] = $params['resultado'][0]['apellidos'];
-            $_SESSION['email'] = $params['resultado'][0]['email'];
+            $_SESSION['email'] = $params['resultado'][0]['email'];*/
             require __DIR__ . '/../templates/mostrarPerfil.php';
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';
@@ -102,14 +102,14 @@ class UsuarioController
                 move_uploaded_file($tmp_name, $nuevo_path);
             }
             Usuario::actualizaUsuario($_SESSION['usuario'], $_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $nuevo_path);
-            $_SESSION['usuario'] = $_POST['usuario'];
+            /*$_SESSION['usuario'] = $_POST['usuario'];
             $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
             $_SESSION['usuario'] = $params['resultado'][0]['usuario'];
             $_SESSION['contrasena'] = $params['resultado'][0]['contrasena'];
             $_SESSION['nombre'] = $params['resultado'][0]['nombre'];
             $_SESSION['apellidos'] = $params['resultado'][0]['apellidos'];
             $_SESSION['email'] = $params['resultado'][0]['email'];
-            $_SESSION['foto'] = $params['resultado'][0]['foto'];
+            $_SESSION['foto'] = $params['resultado'][0]['foto'];*/
             require __DIR__ . '/../templates/inicio.php';
         } else if (isset($_SESSION['usuario']) && (empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['nombre']) || empty($_POST['apellidos']) || empty($_POST['email']))) {
             require __DIR__ . '/../templates/mostrarPerfil.php';

@@ -51,8 +51,12 @@ class ReservaController
     {
         session_start();
         if($_SESSION['rol'] == 'user' || $_SESSION['rol'] == 'admin') {
-            $params['resultado'] = Reserva::listarReservasHechas(date("Y-m-d"));
-            $params['resultado4'] = $_POST['fecha'];
+            if(isset($_POST['fecha'])) {
+                $params['resultado'] = Reserva::listarReservasHechas($_POST['fecha']);
+                $params['resultado4'] = $_POST['fecha'];
+            } else {
+                $params['resultado'] = Reserva::listarReservasHechas(date("Y-m-d"));
+            }
             require __DIR__ . '/../templates/mostrarReservasHechas.php';
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';

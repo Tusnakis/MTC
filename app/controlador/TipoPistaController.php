@@ -61,14 +61,8 @@ class TipoPistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            if(empty($_POST['tipoPista'])) {
-                $params['resultado'] = TipoPista::listarTipoPista();
-                require __DIR__ . '/../templates/mostrarTipoPista.php';
-            } else {
-                $params['resultado'] = TipoPista::listarTipoPistaFiltradas($_POST['tipoPista']);
-                require __DIR__ . '/../templates/mostrarTipoPista.php';
-            }
-            $params['resultado'] = TipoPista::listarTipoPista();
+            $params['resultado'] = TipoPista::listarTipoPistaFiltradas($_POST['tipoPista']);
+            require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
         } else {

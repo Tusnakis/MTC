@@ -65,7 +65,7 @@
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_inicio'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_fin'] ?></td>
-                        <td class="text-center align-middle"><?php echo $params['resultado'][$i]['precio'] ?></td>
+                        <td class="text-center align-middle"><?php echo $params['resultado'][$i]['precio'] ?> €</td>
                         <td class="text-center">
                             <form action="index.php?ruta=reservarPista" method="POST">
                                 <input type="hidden" name="usuario" value="<?php echo $_SESSION['usuario'] ?>">
