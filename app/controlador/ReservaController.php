@@ -9,7 +9,7 @@ class ReservaController
             $params['resultado'] = Reserva::listarPistasReserva();
             $params['resultado2'] = TipoPista::listarTipoPista();
             $params['resultado3'] = Reserva::listarReservasHechas(date("Y-m-d"));
-            $params['resultado4'] = array();
+            $params['resultado5'] = Pista::listarNumPistas();
             require __DIR__ . '/../templates/mostrarReservaPistas.php';
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';
@@ -23,7 +23,8 @@ class ReservaController
             $params['resultado'] = Reserva::listarReservasFiltradas($_POST['tipoPista'],$_POST['numPista']);
             $params['resultado2'] = TipoPista::listarTipoPista();
             $params['resultado3'] = Reserva::listarReservasHechas($_POST['fecha']);
-            $params['resultado4'] = $_POST['fecha'];
+            $params['resultado4'] = array($_POST['fecha'],$_POST['numPista'],$_POST['tipoPista']);
+            $params['resultado5'] = Pista::listarNumPistas();
             require __DIR__ . '/../templates/mostrarReservaPistas.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -40,8 +41,9 @@ class ReservaController
             $params['resultado'] = Reserva::listarPistasReserva();
             $params['resultado2'] = TipoPista::listarTipoPista();
             $params['resultado3'] = Reserva::listarReservasHechas($_POST['fecha']);
-            $params['resultado4'] = $_POST['fecha'];
-            require __DIR__ . '/../templates/mostrarReservaPistas.php';
+            $params['resultado4'] = array($_POST['fecha'],$_POST['numPista'],$_POST['tipoPista']);
+            $params['resultado5'] = Pista::listarNumPistas();
+            $this->listarReservasFiltradas();
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';
         }

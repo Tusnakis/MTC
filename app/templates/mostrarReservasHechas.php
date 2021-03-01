@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label for="fechaReserva" class="col-12 col-sm-2 col-form-label mt-3">Fecha</label>
                     <div class="col-12 col-sm-4 mt-3">
-                        <input type="date" class="form-control" id="fechaReserva" name="fecha" min="<?php echo date("Y-m-d") ?>" value="<?php if (!empty($params['resultado4'])) {
+                        <input type="date" class="form-control" id="fechaReserva" name="fecha" min="<?php echo date("Y-m-d") ?>" max="<?php echo date("Y-m-d", strtotime('+ 1 week')) ?>" value="<?php if (!empty($params['resultado4'])) {
                                                                                                                                             echo $params['resultado4'];
                                                                                                                                         } else {
                                                                                                                                             echo date("Y-m-d");

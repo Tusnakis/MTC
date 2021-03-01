@@ -16,27 +16,35 @@
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="inputTipoPista" class="form-control" name="tipoPista">
                             <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
-                                <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php if($params['resultado2'][$i]['nombre'] == $params['resultado4'][2]) { ?>
+                                <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>" selected><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } else { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } ?>
                             <?php } ?>
                         </select>
                     </div>
                     <label for="inputNumPista" class="col-12 col-sm-2 col-form-label mt-3">Num. de pista</label>
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="inputNumPista" class="form-control" name="numPista">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <?php for ($i = 0; $i < count($params['resultado5']); $i++) { ?>
+                                <?php if ($params['resultado5'][$i]['num_pista'] == $params['resultado4'][1]) { ?>
+                                    <option value="<?php echo $params['resultado5'][$i]['num_pista'] ?>" selected><?php echo $params['resultado5'][$i]['num_pista'] ?></option>
+                                <?php } else { ?>
+                                    <option value="<?php echo $params['resultado5'][$i]['num_pista'] ?>"><?php echo $params['resultado5'][$i]['num_pista'] ?></option>
+                                <?php } ?>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="fechaReserva" class="col-12 col-sm-2 col-form-label mt-3">Fecha</label>
                     <div class="col-12 col-sm-4 mt-3">
-                        <input type="date" class="form-control" id="fechaReserva" name="fecha" min="<?php echo date("Y-m-d") ?>" value="<?php if (!empty($params['resultado4'])) {
-                                                                                                                                            echo $params['resultado4'];
-                                                                                                                                        } else {
-                                                                                                                                            echo date("Y-m-d");
-                                                                                                                                        } ?>" required>
+                        <input type="date" class="form-control" id="fechaReserva" name="fecha" min="<?php echo date("Y-m-d") ?>" max="<?php echo date("Y-m-d", strtotime('+ 1 week')) ?>" value="<?php if (!empty($params['resultado4'])) {
+                                                                                                                                                                                                        echo $params['resultado4'][0];
+                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                        echo date("Y-m-d");
+                                                                                                                                                                                                    } ?>" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-secondary mt-3">Buscar</button>
@@ -69,10 +77,12 @@
                         <td class="text-center">
                             <form action="index.php?ruta=reservarPista" method="POST">
                                 <input type="hidden" name="usuario" value="<?php echo $_SESSION['usuario'] ?>">
+                                <input type="hidden" name="tipoPista" value="<?php echo $params['resultado'][$i]['nombre'] ?>">
+                                <input type="hidden" name="numPista" value="<?php echo $params['resultado'][$i]['num_pista'] ?>">
                                 <input type="hidden" name="pista" value="<?php echo $params['resultado'][$i]['pista'] ?>">
                                 <input type="hidden" name="tarifa" value="<?php echo $params['resultado'][$i]['tarifa'] ?>">
                                 <input type="hidden" name="fecha" value="<?php if (!empty($params['resultado4'])) {
-                                                                                echo $params['resultado4'];
+                                                                                echo $params['resultado4'][0];
                                                                             } else {
                                                                                 echo date("Y-m-d");
                                                                             } ?>">
