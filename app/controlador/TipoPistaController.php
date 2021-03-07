@@ -7,6 +7,7 @@ class TipoPistaController
         session_start();
         if($_SESSION['rol'] == 'admin') {
             $params['resultado'] = TipoPista::listarTipoPista();
+            $params['resultado2'] = TipoPista::listarTipoPista();
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -21,6 +22,7 @@ class TipoPistaController
         if ($_SESSION['rol'] == 'admin') {
             TipoPista::añadirTipoPista($_POST['nombre']);
             $params['resultado'] = TipoPista::listarTipoPista();
+            $params['resultado2'] = TipoPista::listarTipoPista();
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -35,6 +37,7 @@ class TipoPistaController
         if ($_SESSION['rol'] == 'admin') {
             TipoPista::actualizarTipoPista($_POST['tipoPista'], $_POST['nuevoTipoPista']);
             $params['resultado'] = TipoPista::listarTipoPista();
+            $params['resultado2'] = TipoPista::listarTipoPista();
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -49,6 +52,7 @@ class TipoPistaController
         if ($_SESSION['rol'] == 'admin') {
             TipoPista::eliminarTipoPista($_POST['idTipoPista']);
             $params['resultado'] = TipoPista::listarTipoPista();
+            $params['resultado2'] = TipoPista::listarTipoPista();
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -62,6 +66,8 @@ class TipoPistaController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             $params['resultado'] = TipoPista::listarTipoPistaFiltradas($_POST['tipoPista']);
+            $params['resultado2'] = TipoPista::listarTipoPista();
+            $params['resultado3'] = $_POST['tipoPista'];
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';

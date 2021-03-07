@@ -21,9 +21,7 @@ class PistaController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             Pista::añadirPista($_POST['numPista'],$_POST['tipoPista']);
-            $params['resultado2'] = TipoPista::listarTipoPista();
-            $params['resultado'] = Pista::listarPistas();
-            require __DIR__ . '/../templates/mostrarPista.php';
+            $this->listarPistaFiltradas();
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
         } else {
@@ -37,6 +35,7 @@ class PistaController
         if($_SESSION['rol'] == 'admin') {
             $params['resultado'] = Pista::listarPistaFiltradas($_POST['tipoPista']);
             $params['resultado2'] = TipoPista::listarTipoPista();
+            $params['resultado3'] = $_POST['tipoPista'];
             require __DIR__ . '/../templates/mostrarPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';

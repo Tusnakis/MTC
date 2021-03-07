@@ -19,8 +19,12 @@
                     <label for="inputTipoPista" class="col-12 col-sm-2 col-form-label mt-3">Tipo de pista</label>
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="inputTipoPista" class="form-control" name="tipoPista">
-                            <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
-                                <option value="<?php echo $params['resultado'][$i]['nombre'] ?>"><?php echo ucwords($params['resultado'][$i]['nombre']) ?></option>
+                            <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
+                                <?php if ($params['resultado2'][$i]['nombre'] == $params['resultado3']) { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>" selected><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } else { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } ?>
                             <?php } ?>
                         </select>
                     </div>

@@ -24,7 +24,7 @@ class Pista
 
     public static function listarPistaFiltradas($id)
     {
-        $sql = "SELECT tp.nombre, p.num_pista FROM pista p
+        $sql = "SELECT p.id, tp.nombre, p.num_pista FROM pista p
         INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id
         WHERE tp.id = $id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);

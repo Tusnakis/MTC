@@ -20,7 +20,11 @@
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="inputTipoPista" class="form-control" name="tipoPista">
                             <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
-                                <option value="<?php echo $params['resultado2'][$i]['id'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php if ($params['resultado2'][$i]['id'] == $params['resultado3']) { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['id'] ?>" selected><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } else { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['id'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } ?>
                             <?php } ?>
                         </select>
                     </div>
@@ -36,7 +40,11 @@
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="inputTipoPista" class="form-control" name="tipoPista">
                             <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
-                                <option value="<?php echo $params['resultado2'][$i]['id'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php if ($params['resultado2'][$i]['id'] == $params['resultado3']) { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['id'] ?>" selected><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } else { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['id'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php } ?>
                             <?php } ?>
                         </select>
                     </div>
