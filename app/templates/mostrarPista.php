@@ -80,14 +80,14 @@
                             <input type="hidden" name="pista" value="<?php echo $params['resultado'][$i]['id'] ?>">
                             <td><input type="text" name="numPista" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['num_pista'] ?>" required></td>
                             <td class="justify-content-center align-middle" style="width: 3rem;">
-                                <input data-toggle="tooltip" title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
+                                <input title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
                             </td>
                         </form>
                         <td class="justify-content-center align-middle" style="width: 3rem;">
                             <form id="eliminarPista" action="index.php?ruta=eliminarPista" method="POST">
                                 <input type="hidden" name="idPista" value="<?php echo $params['resultado'][$i]['id'] ?>">
                                 <input type="hidden" class="tipoPista" value="<?php echo $params['resultado'][$i]['nombre'] ?>">
-                                <input data-toggle="tooltip" title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
+                                <input title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
                             </form>
                         </td>
                     </tr>

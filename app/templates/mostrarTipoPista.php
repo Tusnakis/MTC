@@ -64,13 +64,13 @@
                             <td><input type="text" name="nuevoTipoPista" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['nombre'] ?>" required></td>
                             <input type="hidden" name="tipoPista" value="<?php echo $params['resultado'][$i]['id'] ?>">
                             <td class="justify-content-center align-middle" style="width: 3rem;">
-                                <input data-toggle="tooltip" title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
+                                <input title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
                             </td>
                         </form>
                         <td class="justify-content-center align-middle" style="width: 3rem;">
                             <form action="index.php?ruta=eliminarTipoPista" method="POST">
                                 <input type="hidden" name="idTipoPista" value="<?php echo $params['resultado'][$i]['id'] ?>">
-                                <input data-toggle="tooltip" title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
+                                <input title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
                             </form>
                         </td>
                     </tr>

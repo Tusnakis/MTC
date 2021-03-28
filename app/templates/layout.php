@@ -43,7 +43,7 @@
                             </li>
                         <?php } else if ($_SESSION['rol'] == 'emp') { ?>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Ver horario</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarHorario">Ver horario</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,7 +69,7 @@
                                 <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas">Reservas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">Horarios</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarHorario">Horarios</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="index.php?ruta=mostrarUsuarios">Usuarios</a>

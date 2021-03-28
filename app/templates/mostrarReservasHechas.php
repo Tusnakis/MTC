@@ -57,7 +57,7 @@
                             <form action="index.php?ruta=eliminarReserva" method="POST">
                                 <input type="hidden" name="idReserva" value="<?php echo $params['resultado'][$i]['id'] ?>">
                                 <input type="hidden" name="fecha" value="<?php echo $params['resultado'][$i]['fecha'] ?>">
-                                <input data-toggle="tooltip" title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
+                                <input title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
                             </form>
                         </td>
                         <?php } ?>

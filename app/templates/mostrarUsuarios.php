@@ -94,13 +94,13 @@
                             <td><input type="text" name="email" class="form-control text-center" style="width: 10rem;" value="<?php echo $params['resultado'][$i]['email'] ?>" required></td>
                             <td><input type="text" name="rol" class="form-control text-center mx-3" style="width: 6rem;" value="<?php echo $params['resultado'][$i]['rol'] ?>" required></td>
                             <td class="justify-content-center">
-                                <input data-toggle="tooltip" title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
+                                <input title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
                         </form>
                         </td>
                         <td>
                             <form action="index.php?ruta=eliminarUsuarios" method="POST">
                                 <input type="hidden" name="usuario" value="<?php echo $params['resultado'][$i]['usuario'] ?>">
-                                <input data-toggle="tooltip" title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
+                                <input title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
                             </form>
                         </td>
                     </tr>

@@ -40,6 +40,22 @@ main {
     font-size: 12px;
 }
 
+.turno1 {
+    text-decoration: overline;
+}
+
+.turno2 {
+    text-decoration: underline;
+}
+
+.leyenda {
+    font-size: 12px;
+}
+
+.tenis {
+    background-color: darkviolet;
+}
+
 footer {
     position: fixed;
     left: 0;
