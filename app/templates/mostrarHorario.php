@@ -100,9 +100,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -115,9 +115,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -130,9 +130,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -145,9 +145,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-success text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-success text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -160,9 +160,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center tenis text-white dias font-weight-bold turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white dias font-weight-bold turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center tenis text-white dias font-weight-bold turno1"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white dias font-weight-bold turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -180,9 +180,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-warning text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-warning text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -195,9 +195,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-primary text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-primary text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -210,9 +210,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-danger text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-danger text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -225,9 +225,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-success text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-success text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -240,9 +240,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center tenis text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center tenis text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -278,9 +278,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -293,9 +293,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -308,9 +308,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -323,9 +323,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-success text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-success text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -338,9 +338,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center tenis text-white font-weight-bold dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white font-weight-bold dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center tenis text-white font-weight-bold dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white font-weight-bold dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -358,9 +358,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-warning text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-warning text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-warning text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -373,9 +373,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-primary text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-primary text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-primary text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -388,9 +388,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-danger text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-danger text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-danger text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -403,9 +403,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center bg-success text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center bg-success text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center bg-success text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
@@ -418,9 +418,9 @@
                                                 <?php } ?>
                                             <?php } else { ?>
                                                 <?php if ($_SESSION['rol'] == 'admin') { ?>
-                                                    <td class="text-center tenis text-white dias turno1" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white dias turno2" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
                                                 <?php } else { ?>
-                                                    <td class="text-center tenis text-white dias turno1"><?php echo $i ?></td>
+                                                    <td class="text-center tenis text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>

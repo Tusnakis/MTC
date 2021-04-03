@@ -29,7 +29,7 @@
                         <input type="password" name="contrasena" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Entrar</button>
-                    <p class="card-text text-center"><br>¿Aún no te has registrado? <a href="index.php?ruta=mostrarRegistro">¡Registrate!</a></p>
+                    <p class="card-text text-center"><br>¿Aún no te has registrado? <a href="index.php?ruta=mostrarRegistro">¡Regístrate!</a></p>
                 </form>
             </div>
         </div>

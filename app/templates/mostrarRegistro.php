@@ -16,7 +16,7 @@
     <div class="col-12 col-lg-4 my-1">
         <div class="card mx-auto" style="width: 20rem; height: 25.5rem;">
             <div class="card-body">
-                <h5 class="card-title text-center"><strong>Registrate en Marc Tennis Club</strong></h5>
+                <h5 class="card-title text-center"><strong>Regístrate en Marc Tennis Club</strong></h5>
                 <br>
                 <form action="index.php?ruta=registro" method="POST">
                     <div class="form-group">
