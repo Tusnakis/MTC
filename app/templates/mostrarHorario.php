@@ -584,7 +584,7 @@
                     <div class="form-group row">
                         <label for="horario" class="col-12 col-sm-2 col-form-label mt-3">Puesto</label>
                         <div class="col-12 col-sm-4 mt-3">
-                            <select id="horario" name="horario">
+                            <select id="horarioActualizar" name="horario">
                                 <?php for ($i = 0; $i < count($params['resultado3']); $i++) { ?>
                                     <option value="<?php echo $params['resultado3'][$i]['id'] ?>"><?php echo $params['resultado3'][$i]['puesto'] ?></option>
                                 <?php } ?>
@@ -592,7 +592,7 @@
                         </div>
                         <label for="turno" class="col-12 col-sm-2 col-form-label mt-3">Turno</label>
                         <div class="col-12 col-sm-4 mt-3">
-                            <select id="turno" name="turno">
+                            <select id="turnoActualizar" name="turno">
                                 <option value="1">Mañana</option>
                                 <option value="2">Tarde</option>
                             </select>

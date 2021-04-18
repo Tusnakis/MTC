@@ -35,6 +35,10 @@ function init() {
         var dia = e.target.innerHTML;
         var mesAño = e.target.parentNode.parentNode.parentNode.children[0].children[0].innerText.split(" ");
         var numMes;
+        var clasesTagHorario = e.target.classList;
+        var horariosColores = ["bg-primary","bg-warning","bg-danger","bg-success","tenis","vacaciones"];
+        var turnosDecoracion = ["turno1","turno2"]
+
         for(var i = 0; i < meses.length; i++) {
           if(mesAño[0] == meses[i][0]) {
             mesAño[0] = meses[i][0];
@@ -48,6 +52,18 @@ function init() {
 
         if(numMes < 10) {
           numMes = "0" + numMes;
+        }
+
+        for(var x = 0; x < horariosColores.length; x++) {
+          if(horariosColores[x] == clasesTagHorario[1]) {
+            document.getElementById("horarioActualizar").value = x + 1;
+          }
+        }
+
+        for(var y = 0; y < turnosDecoracion.length; y++) {
+          if(turnosDecoracion[y] == clasesTagHorario[4]) {
+            document.getElementById("turnoActualizar").value = y + 1;
+          }
         }
 
         var fecha = mesAño[1] + "-" + numMes + "-" + dia;
