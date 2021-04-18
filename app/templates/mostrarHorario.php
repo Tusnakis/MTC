@@ -166,6 +166,13 @@
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
+                                        <?php if ($params['asignacionesUsuario'][$x]['puesto'] == "Vacaciones") { ?>
+                                            <?php if ($_SESSION['rol'] == 'admin') { ?>
+                                                <td class="text-center vacaciones text-white dias font-weight-bold" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                            <?php } else { ?>
+                                                <td class="text-center vacaciones text-white dias font-weight-bold"><?php echo $i ?></td>
+                                            <?php } ?>
+                                        <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
                             <?php } else { ?>
@@ -244,6 +251,13 @@
                                                 <?php } else { ?>
                                                     <td class="text-center tenis text-white dias turno2"><?php echo $i ?></td>
                                                 <?php } ?>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php if ($params['asignacionesUsuario'][$x]['puesto'] == "Vacaciones") { ?>
+                                            <?php if ($_SESSION['rol'] == 'admin') { ?>
+                                                <td class="text-center vacaciones text-white dias" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                            <?php } else { ?>
+                                                <td class="text-center vacaciones text-white dias"><?php echo $i ?></td>
                                             <?php } ?>
                                         <?php } ?>
                                     <?php } ?>
@@ -344,6 +358,13 @@
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
+                                        <?php if ($params['asignacionesUsuario'][$x]['puesto'] == "Vacaciones") { ?>
+                                            <?php if ($_SESSION['rol'] == 'admin') { ?>
+                                                <td class="text-center vacaciones text-white font-weight-bold dias" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                            <?php } else { ?>
+                                                <td class="text-center vacaciones text-white font-weight-bold dias"><?php echo $i ?></td>
+                                            <?php } ?>
+                                        <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
                             <?php } else { ?>
@@ -424,6 +445,13 @@
                                                 <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
+                                        <?php if ($params['asignacionesUsuario'][$x]['puesto'] == "Vacaciones") { ?>
+                                            <?php if ($_SESSION['rol'] == 'admin') { ?>
+                                                <td class="text-center vacaciones text-white dias" data-toggle="modal" data-target="#actualizarModal"><?php echo $i ?></td>
+                                            <?php } else { ?>
+                                                <td class="text-center vacaciones text-white dias"><?php echo $i ?></td>
+                                            <?php } ?>
+                                        <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
                             <?php } ?>
@@ -470,6 +498,9 @@
                 <td class="mx-2 tenis text-white leyenda">Tenis</td>
             </tr>
             <tr>
+                <td class="mx-2 vacaciones text-white leyenda">Vacaciones</td>
+            </tr>
+            <tr>
                 <td class="mx-2 turno1 bg-light leyenda">Mañanas</td>
             </tr>
             <tr>
@@ -504,7 +535,11 @@
                         <div class="col-12 col-sm-4 mt-3">
                             <select id="horario" name="horario">
                                 <?php for ($i = 0; $i < count($params['resultado3']); $i++) { ?>
-                                    <option value="<?php echo $params['resultado3'][$i]['id'] ?>"><?php echo $params['resultado3'][$i]['puesto'] ?></option>
+                                    <?php if ($_SESSION['rol'] == 'admin') { ?>
+                                        <option value="<?php echo $params['resultado3'][$i]['id'] ?>"><?php echo $params['resultado3'][$i]['puesto'] ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $params['resultado3'][$i]['id'] ?>"><?php echo $params['resultado3'][$i]['puesto'] ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
@@ -565,7 +600,7 @@
                     </div>
                     <input type="hidden" name="mes" value="<?php echo $params['resultado4'] ?>">
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary mt-3">Asignar</button>
+                        <button type="submit" class="btn btn-secondary mt-3">Actualizar</button>
                     </div>
                 </form>
             </div>

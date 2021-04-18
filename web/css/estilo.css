@@ -56,6 +56,10 @@ main {
     background-color: darkviolet;
 }
 
+.vacaciones {
+    background-color: #cf6c02;
+}
+
 footer {
     position: fixed;
     left: 0;
