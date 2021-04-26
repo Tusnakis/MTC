@@ -7,6 +7,11 @@
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#buscar">Buscar horario</a>
         </li>
+        <?php if ($_SESSION['rol'] == 'emp') { ?>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#solicitar">Solicitar vacaciones</a>
+            </li>
+        <?php } ?>
         <?php if ($_SESSION['rol'] == 'admin') { ?>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#añadir">Añadir puesto</a>
@@ -60,6 +65,23 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-secondary mt-3">Añadir</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="solicitar">
+            <br>
+            <form action="index.php?ruta=solicitarVacaciones" method="POST">
+                <div class="form-group row">
+                    <label for="fechaInicio" class="col-12 col-sm-2 col-form-label mt-3">Fecha inicio</label>
+                    <div class="col-12 col-sm-4 mt-3">
+                        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" min="<?php echo date("Y-m-d", strtotime('+ 15 day')) ?>" max="2021-12-31" required>
+                    </div>
+                    <label for="fechaFin" class="col-12 col-sm-2 col-form-label mt-3">Fecha fin</label>
+                    <div class="col-12 col-sm-4 mt-3">
+                        <input type="date" class="form-control" id="fechaFin" name="fechaFin" min="<?php echo date("Y-m-d", strtotime('+ 15 day')) ?>" max="2021-12-31" required>
+                    </div>
+                </div>
+                <p style="font-size: 10px;">*Las vacaciones se tienen que pedir con 15 días de antelación</p>
+                <button type="submit" class="btn btn-secondary mt-3">Solicitar</button>
             </form>
         </div>
     </div>

@@ -8,12 +8,14 @@ require_once __DIR__ . '/../app/modelo/Pista.php';
 require_once __DIR__ . '/../app/modelo/Tarifa.php';
 require_once __DIR__ . '/../app/modelo/Reserva.php';
 require_once __DIR__ . '/../app/modelo/Horario.php';
+require_once __DIR__ . '/../app/modelo/Mensaje.php';
 require_once __DIR__ . '/../app/controlador/UsuarioController.php';
 require_once __DIR__ . '/../app/controlador/TipoPistaController.php';
 require_once __DIR__ . '/../app/controlador/PistaController.php';
 require_once __DIR__ . '/../app/controlador/TarifaController.php';
 require_once __DIR__ . '/../app/controlador/ReservaController.php';
 require_once __DIR__ . '/../app/controlador/HorarioController.php';
+require_once __DIR__ . '/../app/controlador/MensajeController.php';
 
 // RUTAS
 // Este array asociativo se usa para saber qué acción (función del controlador) se debe disparar
@@ -54,7 +56,12 @@ $map = array(
     'listarHorarioFiltrado' => array('controller' => 'HorarioController', 'action' => 'listarHorarioFiltrado'),
     'añadirHorario' => array('controller' => 'HorarioController', 'action' => 'añadirHorario'),
     'asignarHorario' => array('controller' => 'HorarioController', 'action' => 'asignarHorario'),
-    'actualizarHorario' => array('controller' => 'HorarioController', 'action' => 'actualizarHorario')
+    'actualizarHorario' => array('controller' => 'HorarioController', 'action' => 'actualizarHorario'),
+    'solicitarVacaciones' => array('controller' => 'HorarioController', 'action' => 'solicitarVacaciones'),
+    'mostrarMensajes' => array('controller' => 'MensajeController', 'action' => 'mostrarMensajes'),
+    'listarMensajesFiltrados' => array('controller' => 'MensajeController', 'action' => 'listarMensajesFiltrados'),
+    'archivarMensaje' => array('controller' => 'MensajeController', 'action' => 'archivarMensaje'),
+    'enviarMensaje' => array('controller' => 'MensajeController', 'action' => 'enviarMensaje')
 );
 
 // Parseo de la ruta 

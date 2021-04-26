@@ -227,4 +227,43 @@ class HorarioController
 
         return $datos;
     }
+
+    public function solicitarVacaciones()
+    {
+        session_start();
+        if ($_SESSION['rol'] == 'emp') {
+            $texto = "El empleado " . $_SESSION['usuario'] . " ha solicitado vacaciones con fecha de inicio " . $_POST['fechaInicio'] . " y fecha de fin " . $_POST['fechaFin'];
+            $params['usuarioPara'] = Usuario::listarUsuariosPorRol('admin');
+            Mensaje::enviarMensaje($_SESSION['usuario'],$params['usuarioPara'][0]['usuario'],$texto,date("Y-m-d"));
+            $params['resultado'] = Usuario::listarEmpleados();
+            $mes = Horario::meses();
+            $params['resultado2'] = $this->generarMesHorario($mes[date('n')][0]);
+            $params['resultado3'] = Horario::listarHorarios();
+            $params['resultado4'] = $mes[date('n')][0];
+            $params['resultado5'] = $params['resultado'][0]['usuario'];
+            $params['meses'] = Horario::meses();
+            $params['resultado6'] = "";
+            $params['resultado7'] = 1;
+            for($i = 1; $i <= count($params['meses']); $i++) {
+                if($params['meses'][$i][0] == $params['resultado2']['titulo']) {
+                    $params['resultado6'] = $params['meses'][$i][1];
+                    if($i < 10) {
+                        $params['resultado7'] = "0" . $i;
+                    } else {
+                        $params['resultado7'] = $i;
+                    }
+                }
+            }
+            $params['asignacionesUsuario'] = Horario::listarAsignacionesUsuario($params['resultado5']);
+            $params['resultado8'] = array();
+            for($i = 0; $i < count($params['asignacionesUsuario']); $i++) {
+                array_push($params['resultado8'], $params['asignacionesUsuario'][$i]['fecha']);
+            }
+            require __DIR__ . '/../templates/mostrarHorario.php';
+        } else if (isset($_SESSION['usuario'])) {
+            require __DIR__ . '/../templates/inicio.php';
+        } else {
+            require __DIR__ . '/../templates/mostrarLogin.php';
+        }
+    }
 }

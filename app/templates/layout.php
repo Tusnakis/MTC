@@ -37,6 +37,11 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes">Mensajes
+                                        <?php if (count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) > 0) { ?>
+                                            <span class="badge badge-danger"><?php echo count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) ?></span>
+                                        <?php } ?>
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
                                 </div>
@@ -51,6 +56,11 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes">Mensajes
+                                        <?php if (count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) > 0) { ?>
+                                            <span class="badge badge-danger"><?php echo count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) ?></span>
+                                        <?php } ?>
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
                                 </div>
@@ -80,6 +90,11 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes">Mensajes
+                                        <?php if (count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) > 0) { ?>
+                                            <span class="badge badge-danger"><?php echo count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) ?></span>
+                                        <?php } ?>
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="index.php?ruta=logout">Crearr sesión</a>
                                 </div>
