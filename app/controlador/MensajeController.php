@@ -18,8 +18,9 @@ class MensajeController
     {
         session_start();
         if(isset($_SESSION['usuario'])) {
-            $params['resultado'] = $_POST['mensajeFecha'];
+            $params['resultado'] = Mensaje::listarMensajesFiltrados($_SESSION['usuario'],$_POST['archivado'],$_POST['mensajeFecha']);
             $params['resultado2'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            $params['resultado3'] = [$_POST['archivado'],$_POST['mensajeFecha']];
             require __DIR__ . '/../templates/mostrarMensajes.php';
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';
