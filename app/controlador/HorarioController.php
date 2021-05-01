@@ -259,6 +259,7 @@ class HorarioController
             for($i = 0; $i < count($params['asignacionesUsuario']); $i++) {
                 array_push($params['resultado8'], $params['asignacionesUsuario'][$i]['fecha']);
             }
+            $params['enviado'] = $_POST['enviado'];
             require __DIR__ . '/../templates/mostrarHorario.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';

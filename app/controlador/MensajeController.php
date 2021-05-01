@@ -47,6 +47,7 @@ class MensajeController
             Mensaje::enviarMensaje($_SESSION['usuario'],$_POST['usuarioPara'],$_POST['texto'],date("Y-m-d"));
             $params['resultado'] = Mensaje::listarMensajes($_SESSION['usuario']);
             $params['resultado2'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            $params['enviado'] = $_POST['enviar'];
             require __DIR__ . '/../templates/mostrarMensajes.php';
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';

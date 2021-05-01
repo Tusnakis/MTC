@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light navLayout">
         <div class="container-md">
             <a class="navbar-brand text-white" href="<?php if (isset($_SESSION['usuario'])) {
                                                             echo 'index.php?ruta=inicio';

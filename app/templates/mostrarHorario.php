@@ -5,11 +5,11 @@
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#buscar">Buscar horario</a>
+            <a class="nav-link <?php echo $enviado = $params['enviado'] !== NULL ? "" : "active"?>" data-toggle="tab" href="#buscar">Buscar horario</a>
         </li>
         <?php if ($_SESSION['rol'] == 'emp') { ?>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#solicitar">Solicitar vacaciones</a>
+                <a class="nav-link <?php echo $enviado = $params['enviado'] !== NULL ? "active" : ""?>" data-toggle="tab" href="#solicitar">Solicitar vacaciones</a>
             </li>
         <?php } ?>
         <?php if ($_SESSION['rol'] == 'admin') { ?>
@@ -19,7 +19,7 @@
         <?php } ?>
     </ul>
     <div class="tab-content bg-white">
-        <div class="tab-pane fade show active" id="buscar">
+        <div class="tab-pane fade <?php echo $enviado = $params['enviado'] !== NULL ? "" : "show active"?>" id="buscar">
             <br>
             <form action="index.php?ruta=listarHorarioFiltrado" method="POST" class="buscar">
                 <div class="form-group row">
@@ -67,7 +67,7 @@
                 <button type="submit" class="btn btn-secondary mt-3">Añadir</button>
             </form>
         </div>
-        <div class="tab-pane fade" id="solicitar">
+        <div class="tab-pane fade <?php echo $enviado = $params['enviado'] !== NULL ? "show active" : ""?>" id="solicitar">
             <br>
             <form action="index.php?ruta=solicitarVacaciones" method="POST">
                 <div class="form-group row">
@@ -81,7 +81,12 @@
                     </div>
                 </div>
                 <p style="font-size: 10px;">*Las vacaciones se tienen que pedir con 15 días de antelación</p>
-                <button type="submit" class="btn btn-secondary mt-3">Solicitar</button>
+                <?php if ($params['enviado'] !== NULL) { ?>
+                    <div class="alert alert-success" role="alert">
+                        Vacaciones solicitadas con éxito
+                    </div>
+                <?php } ?>
+                <button type="submit" class="btn btn-secondary mt-3" name="enviado">Solicitar</button>
             </form>
         </div>
     </div>
