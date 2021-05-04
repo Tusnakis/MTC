@@ -13,6 +13,19 @@ class Reserva
         return $resultado;
     }
 
+    public static function listarPistasReservaPaginadas($pagina)
+    {
+        $pagina = $pagina * 10 - 10;
+        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id
+        INNER JOIN pista p ON tp.id = p.id_tipo_pista
+        LIMIT $pagina,10";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+
     public static function listarReservasFiltradas($tipoPista,$numPista)
     {
         $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
@@ -20,6 +33,21 @@ class Reserva
         INNER JOIN pista p ON tp.id = p.id_tipo_pista
         WHERE tp.nombre = '$tipoPista'
         AND p.num_pista = $numPista";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+
+    public static function listarReservasFiltradasPaginadas($tipoPista,$numPista,$pagina)
+    {
+        $pagina = $pagina * 10 - 10;
+        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id
+        INNER JOIN pista p ON tp.id = p.id_tipo_pista
+        WHERE tp.nombre = '$tipoPista'
+        AND p.num_pista = $numPista
+        LIMIT $pagina,10";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);
         $con->cerrarConexion();

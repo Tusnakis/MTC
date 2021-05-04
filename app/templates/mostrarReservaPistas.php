@@ -16,8 +16,8 @@
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="inputTipoPista" class="form-control" name="tipoPista">
                             <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
-                                <?php if($params['resultado2'][$i]['nombre'] == $params['resultado4'][2]) { ?>
-                                <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>" selected><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
+                                <?php if ($params['resultado2'][$i]['nombre'] == $params['resultado4'][2]) { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>" selected><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
                                 <?php } else { ?>
                                     <option value="<?php echo $params['resultado2'][$i]['nombre'] ?>"><?php echo ucwords($params['resultado2'][$i]['nombre']) ?></option>
                                 <?php } ?>
@@ -53,7 +53,7 @@
     </div>
 </div>
 <hr>
-<div class="row mb-5">
+<div class="row">
     <div class="col-12 d-flex justify-content-center my-4">
         <table class="table bg-light">
             <thead class="thead bg-secondary text-white">
@@ -96,12 +96,99 @@
                                 <?php if ($salida == 0) { ?>
                                     <input type="submit" class="btn btn-info" value="Reservar">
                                 <?php } ?>
+                                <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
+                                <?php if (isset($params['resultado4'])) { ?>
+                                    <input type="hidden" name="fechaP" value="<?php echo $params['resultado4'][0] ?>">
+                                    <input type="hidden" name="numPistaP" value="<?php echo $params['resultado4'][1] ?>">
+                                    <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado4'][2] ?>">
+                                <?php } ?>
                             </form>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-12 d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <?php if ($params['paginaActual'] == 1) { ?>
+                    <li class="page-item disabled">
+                        <?php if (isset($params['resultado6'])) { ?>
+                            <a class="page-link" href="index.php?ruta=listarReservasFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado6'][0] ?>&numPista=<?php echo $params['resultado6'][1] ?>&fecha=<?php echo $params['resultado6'][2] ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        <?php } else { ?>
+                            <a class="page-link" href="index.php?ruta=mostrarReservaPistas&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        <?php } ?>
+                    </li>
+                <?php } else { ?>
+                    <li class="page-item">
+                        <?php if (isset($params['resultado6'])) { ?>
+                            <a class="page-link" href="index.php?ruta=listarReservasFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado6'][0] ?>&numPista=<?php echo $params['resultado6'][1] ?>&fecha=<?php echo $params['resultado6'][2] ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        <?php } else { ?>
+                            <a class="page-link" href="index.php?ruta=mostrarReservaPistas&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        <?php } ?>
+                    </li>
+                <?php } ?>
+                <?php for ($i = 0; $i < $params['paginas']; $i++) { ?>
+                    <?php if ($params['paginaActual'] == $i + 1) { ?>
+                        <?php if (isset($params['resultado6'])) { ?>
+                            <li class="page-item active"><a class="page-link" href="index.php?ruta=listarReservasFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado6'][0] ?>&numPista=<?php echo $params['resultado6'][1] ?>&fecha=<?php echo $params['resultado6'][2] ?>"><?php echo $i + 1 ?></a></li>
+                        <?php } else { ?>
+                            <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarReservaPistas&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <?php if (isset($params['resultado6'])) { ?>
+                            <li class="page-item"><a class="page-link" href="index.php?ruta=listarReservasFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado6'][0] ?>&numPista=<?php echo $params['resultado6'][1] ?>&fecha=<?php echo $params['resultado6'][2] ?>"><?php echo $i + 1 ?></a></li>
+                        <?php } else { ?>
+                            <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarReservaPistas&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                        <?php } ?>
+                    <?php } ?>
+                <?php } ?>
+                <?php if ($params['paginas'] == $params['paginaActual']) { ?>
+                    <li class="page-item disabled">
+                        <?php if (isset($params['resultado6'])) { ?>
+                            <a class="page-link" href="index.php?ruta=listarReservasFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado6'][0] ?>&numPista=<?php echo $params['resultado6'][1] ?>&fecha=<?php echo $params['resultado6'][2] ?>" aria-label="Previous">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        <?php } else { ?>
+                            <a class="page-link" href="index.php?ruta=mostrarReservaPistas&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        <?php } ?>
+                    </li>
+                <?php } else { ?>
+                    <li class="page-item">
+                        <?php if (isset($params['resultado6'])) { ?>
+                            <a class="page-link" href="index.php?ruta=listarReservasFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado6'][0] ?>&numPista=<?php echo $params['resultado6'][1] ?>&fecha=<?php echo $params['resultado6'][2] ?>" aria-label="Previous">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        <?php } else { ?>
+                            <a class="page-link" href="index.php?ruta=mostrarReservaPistas&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        <?php } ?>
+                    </li>
+                <?php } ?>
+            </ul>
+        </nav>
     </div>
 </div>
 

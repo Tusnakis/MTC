@@ -65,7 +65,7 @@ class TarifaController
                 $params['resultado'] = Tarifa::listarTarifasFiltradasPaginadas($_POST['tipoPista'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
             } elseif (isset($_POST['tipoPista'])) {
-                $params['resultado'] = Tarifa::listarTarifasFiltradasPaginadas(1,$_POST['tipoPista']);
+                $params['resultado'] = Tarifa::listarTarifasFiltradasPaginadas($_POST['tipoPista'],1);
                 $params['paginaActual'] = 1;
             } elseif (isset($_POST['pagina']) && !isset($_POST['tipoPista'])) {
                 $params['resultado'] = Tarifa::listarTarifasPaginadas($_POST['pagina']);
