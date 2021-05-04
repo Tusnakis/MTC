@@ -119,7 +119,7 @@
 <div class="row mb-5">
     <div class="col-12 d-flex justify-content-center">
         <nav aria-label="Page navigation example">
-            <ul class="pagination">
+            <ul class="pagination pagination-sm">
                 <?php if ($params['paginaActual'] == 1) { ?>
                     <li class="page-item disabled">
                         <?php if (isset($params['resultado3'])) { ?>
