@@ -101,11 +101,25 @@ class ReservaController
     {
         session_start();
         if($_SESSION['rol'] == 'user' || $_SESSION['rol'] == 'admin') {
-            if(isset($_POST['fecha'])) {
-                $params['resultado'] = Reserva::listarReservasHechas($_POST['fecha']);
+            if(isset($_GET['pagina'])) {
+                $params['resultado'] = Reserva::listarReservasHechasPaginadas($_GET['fecha'],$_GET['pagina']);
+                $params['resultado4'] = $_GET['fecha'];
+                $params['paginaActual'] = $_GET['pagina'];
+            } elseif(isset($_POST['fecha'])) {
+                $params['resultado'] = Reserva::listarReservasHechasPaginadas($_POST['fecha'],1);
                 $params['resultado4'] = $_POST['fecha'];
+                $params['paginaActual'] = 1;
             } else {
-                $params['resultado'] = Reserva::listarReservasHechas(date("Y-m-d"));
+                $params['resultado4'] = date("Y-m-d");
+                $params['resultado'] = Reserva::listarReservasHechasPaginadas($params['resultado4'],1);
+                $params['paginaActual'] = 1;
+            }
+            if(isset($_GET['pagina'])) {
+                $params['paginas'] = ceil(count(Reserva::listarReservasHechas($_GET['fecha'])) / 10);
+            } elseif(isset($_POST['fecha'])) {
+                $params['paginas'] = ceil(count(Reserva::listarReservasHechas($_POST['fecha'])) / 10);
+            } else {
+                $params['paginas'] = ceil(count(Reserva::listarReservasHechas(date("Y-m-d"))) / 10);
             }
             require __DIR__ . '/../templates/mostrarReservasHechas.php';
         } else {
@@ -118,8 +132,10 @@ class ReservaController
         session_start();
         if($_SESSION['rol'] == 'admin') {
             Reserva::eliminarReserva($_POST['idReserva']);
-            $params['resultado'] = Reserva::listarReservasHechas($_POST['fecha']);
+            $params['resultado'] = Reserva::listarReservasHechasPaginadas($_POST['fecha'],$_POST['pagina']);
             $params['resultado4'] = $_POST['fecha'];
+            $params['paginaActual'] = $_POST['pagina'];
+            $params['paginas'] = ceil(count(Reserva::listarReservasHechas($_POST['fecha'])) / 10);
             require __DIR__ . '/../templates/mostrarReservasHechas.php';
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';

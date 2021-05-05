@@ -77,6 +77,21 @@ class Reserva
         return $resultado;
     }
 
+    public static function listarReservasHechasPaginadas($fecha,$pagina)
+    {
+        $pagina = $pagina * 10 - 10;
+        $sql = "SELECT r.id, tp.nombre, r.usuario, p.num_pista, r.fecha, t.hora_inicio, t.hora_fin, r.id_tarifa FROM reserva r
+        INNER JOIN tarifa t ON r.id_tarifa = t.id
+        INNER JOIN pista p ON r.id_pista = p.id
+        INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id
+        WHERE r.fecha = '$fecha'
+        LIMIT $pagina,10";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+
     public static function eliminarReserva($id)
     {
         $sql = "DELETE FROM reserva
