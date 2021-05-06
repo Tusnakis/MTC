@@ -47,8 +47,8 @@
     </div>
 </div>
 <hr>
-<div class="row mb-5">
-    <div class="col-12 d-flex justify-content-center my-4">
+<div class="row mb-2">
+    <div class="col-12 d-flex justify-content-center">
         <table class="table bg-light">
             <thead class="thead bg-secondary text-white">
                 <tr>
@@ -63,6 +63,10 @@
                         <form action="index.php?ruta=actualizarTipoPista" method="POST">
                             <td><input type="text" name="nuevoTipoPista" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['nombre'] ?>" required></td>
                             <input type="hidden" name="tipoPista" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                            <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">
+                            <?php } ?>
                             <td class="justify-content-center align-middle" style="width: 3rem;">
                                 <input title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
                             </td>
@@ -70,6 +74,10 @@
                         <td class="justify-content-center align-middle" style="width: 3rem;">
                             <form action="index.php?ruta=eliminarTipoPista" method="POST">
                                 <input type="hidden" name="idTipoPista" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                                <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
+                                <?php if (isset($params['resultado3'])) { ?>
+                                    <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">
+                                <?php } ?>
                                 <input title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
                             </form>
                         </td>
@@ -79,6 +87,89 @@
         </table>
     </div>
 </div>
+
+    <div class="row mb-5">
+        <div class="col-12 d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-sm">
+                    <?php if ($params['paginaActual'] == 1) { ?>
+                        <li class="page-item disabled">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarTipoPistaFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarTipoPista&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } else { ?>
+                        <li class="page-item">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarTipoPistaFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarTipoPista&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                    <?php for ($i = 0; $i < $params['paginas']; $i++) { ?>
+                        <?php if ($params['paginaActual'] == $i + 1) { ?>
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <li class="page-item active"><a class="page-link" href="index.php?ruta=listarTipoPistaFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } else { ?>
+                                <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarTipoPista&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <li class="page-item"><a class="page-link" href="index.php?ruta=listarTipoPistaFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } else { ?>
+                                <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarTipoPista&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } ?>
+                        <?php } ?>
+                    <?php } ?>
+                    <?php if ($params['paginas'] == $params['paginaActual']) { ?>
+                        <li class="page-item disabled">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarTipoPistaFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarTipoPista&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } else { ?>
+                        <li class="page-item">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarTipoPistaFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarTarifa&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
 
 <?php $contenido = ob_get_clean(); ?>
 

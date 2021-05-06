@@ -96,7 +96,7 @@
                                         <?php } ?>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="index.php?ruta=logout">Crearr sesión</a>
+                                    <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
                                 </div>
                             </li>
                     </ul>

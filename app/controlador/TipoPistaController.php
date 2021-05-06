@@ -6,8 +6,15 @@ class TipoPistaController
     {
         session_start();
         if($_SESSION['rol'] == 'admin') {
-            $params['resultado'] = TipoPista::listarTipoPista();
+            if($_GET['pagina']) {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas($_GET['pagina']);
+                $params['paginaActual'] = $_GET['pagina'];
+            } else {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas(1);
+                $params['paginaActual'] = 1;
+            }
             $params['resultado2'] = TipoPista::listarTipoPista();
+            $params['paginas'] = ceil(count(TipoPista::listarTipoPista()) / 10);
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -21,8 +28,26 @@ class TipoPistaController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             TipoPista::añadirTipoPista($_POST['nombre']);
-            $params['resultado'] = TipoPista::listarTipoPista();
+            if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
+                $params['paginaActual'] = $_POST['pagina'];
+            } elseif (isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPistaP'],1);
+                $params['paginaActual'] = 1;
+            } elseif (isset($_POST['pagina']) && !isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas($_POST['pagina']);
+                $params['paginaActual'] = $_POST['pagina'];
+            } else {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas(1);
+                $params['paginaActual'] = 1;
+            }
             $params['resultado2'] = TipoPista::listarTipoPista();
+            if(isset($_POST['tipoPistaP'])) {
+                $params['resultado3'] = $_POST['tipoPistaP'];
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPistaFiltradas($_POST['tipoPistaP'])) / 10);
+            } else {
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPista()) / 10);
+            }
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -36,8 +61,26 @@ class TipoPistaController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             TipoPista::actualizarTipoPista($_POST['tipoPista'], $_POST['nuevoTipoPista']);
-            $params['resultado'] = TipoPista::listarTipoPista();
+            if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
+                $params['paginaActual'] = $_POST['pagina'];
+            } elseif (isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPistaP'],1);
+                $params['paginaActual'] = 1;
+            } elseif (isset($_POST['pagina']) && !isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas($_POST['pagina']);
+                $params['paginaActual'] = $_POST['pagina'];
+            } else {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas(1);
+                $params['paginaActual'] = 1;
+            }
             $params['resultado2'] = TipoPista::listarTipoPista();
+            if(isset($_POST['tipoPistaP'])) {
+                $params['resultado3'] = $_POST['tipoPistaP'];
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPistaFiltradas($_POST['tipoPistaP'])) / 10);
+            } else {
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPista()) / 10);
+            }
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -51,8 +94,26 @@ class TipoPistaController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             TipoPista::eliminarTipoPista($_POST['idTipoPista']);
-            $params['resultado'] = TipoPista::listarTipoPista();
+            if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
+                $params['paginaActual'] = $_POST['pagina'];
+            } elseif (isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPistaP'],1);
+                $params['paginaActual'] = 1;
+            } elseif (isset($_POST['pagina']) && !isset($_POST['tipoPistaP'])) {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas($_POST['pagina']);
+                $params['paginaActual'] = $_POST['pagina'];
+            } else {
+                $params['resultado'] = TipoPista::listarTipoPistaPaginadas(1);
+                $params['paginaActual'] = 1;
+            }
             $params['resultado2'] = TipoPista::listarTipoPista();
+            if(isset($_POST['tipoPistaP'])) {
+                $params['resultado3'] = $_POST['tipoPistaP'];
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPistaFiltradas($_POST['tipoPistaP'])) / 10);
+            } else {
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPista()) / 10);
+            }
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -65,9 +126,21 @@ class TipoPistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            $params['resultado'] = TipoPista::listarTipoPistaFiltradas($_POST['tipoPista']);
+            if($_GET['pagina']) {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_GET['tipoPista'],$_GET['pagina']);
+                $params['paginaActual'] = $_GET['pagina'];
+            } else {
+                $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPista'],1);
+                $params['paginaActual'] = 1;
+            }
             $params['resultado2'] = TipoPista::listarTipoPista();
-            $params['resultado3'] = $_POST['tipoPista'];
+            if(isset($_GET['tipoPista'])) {
+                $params['resultado3'] = $_GET['tipoPista'];
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPistaFiltradas($_GET['tipoPista'])) / 10);
+            } else {
+                $params['resultado3'] = $_POST['tipoPista'];
+                $params['paginas'] = ceil(count(TipoPista::listarTipoPistaFiltradas($_POST['tipoPista'])) / 10);
+            }
             require __DIR__ . '/../templates/mostrarTipoPista.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
