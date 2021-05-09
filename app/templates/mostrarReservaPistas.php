@@ -94,7 +94,7 @@
                                     <?php } ?>
                                 <?php } ?>
                                 <?php if ($salida == 0) { ?>
-                                    <input type="submit" class="btn btn-info" value="Reservar">
+                                    <input type="submit" class="btn btn-info" value="Reservar" <?php echo $estado = date('H') >= str_replace(':00','',$params['resultado'][$i]['hora_inicio']) ? "disabled" : "" ?>>
                                 <?php } ?>
                                 <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                                 <?php if (isset($params['resultado4'])) { ?>

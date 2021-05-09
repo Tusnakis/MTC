@@ -64,6 +64,9 @@
                     </div>
                 </div>
                 <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
+                <?php if (isset($params['resultado3'])) { ?>
+                    <input type="hidden" name="tipoPista" value="<?php echo $params['resultado3'] ?>">
+                <?php } ?>
                 <button type="submit" class="btn btn-secondary mt-3">Añadir</button>
             </form>
         </div>

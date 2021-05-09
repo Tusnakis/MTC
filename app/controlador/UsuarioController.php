@@ -88,16 +88,13 @@ class UsuarioController
         if (isset($_SESSION['usuario'])) {
             $tmp_name = $_FILES['imagen']["tmp_name"];
             $name = $_FILES['imagen']["name"];
-            $array = explode('.',$name);
+            $array = explode('.', $name);
             $ext = end($array);
             $nuevo_path = 'images/foto_' . $_SESSION['usuario'] . '.' . $ext;
             $arrayUsuario['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
-            if($arrayUsuario['resultado'][0]['foto'] == $nuevo_path)
-            {
+            if ($arrayUsuario['resultado'][0]['foto'] == $nuevo_path) {
                 move_uploaded_file($tmp_name, $nuevo_path);
-            }
-            else
-            {
+            } else {
                 unlink($arrayUsuario['resultado'][0]['foto']);
                 move_uploaded_file($tmp_name, $nuevo_path);
             }
@@ -122,7 +119,15 @@ class UsuarioController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            if (isset($_GET['pagina'])) {
+                $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], $_GET['pagina']);
+                $params['paginaActual'] = $_GET['pagina'];
+            } else {
+                $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], 1);
+                $params['paginaActual'] = 1;
+            }
+            $params['resultado2'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            $params['paginas'] = ceil(count(Usuario::listarUsuarios($_SESSION['usuario'])) / 10);
             require __DIR__ . '/../templates/mostrarUsuarios.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -135,24 +140,76 @@ class UsuarioController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            if (empty($_POST['usuario']) && empty($_POST['rol'])) {
-                $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
-                require __DIR__ . '/../templates/mostrarUsuarios.php';
-            } else if (!empty($_POST['usuario']) && empty($_POST['rol'])) {
-                if ($_POST['usuario'] == $_SESSION['usuario']) {
-                    $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
-                    require __DIR__ . '/../templates/mostrarUsuarios.php';
+            if (isset($_GET['pagina'])) {
+                if (empty($_GET['usuario']) && empty($_GET['rol'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], $_GET['pagina']);
+                    $params['paginaActual'] = $_GET['pagina'];
+                } else if (!empty($_GET['usuario']) && empty($_GET['rol'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorNombrePaginados($_GET['usuario'], $_GET['pagina']);
+                    $params['paginaActual'] = $_GET['pagina'];
+                } else if (empty($_GET['usuario']) && !empty($_GET['rol'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorRolPaginados($_GET['rol'], $_GET['pagina']);
+                    $params['paginaActual'] = $_GET['pagina'];
                 } else {
-                    $params['resultado'] = Usuario::listarUsuariosPorNombre($_POST['usuario']);
-                    require __DIR__ . '/../templates/mostrarUsuarios.php';
+                    $params['resultado'] = Usuario::listarUsuariosFiltradosPaginados($_GET['usuario'], $_GET['rol'], $_GET['pagina']);
+                    $params['paginaActual'] = $_GET['pagina'];
                 }
-            } else if (empty($_POST['usuario']) && !empty($_POST['rol'])) {
-                $params['resultado'] = Usuario::listarUsuariosPorRol($_POST['rol']);
-                require __DIR__ . '/../templates/mostrarUsuarios.php';
             } else {
-                $params['resultado'] = Usuario::listarUsuariosFiltrados($_POST['usuario'], $_POST['rol']);
-                require __DIR__ . '/../templates/mostrarUsuarios.php';
+                if (empty($_POST['usuario']) && empty($_POST['rol'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], 1);
+                    $params['paginaActual'] = 1;
+                } else if (!empty($_POST['usuario']) && empty($_POST['rol'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorNombrePaginados($_POST['usuario'], 1);
+                    $params['paginaActual'] = 1;
+                } else if (empty($_POST['usuario']) && !empty($_POST['rol'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorRolPaginados($_POST['rol'], 1);
+                    $params['paginaActual'] = 1;
+                } else {
+                    $params['resultado'] = Usuario::listarUsuariosFiltradosPaginados($_POST['usuario'], $_POST['rol'], 1);
+                    $params['paginaActual'] = 1;
+                }
             }
+            $params['resultado2'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            if (isset($_GET['pagina'])) {
+                $params['resultado3'] = $_GET['usuario'];
+            } else {
+                $params['resultado3'] = $_POST['usuario'];
+            }
+            if (isset($_GET['pagina'])) {
+                $params['resultado4'] = $_GET['rol'];
+            } else {
+                $params['resultado4'] = $_POST['rol'];
+            }
+            if (isset($_GET['pagina'])) {
+                if (empty($_GET['usuario']) && empty($_GET['rol'])) {
+                    $params['resultado5'] = array($_GET['usuario'], $_GET['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuarios($_SESSION['usuario'])) / 10);
+                } else if (!empty($_GET['usuario']) && empty($_GET['rol'])) {
+                    $params['resultado5'] = array($_GET['usuario'], $_GET['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorNombre($_GET['usuario'])) / 10);
+                } else if (empty($_GET['usuario']) && !empty($_GET['rol'])) {
+                    $params['resultado5'] = array($_GET['usuario'], $_GET['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorRol($_GET['rol'])) / 10);
+                } else {
+                    $params['resultado5'] = array($_GET['usuario'], $_GET['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosFiltrados($_GET['usuario'], $_GET['rol'])) / 10);
+                }
+            } else {
+                if (empty($_POST['usuario']) && empty($_POST['rol'])) {
+                    $params['resultado5'] = array($_POST['usuario'], $_POST['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuarios($_SESSION['usuario'])) / 10);
+                } else if (!empty($_POST['usuario']) && empty($_POST['rol'])) {
+                    $params['resultado5'] = array($_POST['usuario'], $_POST['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorNombre($_POST['usuario'])) / 10);
+                } else if (empty($_POST['usuario']) && !empty($_POST['rol'])) {
+                    $params['resultado5'] = array($_POST['usuario'], $_POST['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorRol($_POST['rol'])) / 10);
+                } else {
+                    $params['resultado5'] = array($_POST['usuario'], $_POST['rol']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosFiltrados($_POST['usuario'], $_POST['rol'])) / 10);
+                }
+            }
+            require __DIR__ . '/../templates/mostrarUsuarios.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
         } else {
@@ -165,7 +222,39 @@ class UsuarioController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             Usuario::añadirEmpleado($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['rol']);
-            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            if (isset($_POST['pagina'])) {
+                if (empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else if (!empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorNombrePaginados($_POST['usuarioP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else if (empty($_POST['usuarioP']) && !empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorRolPaginados($_POST['rolP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else {
+                    $params['resultado'] = Usuario::listarUsuariosFiltradosPaginados($_POST['usuarioP'], $_POST['rolP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                }
+            }
+            $params['resultado2'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            $params['resultado3'] = $_POST['usuarioP'];
+            $params['resultado4'] = $_POST['rolP'];
+            if (isset($_POST['pagina'])) {
+                if (empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuarios($_SESSION['usuario'])) / 10);
+                } else if (!empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorNombre($_POST['usuarioP'])) / 10);
+                } else if (empty($_POST['usuarioP']) && !empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorRol($_POST['rolP'])) / 10);
+                } else {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosFiltrados($_POST['usuarioP'], $_POST['rolP'])) / 10);
+                }
+            }
             require __DIR__ . '/../templates/mostrarUsuarios.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -179,7 +268,39 @@ class UsuarioController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             Usuario::actualizarUsuarios($_POST['usuario'], $_POST['nuevoUsuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['rol']);
-            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            if (isset($_POST['pagina'])) {
+                if (empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else if (!empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorNombrePaginados($_POST['usuarioP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else if (empty($_POST['usuarioP']) && !empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorRolPaginados($_POST['rolP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else {
+                    $params['resultado'] = Usuario::listarUsuariosFiltradosPaginados($_POST['usuarioP'], $_POST['rolP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                }
+            }
+            $params['resultado2'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            $params['resultado3'] = $_POST['usuarioP'];
+            $params['resultado4'] = $_POST['rolP'];
+            if (isset($_POST['pagina'])) {
+                if (empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuarios($_SESSION['usuario'])) / 10);
+                } else if (!empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorNombre($_POST['usuarioP'])) / 10);
+                } else if (empty($_POST['usuarioP']) && !empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorRol($_POST['rolP'])) / 10);
+                } else {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosFiltrados($_POST['usuarioP'], $_POST['rolP'])) / 10);
+                }
+            }
             require __DIR__ . '/../templates/mostrarUsuarios.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -193,7 +314,39 @@ class UsuarioController
         session_start();
         if ($_SESSION['rol'] == 'admin') {
             Usuario::eliminarUsuarios($_POST['usuario']);
-            $params['resultado'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            if (isset($_POST['pagina'])) {
+                if (empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else if (!empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorNombrePaginados($_POST['usuarioP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else if (empty($_POST['usuarioP']) && !empty($_POST['rolP'])) {
+                    $params['resultado'] = Usuario::listarUsuariosPorRolPaginados($_POST['rolP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                } else {
+                    $params['resultado'] = Usuario::listarUsuariosFiltradosPaginados($_POST['usuarioP'], $_POST['rolP'], $_POST['pagina']);
+                    $params['paginaActual'] = $_POST['pagina'];
+                }
+            }
+            $params['resultado2'] = Usuario::listarUsuarios($_SESSION['usuario']);
+            $params['resultado3'] = $_POST['usuarioP'];
+            $params['resultado4'] = $_POST['rolP'];
+            if (isset($_POST['pagina'])) {
+                if (empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuarios($_SESSION['usuario'])) / 10);
+                } else if (!empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorNombre($_POST['usuarioP'])) / 10);
+                } else if (empty($_POST['usuarioP']) && !empty($_POST['rolP'])) {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosPorRol($_POST['rolP'])) / 10);
+                } else {
+                    $params['resultado5'] = array($_POST['usuarioP'], $_POST['rolP']);
+                    $params['paginas'] = ceil(count(Usuario::listarUsuariosFiltrados($_POST['usuarioP'], $_POST['rolP'])) / 10);
+                }
+            }
             require __DIR__ . '/../templates/mostrarUsuarios.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';

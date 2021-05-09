@@ -6,7 +6,7 @@ class PistaController
     {
         session_start();
         if($_SESSION['rol'] == 'admin') { 
-            if($_GET['pagina']) {
+            if(isset($_GET['pagina'])) {
                 $params['resultado'] = Pista::listarPistasPaginadas($_GET['pagina']);
                 $params['paginaActual'] = $_GET['pagina'];
             } else {
@@ -60,7 +60,7 @@ class PistaController
     {
         session_start();
         if($_SESSION['rol'] == 'admin') {
-            if($_GET['pagina']) {
+            if(isset($_GET['pagina'])) {
                 $params['resultado'] = Pista::listarPistaFiltradasPaginadas($_GET['tipoPista'],$_GET['pagina']);
                 $params['paginaActual'] = $_GET['pagina'];
             } else {
