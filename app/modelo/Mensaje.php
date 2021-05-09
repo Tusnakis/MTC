@@ -24,6 +24,20 @@ class Mensaje
         return $resultado;
     }
 
+    public static function listarMensajesPaginados($id_usuarioPara,$pagina)
+    {
+        $pagina = $pagina * 10 - 10;
+        $sql = "SELECT id, id_usuarioDe, id_usuarioPara, texto, fecha, archivado FROM mensaje
+        WHERE id_usuarioPara = '$id_usuarioPara'
+        AND archivado = 0
+        ORDER BY fecha ASC
+        LIMIT $pagina,10";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+
     public static function mensajesNoLeidos($id_usuarioPara)
     {
         $sql = "SELECT * FROM mensaje
@@ -58,6 +72,28 @@ class Mensaje
             WHERE id_usuarioPara = '$id_usuarioPara'
             AND archivado = $archivado
             AND fecha = '$mensajeFecha'"; 
+        }
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+
+    public static function listarMensajesFiltradosPaginados($id_usuarioPara,$archivado,$mensajeFecha,$pagina)
+    {
+        $pagina = $pagina * 10 - 10;
+        $sql = "";
+        if($mensajeFecha == "") {
+            $sql = "SELECT id, id_usuarioDe, id_usuarioPara, texto, fecha, archivado FROM mensaje
+            WHERE id_usuarioPara = '$id_usuarioPara'
+            AND archivado = $archivado
+            ORDER BY fecha ASC";
+        } else {
+            $sql = "SELECT id, id_usuarioDe, id_usuarioPara, texto, fecha, archivado FROM mensaje
+            WHERE id_usuarioPara = '$id_usuarioPara'
+            AND archivado = $archivado
+            AND fecha = '$mensajeFecha'
+            LIMIT $pagina,10"; 
         }
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);
