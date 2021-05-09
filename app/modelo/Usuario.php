@@ -34,7 +34,7 @@ class Usuario
         return $resultado;
     }
 
-    public static function actualizaUsuario($usuario,$nuevoUsuario,$contrasena,$nombre,$apellidos,$email,$foto)
+    public static function actualizaUsuario($usuario,$nuevoUsuario,$contrasena,$nombre,$apellidos,$email,$categoria,$foto)
     {
         $sql = "UPDATE usuario SET 
         usuario='$nuevoUsuario', 
@@ -42,6 +42,7 @@ class Usuario
         nombre='$nombre',
         apellidos='$apellidos',
         email='$email',
+        categoria=$categoria,
         foto='$foto'
         WHERE usuario='$usuario'";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);

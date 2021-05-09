@@ -98,7 +98,7 @@ class UsuarioController
                 unlink($arrayUsuario['resultado'][0]['foto']);
                 move_uploaded_file($tmp_name, $nuevo_path);
             }
-            Usuario::actualizaUsuario($_SESSION['usuario'], $_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $nuevo_path);
+            Usuario::actualizaUsuario($_SESSION['usuario'], $_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'],$_POST['categoria'], $nuevo_path);
             /*$_SESSION['usuario'] = $_POST['usuario'];
             $params['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
             $_SESSION['usuario'] = $params['resultado'][0]['usuario'];

@@ -15,6 +15,7 @@ class ReservaController
             }
             $params['resultado2'] = TipoPista::listarTipoPista();
             $params['resultado3'] = Reserva::listarReservasHechas(date("Y-m-d"));
+            $params['resultado4'] = [date('Y-m-d')];
             $params['resultado5'] = Pista::listarNumPistas();
             $params['paginas'] = ceil(count(Reserva::listarPistasReserva()) / 10);
             require __DIR__ . '/../templates/mostrarReservaPistas.php';
