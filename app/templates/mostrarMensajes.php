@@ -47,7 +47,9 @@
                     <div class="col-12 col-sm-4 mt-3">
                         <select id="usuarioPara" class="form-control" name="usuarioPara">
                             <?php for ($i = 0; $i < count($params['resultado2']); $i++) { ?>
-                                <option value="<?php echo $params['resultado2'][$i]['usuario'] ?>"><?php echo $params['resultado2'][$i]['usuario'] ?> - <?php echo $params['resultado2'][$i]['rol'] ?></option>
+                                <?php if ($params['resultado2'][$i]['rol'] == "admin" || $params['resultado2'][$i]['rol'] == "user") { ?>
+                                    <option value="<?php echo $params['resultado2'][$i]['usuario'] ?>"><?php echo $params['resultado2'][$i]['usuario'] ?></option>
+                                <?php } ?>
                             <?php } ?>
                         </select>
                     </div>
