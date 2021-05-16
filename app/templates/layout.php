@@ -31,6 +31,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="index.php?ruta=mostrarReservaPistas">Reservar pista</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarListaJugar">Lista jugadores</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php echo ucwords($_SESSION['usuario']) ?>
@@ -77,6 +80,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas">Reservas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarListaJugar">Lista jugadores</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="index.php?ruta=mostrarHorario">Horarios</a>

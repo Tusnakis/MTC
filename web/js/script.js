@@ -72,8 +72,6 @@ function init() {
       });
     }
   }
-
-  //$('#example').DataTable();
 }
 
 var meses = [
