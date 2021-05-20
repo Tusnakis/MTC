@@ -6,7 +6,7 @@ class ReservaController
     {
         session_start();
         if ($_SESSION['rol'] == 'user') {
-            if(isset($_GET['pagina'])) {
+            if (isset($_GET['pagina'])) {
                 $params['resultado'] = Reserva::listarPistasReservaPaginadas($_GET['pagina']);
                 $params['paginaActual'] = $_GET['pagina'];
             } else {
@@ -28,31 +28,31 @@ class ReservaController
     {
         session_start();
         if ($_SESSION['rol'] == 'user') {
-            if(isset($_GET['pagina'])) {
-                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_GET['tipoPista'],$_GET['numPista'],$_GET['pagina']);
+            if (isset($_GET['pagina'])) {
+                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_GET['tipoPista'], $_GET['numPista'], $_GET['pagina']);
                 $params['paginaActual'] = $_GET['pagina'];
             } else {
-                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_POST['tipoPista'],$_POST['numPista'],1);
+                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_POST['tipoPista'], $_POST['numPista'], 1);
                 $params['paginaActual'] = 1;
             }
             $params['resultado2'] = TipoPista::listarTipoPista();
-            if(isset($_GET['pagina'])) {
+            if (isset($_GET['pagina'])) {
                 $params['resultado3'] = Reserva::listarReservasHechas($_GET['fecha']);
             } else {
                 $params['resultado3'] = Reserva::listarReservasHechas($_POST['fecha']);
             }
-            if(isset($_GET['pagina'])) {
-                $params['resultado4'] = array($_GET['fecha'],$_GET['numPista'],$_GET['tipoPista']);
+            if (isset($_GET['pagina'])) {
+                $params['resultado4'] = array($_GET['fecha'], $_GET['numPista'], $_GET['tipoPista']);
             } else {
-                $params['resultado4'] = array($_POST['fecha'],$_POST['numPista'],$_POST['tipoPista']);
+                $params['resultado4'] = array($_POST['fecha'], $_POST['numPista'], $_POST['tipoPista']);
             }
             $params['resultado5'] = Pista::listarNumPistas();
-            if(isset($_GET['tipoPista']) && $_GET['numPista'] && $_GET['fecha']) {
-                $params['resultado6'] = array($_GET['tipoPista'],$_GET['numPista'],$_GET['fecha']);
-                $params['paginas'] = ceil(count(Reserva::listarReservasFiltradas($_GET['tipoPista'],$_GET['numPista'])) / 10);
+            if (isset($_GET['tipoPista']) && $_GET['numPista'] && $_GET['fecha']) {
+                $params['resultado6'] = array($_GET['tipoPista'], $_GET['numPista'], $_GET['fecha']);
+                $params['paginas'] = ceil(count(Reserva::listarReservasFiltradas($_GET['tipoPista'], $_GET['numPista'])) / 10);
             } else {
-                $params['resultado6'] = array($_POST['tipoPista'],$_POST['numPista'],$_POST['fecha']);
-                $params['paginas'] = ceil(count(Reserva::listarReservasFiltradas($_POST['tipoPista'],$_POST['numPista'])) / 10);
+                $params['resultado6'] = array($_POST['tipoPista'], $_POST['numPista'], $_POST['fecha']);
+                $params['paginas'] = ceil(count(Reserva::listarReservasFiltradas($_POST['tipoPista'], $_POST['numPista'])) / 10);
             }
             require __DIR__ . '/../templates/mostrarReservaPistas.php';
         } else if (isset($_SESSION['usuario'])) {
@@ -66,14 +66,14 @@ class ReservaController
     {
         session_start();
         if ($_SESSION['rol'] == 'user') {
-            Reserva::reservarPista($_POST['usuario'],$_POST['pista'],$_POST['tarifa'],$_POST['fecha']);
-            if(isset($_POST['pagina']) && isset($_POST['tipoPistaP']) && isset($_POST['numPistaP'])) {
-                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_POST['tipoPistaP'],$_POST['numPistaP'],$_POST['pagina']);
+            Reserva::reservarPista($_POST['usuario'], $_POST['pista'], $_POST['tarifa'], $_POST['fecha']);
+            if (isset($_POST['pagina']) && isset($_POST['tipoPistaP']) && isset($_POST['numPistaP'])) {
+                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_POST['tipoPistaP'], $_POST['numPistaP'], $_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
-            } elseif(isset($_POST['tipoPistaP']) && isset($_POST['numPistaP'])) {
-                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_POST['tipoPistaP'],$_POST['numPistaP'],1);
+            } elseif (isset($_POST['tipoPistaP']) && isset($_POST['numPistaP'])) {
+                $params['resultado'] = Reserva::listarReservasFiltradasPaginadas($_POST['tipoPistaP'], $_POST['numPistaP'], 1);
                 $params['paginaActual'] = 1;
-            } elseif(isset($_POST['pagina']) && !isset($_POST['tipoPistaP']) && !isset($_POST['numPistaP'])) {
+            } elseif (isset($_POST['pagina']) && !isset($_POST['tipoPistaP']) && !isset($_POST['numPistaP'])) {
                 $params['resultado'] = Reserva::listarPistasReservaPaginadas($_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
             } else {
@@ -82,16 +82,17 @@ class ReservaController
             }
             $params['resultado2'] = TipoPista::listarTipoPista();
             $params['resultado3'] = Reserva::listarReservasHechas($_POST['fecha']);
-            if(isset($_POST['fechaP'])) {
-                $params['resultado4'] = array($_POST['fechaP'],$_POST['numPistaP'],$_POST['tipoPistaP']);
+            if (isset($_POST['fechaP'])) {
+                $params['resultado4'] = array($_POST['fechaP'], $_POST['numPistaP'], $_POST['tipoPistaP']);
             }
             $params['resultado5'] = Pista::listarNumPistas();
-            if(isset($_POST['tipoPistaP']) && isset($_POST['numPistaP'])) {
-                $params['resultado6'] = array($_POST['tipoPistaP'],$_POST['numPistaP'],$_POST['fechaP']);
-                $params['paginas'] = ceil(count(Reserva::listarReservasFiltradas($_POST['tipoPistaP'],$_POST['numPistaP'])) / 10);
+            if (isset($_POST['tipoPistaP']) && isset($_POST['numPistaP'])) {
+                $params['resultado6'] = array($_POST['tipoPistaP'], $_POST['numPistaP'], $_POST['fechaP']);
+                $params['paginas'] = ceil(count(Reserva::listarReservasFiltradas($_POST['tipoPistaP'], $_POST['numPistaP'])) / 10);
             } else {
                 $params['paginas'] = ceil(count(Reserva::listarPistasReserva()) / 10);
             }
+            Reserva::enviarEmailReserva($_POST['usuario'], $_POST['pista'], $_POST['tarifa'], $_POST['fecha'],$_SESSION['email']);
             require __DIR__ . '/../templates/mostrarReservaPistas.php';
         } else {
             require __DIR__ . '/../templates/mostrarLogin.php';
@@ -101,23 +102,23 @@ class ReservaController
     public function mostrarReservasHechas()
     {
         session_start();
-        if($_SESSION['rol'] == 'user' || $_SESSION['rol'] == 'admin') {
-            if(isset($_GET['pagina'])) {
-                $params['resultado'] = Reserva::listarReservasHechasPaginadas($_GET['fecha'],$_GET['pagina']);
+        if ($_SESSION['rol'] == 'user' || $_SESSION['rol'] == 'admin') {
+            if (isset($_GET['pagina'])) {
+                $params['resultado'] = Reserva::listarReservasHechasPaginadas($_GET['fecha'], $_GET['pagina']);
                 $params['resultado4'] = $_GET['fecha'];
                 $params['paginaActual'] = $_GET['pagina'];
-            } elseif(isset($_POST['fecha'])) {
-                $params['resultado'] = Reserva::listarReservasHechasPaginadas($_POST['fecha'],1);
+            } elseif (isset($_POST['fecha'])) {
+                $params['resultado'] = Reserva::listarReservasHechasPaginadas($_POST['fecha'], 1);
                 $params['resultado4'] = $_POST['fecha'];
                 $params['paginaActual'] = 1;
             } else {
                 $params['resultado4'] = date("Y-m-d");
-                $params['resultado'] = Reserva::listarReservasHechasPaginadas($params['resultado4'],1);
+                $params['resultado'] = Reserva::listarReservasHechasPaginadas($params['resultado4'], 1);
                 $params['paginaActual'] = 1;
             }
-            if(isset($_GET['pagina'])) {
+            if (isset($_GET['pagina'])) {
                 $params['paginas'] = ceil(count(Reserva::listarReservasHechas($_GET['fecha'])) / 10);
-            } elseif(isset($_POST['fecha'])) {
+            } elseif (isset($_POST['fecha'])) {
                 $params['paginas'] = ceil(count(Reserva::listarReservasHechas($_POST['fecha'])) / 10);
             } else {
                 $params['paginas'] = ceil(count(Reserva::listarReservasHechas(date("Y-m-d"))) / 10);
@@ -131,9 +132,9 @@ class ReservaController
     public function eliminarReserva()
     {
         session_start();
-        if($_SESSION['rol'] == 'admin') {
+        if ($_SESSION['rol'] == 'admin') {
             Reserva::eliminarReserva($_POST['idReserva']);
-            $params['resultado'] = Reserva::listarReservasHechasPaginadas($_POST['fecha'],$_POST['pagina']);
+            $params['resultado'] = Reserva::listarReservasHechasPaginadas($_POST['fecha'], $_POST['pagina']);
             $params['resultado4'] = $_POST['fecha'];
             $params['paginaActual'] = $_POST['pagina'];
             $params['paginas'] = ceil(count(Reserva::listarReservasHechas($_POST['fecha'])) / 10);

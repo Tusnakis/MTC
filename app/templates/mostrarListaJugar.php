@@ -164,7 +164,7 @@
                             <?php } ?>
                             <?php if ($_SESSION['rol'] == 'user') { ?>
                                 <td class="text-center">
-                                    <?php if (!isset($params['resultado'][$i]['id_usuario_e']) && $params['resultado'][$i]['id_usuario_a'] !== $_SESSION['usuario']) { ?>
+                                    <?php if (!isset($params['resultado'][$i]['id_usuario_e']) && !isset($params['resultado'][$i]['hora_inicio']) && $params['resultado'][$i]['id_usuario_a'] <> $_SESSION['usuario']) { ?>
                                         <input type="hidden" name="id" value="<?php echo $params['resultado'][$i]['id'] ?>">
                                         <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                                         <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
@@ -173,7 +173,7 @@
                                         <?php } ?>
                                         <input type="submit" class="btn btn-info" value="Elegir">
                                 </form>
-                            <?php } elseif (isset($params['resultado'][$i]['id_usuario_e']) && $params['resultado'][$i]['id_usuario_a'] !== $_SESSION['usuario']) { ?>
+                            <?php } elseif (isset($params['resultado'][$i]['id_usuario_e']) && $params['resultado'][$i]['hora_inicio']) { ?>
                                 Jugador elegido
                             <?php } else { ?>
                                 <input type="submit" class="btn btn-info" value="Elegir" disabled>

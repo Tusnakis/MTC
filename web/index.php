@@ -1,6 +1,9 @@
 <?php 
 // carga del modelo y los controladores 
 require_once __DIR__ . '/../app/Config.php';
+require_once __DIR__ . '/../app/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../app/PHPMailer/Exception.php';
+require_once __DIR__ . '/../app/PHPMailer/SMTP.php';
 require_once __DIR__ . '/../app/modelo/Conexion.php';
 require_once __DIR__ . '/../app/modelo/Usuario.php';
 require_once __DIR__ . '/../app/modelo/TipoPista.php';

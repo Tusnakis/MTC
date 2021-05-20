@@ -94,13 +94,13 @@
                                     <?php } ?>
                                 <?php } ?>
                                 <?php if ($salida == 0) { ?>
-                                    <input type="submit" class="btn btn-info" value="Reservar" <?php echo $estado = date('H') >= str_replace(':00','',$params['resultado'][$i]['hora_inicio']) && date('Y-m-d') == $params['resultado4'][0] ? "disabled" : "" ?>>
+                                    <input type="submit" class="btn btn-info" value="Reservar" >
                                 <?php } ?>
                                 <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
-                                <?php if (isset($params['resultado4'])) { ?>
-                                    <input type="hidden" name="fechaP" value="<?php echo $params['resultado4'][0] ?>">
-                                    <input type="hidden" name="numPistaP" value="<?php echo $params['resultado4'][1] ?>">
-                                    <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado4'][2] ?>">
+                                <?php if (isset($params['resultado6'])) { ?>
+                                    <input type="hidden" name="fechaP" value="<?php echo $params['resultado6'][2] ?>">
+                                    <input type="hidden" name="numPistaP" value="<?php echo $params['resultado6'][1] ?>">
+                                    <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado6'][0] ?>">
                                 <?php } ?>
                             </form>
                         </td>

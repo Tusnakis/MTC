@@ -88,6 +88,17 @@ class Pista
         $con->cerrarConexion();
         return $resultado;
     }
+
+    public static function mostrarUnaPista($id)
+    {
+        $sql = "SELECT p.num_pista, tp.nombre FROM pista p
+        INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id
+        WHERE p.id = $id";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
 }
 
 ?>
