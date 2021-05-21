@@ -18,6 +18,7 @@
             <div class="card-body">
                 <h5 class="card-title text-center"><strong>Regístrate en Marc Tennis Club</strong></h5>
                 <br>
+                <?php if(!empty($params['resultado'])) echo '<span style="color:red">' . $params['resultado'] . '</span>' ?>
                 <form action="index.php?ruta=registro" method="POST">
                     <div class="form-group">
                         <input type="text" name="usuario" class="form-control form-control-sm" placeholder="Usuario" required>

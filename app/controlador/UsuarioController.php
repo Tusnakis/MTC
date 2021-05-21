@@ -34,8 +34,14 @@ class UsuarioController
         } else if (empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['nombre']) || empty($_POST['apellidos']) || empty($_POST['email'])) {
             require __DIR__ . '/../templates/mostrarRegistro.php';
         } else {
-            Usuario::registroUsuario($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email']);
-            require __DIR__ . '/../templates/mostrarLogin.php';
+            $params['resultado'] = Usuario::datosUsuario($_POST['usuario']);
+            if(empty($params['resultado'])) {
+                Usuario::registroUsuario($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email']);
+                require __DIR__ . '/../templates/mostrarLogin.php';
+            } else {
+                $params['resultado'] = "El usuario ya existe";
+                require __DIR__ . '/../templates/mostrarRegistro.php';
+            }
         }
     }
 
