@@ -4,7 +4,8 @@ class ListaJugar
 {
     public static function listarUsuariosLista()
     {
-        $sql = "SELECT * FROM lista_jugar";
+        $sql = "SELECT * FROM lista_jugar
+        WHERE fecha = " . date('Y-m-d');
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);
         $con->cerrarConexion();
@@ -15,6 +16,7 @@ class ListaJugar
     {
         $pagina = $pagina * 10 - 10;
         $sql = "SELECT * FROM lista_jugar
+        WHERE fecha = " . date('Y-m-d') . "
         LIMIT $pagina,10";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);
