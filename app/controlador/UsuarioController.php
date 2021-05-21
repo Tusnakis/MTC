@@ -94,6 +94,8 @@ class UsuarioController
             $arrayUsuario['resultado'] = Usuario::datosUsuario($_SESSION['usuario']);
             if ($arrayUsuario['resultado'][0]['foto'] == $nuevo_path) {
                 move_uploaded_file($tmp_name, $nuevo_path);
+            } elseif(empty($ext)) {
+                $nuevo_path = "";
             } else {
                 unlink($arrayUsuario['resultado'][0]['foto']);
                 move_uploaded_file($tmp_name, $nuevo_path);

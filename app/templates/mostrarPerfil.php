@@ -44,7 +44,7 @@
                 </div>
                 <label for="exampleInputFotoPerfil" class="col-sm-3 col-form-label">Foto perfil</label>
                 <div class="col-sm-7 custom-file">
-                    <input type="file" class="custom-file-input" name="imagen" required>
+                    <input type="file" class="custom-file-input" name="imagen">
                     <label class="custom-file-label">Elegir imagen</label>
                 </div>
             </div>
