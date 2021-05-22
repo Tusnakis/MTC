@@ -100,7 +100,7 @@
                         <form action="index.php?ruta=actualizarUsuarios" method="POST">
                             <td><input type="text" name="nuevoUsuario" class="form-control text-center" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['usuario'] ?>" required></td>
                             <input type="hidden" name="usuario" value="<?php echo $params['resultado'][$i]['usuario'] ?>">
-                            <td><input type="password" name="contrasena" class="form-control text-center" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['contrasena'] ?>" required></td>
+                            <td><input type="password" name="contrasena" class="form-control text-center" style="width: 8rem;" value="<?php //echo $params['resultado'][$i]['contrasena'] ?>" placeholder="********"></td>
                             <td><input type="text" name="nombre" class="form-control text-center" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['nombre'] ?>" required></td>
                             <td><input type="text" name="apellidos" class="form-control text-center" style="width: 10rem;" value="<?php echo $params['resultado'][$i]['apellidos'] ?>" required></td>
                             <td><input type="text" name="email" class="form-control text-center" style="width: 10rem;" value="<?php echo $params['resultado'][$i]['email'] ?>" required></td>

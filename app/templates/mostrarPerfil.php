@@ -18,7 +18,7 @@
                 </div>
                 <label for="exampleInputPassword1" class="col-sm-3 col-form-label">Contraseña</label>
                 <div class="col-sm-7">
-                    <input type="password" name="contrasena" class="form-control" value="<?php echo $params['resultado'][0]['contrasena'] ?>" required>
+                    <input type="password" name="contrasena" class="form-control" value="<?php //echo $params['resultado'][0]['contrasena'] ?>" placeholder="********">
                 </div>
                 <label for="exampleInputName" class="col-sm-3 col-form-label">Nombre</label>
                 <div class="col-sm-7">

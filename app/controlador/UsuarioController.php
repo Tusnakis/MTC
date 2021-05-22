@@ -54,7 +54,7 @@ class UsuarioController
             if (empty($_POST['usuario']) && empty($_POST['contrasena'])) {
                 require __DIR__ . '/../templates/mostrarLogin.php';
             } else {
-                $params['resultado'] = Usuario::loginUsuario($_POST['usuario'], $_POST['contrasena']);
+                $params['resultado'] = Usuario::loginUsuario($_POST['usuario'], sha1($_POST['contrasena']));
                 $_SESSION['usuario'] = $params['resultado'][0]['usuario'];
                 $_SESSION['nombre'] = $params['resultado'][0]['nombre'];
                 $_SESSION['apellidos'] = $params['resultado'][0]['apellidos'];

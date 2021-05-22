@@ -36,16 +36,35 @@ class Usuario
 
     public static function actualizaUsuario($usuario, $nuevoUsuario, $contrasena, $nombre, $apellidos, $email, $categoria, $foto)
     {
-        if ($foto == "") {
+        if ($foto == "" && $contrasena == "") {
             $sql = "UPDATE usuario SET 
-            usuario='$nuevoUsuario', 
+            usuario='$nuevoUsuario',
+            nombre='$nombre',
+            apellidos='$apellidos',
+            email='$email',
+            categoria=$categoria
+            WHERE usuario='$usuario'";
+        } elseif ($foto == "") {
+            $contrasena = sha1($contrasena);
+            $sql = "UPDATE usuario SET 
+            usuario='$nuevoUsuario',
             contrasena='$contrasena',
             nombre='$nombre',
             apellidos='$apellidos',
             email='$email',
             categoria=$categoria
             WHERE usuario='$usuario'";
+        } elseif($contrasena == "") {
+            $sql = "UPDATE usuario SET 
+            usuario='$nuevoUsuario', 
+            nombre='$nombre',
+            apellidos='$apellidos',
+            email='$email',
+            categoria=$categoria,
+            foto='$foto'
+            WHERE usuario='$usuario'";
         } else {
+            $contrasena = sha1($contrasena);
             $sql = "UPDATE usuario SET 
             usuario='$nuevoUsuario', 
             contrasena='$contrasena',
@@ -64,14 +83,25 @@ class Usuario
 
     public static function actualizarUsuarios($usuario, $nuevoUsuario, $contrasena, $nombre, $apellidos, $email, $rol)
     {
-        $sql = "UPDATE usuario SET 
-        usuario='$nuevoUsuario', 
-        contrasena='$contrasena',
-        nombre='$nombre',
-        apellidos='$apellidos',
-        email='$email',
-        rol='$rol'
-        WHERE usuario='$usuario'";
+        if($contrasena == "") {
+            $sql = "UPDATE usuario SET 
+            usuario='$nuevoUsuario',
+            nombre='$nombre',
+            apellidos='$apellidos',
+            email='$email',
+            rol='$rol'
+            WHERE usuario='$usuario'";
+        } else {
+            $contrasena = sha1($contrasena);
+            $sql = "UPDATE usuario SET 
+            usuario='$nuevoUsuario', 
+            contrasena='$contrasena',
+            nombre='$nombre',
+            apellidos='$apellidos',
+            email='$email',
+            rol='$rol'
+            WHERE usuario='$usuario'";
+        }
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);
         $con->cerrarConexion();
