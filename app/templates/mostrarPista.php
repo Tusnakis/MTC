@@ -48,6 +48,10 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <label for="inputPatrocinador" class=" col-12 col-sm-2 col-form-label mt-3">Patrocinador</label>
+                    <div class="col-12 col-sm-4 mt-3">
+                        <input type="text" class="form-control" id="inputPatrocinador" name="patrocinador" required>
+                    </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputNumPista" class=" col-12 col-sm-2 col-form-label mt-3">Número de pista</label>
@@ -72,6 +76,7 @@
                 <tr>
                     <th class="text-center">Tipo de pista</th>
                     <th class="text-center">Número de pista</th>
+                    <th class="text-center">Patrocinador</th>
                     <th class="text-center"></th>
                     <th class="text-center"></th>
                 </tr>
@@ -83,6 +88,7 @@
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
                             <input type="hidden" name="pista" value="<?php echo $params['resultado'][$i]['id'] ?>">
                             <td><input type="text" name="numPista" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['num_pista'] ?>" required></td>
+                            <td><input type="text" name="patrocinador" class="form-control text-center mx-auto" style="width: 10rem;" value="<?php echo $params['resultado'][$i]['patrocinador'] ?>" required></td>
                             <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                             <?php if (isset($params['resultado3'])) { ?>
                                 <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">

@@ -27,7 +27,7 @@ class PistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Pista::añadirPista($_POST['numPista'],$_POST['tipoPista']);
+            Pista::añadirPista($_POST['numPista'],$_POST['tipoPista'],$_POST['patrocinador']);
             if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
                 $params['resultado'] = Pista::listarPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
@@ -87,7 +87,7 @@ class PistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Pista::actualizarPista($_POST['pista'],$_POST['numPista']);
+            Pista::actualizarPista($_POST['pista'],$_POST['numPista'],$_POST['patrocinador']);
             if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
                 $params['resultado'] = Pista::listarPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
