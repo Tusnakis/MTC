@@ -14,6 +14,7 @@ class ListaJugarController
                 $params['paginaActual'] = 1;
             }
             $params['resultado2'] = date('Y-m-d');
+            $params['tipoPista'] = TipoPista::listarTipoPista();
             $params['paginas'] = ceil(count(ListaJugar::listarUsuariosLista()) / 10);
             require __DIR__ . '/../templates/mostrarListaJugar.php';
         } else if (isset($_SESSION['usuario'])) {
@@ -41,6 +42,7 @@ class ListaJugarController
                 $params['resultado'] = ListaJugar::listarUsuariosListaPaginados(1);
                 $params['paginaActual'] = 1;
             }
+            $params['tipoPista'] = TipoPista::listarTipoPista();
             if(isset($_POST['fechaP']) && isset($_POST['categoriaP'])) {
                 $params['resultado2'] = $_POST['fechaP'];
                 $params['resultado3'] = $_POST['categoriaP'];
@@ -67,6 +69,7 @@ class ListaJugarController
                 $params['resultado'] = ListaJugar::listarUsuariosListaFiltradosPaginados($_POST['fecha'],$_POST['categoria'],1);
                 $params['paginaActual'] = 1;
             }
+            $params['tipoPista'] = TipoPista::listarTipoPista();
             if(isset($_GET['fecha']) && isset($_GET['categoria'])) {
                 $params['resultado2'] = $_GET['fecha'];
                 $params['resultado3'] = $_GET['categoria'];
@@ -88,7 +91,7 @@ class ListaJugarController
     {
         session_start();
         if($_SESSION['rol'] == 'user') {
-            ListaJugar::elegirUsuarioLista($_POST['id'],$_SESSION['usuario'],$_POST['horaInicio']);
+            ListaJugar::elegirUsuarioLista($_POST['id'],$_SESSION['usuario'],$_POST['tipoPista'],$_POST['numPista'],$_POST['horaInicio']);
             if(isset($_POST['pagina']) && $_POST['fechaP'] && $_POST['categoriaP']) {
                 $params['resultado'] = ListaJugar::listarUsuariosListaFiltradosPaginados($_POST['fechaP'],$_POST['categoriaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
@@ -102,6 +105,7 @@ class ListaJugarController
                 $params['resultado'] = ListaJugar::listarUsuariosListaPaginados(1);
                 $params['paginaActual'] = 1;
             }
+            $params['tipoPista'] = TipoPista::listarTipoPista();
             if(isset($_POST['fechaP']) && isset($_POST['categoriaP'])) {
                 $params['resultado2'] = $_POST['fechaP'];
                 $params['resultado3'] = $_POST['categoriaP'];
@@ -109,6 +113,14 @@ class ListaJugarController
             } else {
                 $params['paginas'] = ceil(count(ListaJugar::listarUsuariosLista()) / 10);
             }
+            $tipoPista = "";
+            for($i = 0; $i < count($params['tipoPista']); $i++) {
+                if($params['tipoPista'][$i]['id'] == $_POST['tipoPista']) {
+                    $tipoPista = $params['tipoPista'][$i]['nombre'];
+                }
+            }
+            $mensaje = 'Has sido elegido por ' . $_SESSION['usuario'] . ' para jugar en la pista nº ' . $_POST['numPista'] . ' de ' . $tipoPista . ' a las ' . $_POST['horaInicio'] . ' horas';
+            Mensaje::enviarMensaje($_SESSION['usuario'],$_POST['usuarioA'],$mensaje,date('Y-m-d'));
             require __DIR__ . '/../templates/mostrarListaJugar.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
@@ -135,6 +147,7 @@ class ListaJugarController
                 $params['resultado'] = ListaJugar::listarUsuariosListaPaginados(1);
                 $params['paginaActual'] = 1;
             }
+            $params['tipoPista'] = TipoPista::listarTipoPista();
             if(isset($_POST['fechaP']) && isset($_POST['categoriaP'])) {
                 $params['resultado2'] = $_POST['fechaP'];
                 $params['resultado3'] = $_POST['categoriaP'];

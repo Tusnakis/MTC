@@ -130,6 +130,8 @@
                     <th class="text-center">Hasta</th>
                     <th class="text-center">Categoría</th>
                     <th class="text-center">Fecha inicio</th>
+                    <th class="text-center">T. de pista</th>
+                    <th class="text-center">Pista</th>
                     <th></th>
                 </tr>
             </thead>
@@ -145,6 +147,12 @@
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['categoria'] ?></td>
                             <?php if (isset($params['resultado'][$i]['hora_inicio'])) { ?>
                                 <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_inicio'] ?></td>
+                                <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
+                                    <?php if ($params['tipoPista'][$y]['id'] == $params['resultado'][$i]['id_tipo_pista']) { ?>
+                                        <td class="text-center align-middle"><?php echo $params['tipoPista'][$y]['nombre'] ?></td>
+                                    <?php } ?>
+                                <?php } ?>
+                                <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
                             <?php } else { ?>
                                 <?php if ($_SESSION['rol'] == 'user') { ?>
                                     <form action="index.php?ruta=elegirUsuarioLista" method="POST">
@@ -170,11 +178,30 @@
                                             <?php } ?>
                                         </select>
                                     </td>
+                                    <?php if (!isset($params['resultado'][$i]['id_tipo_pista'])) { ?>
+                                        <td class="text-center align-middle">
+                                            <select name="tipoPista">
+                                                <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
+                                                    <option value="<?php echo $params['tipoPista'][$y]['id'] ?>"><?php echo $params['tipoPista'][$y]['nombre'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </td>
+                                    <?php } ?>
+                                    <?php if (!isset($params['resultado'][$i]['num_pista'])) { ?>
+                                        <td class="text-center align-middle">
+                                            <select name="numPista">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </td>
+                                    <?php } ?>
                                 <?php } ?>
                                 <?php if ($_SESSION['rol'] == 'user') { ?>
                                     <td class="text-center">
                                         <?php if (!isset($params['resultado'][$i]['id_usuario_e']) && !isset($params['resultado'][$i]['hora_inicio']) && $params['resultado'][$i]['id_usuario_a'] <> $_SESSION['usuario']) { ?>
                                             <input type="hidden" name="id" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                                            <input type="hidden" name="usuarioA" value="<?php echo $params['resultado'][$i]['id_usuario_a'] ?>">
                                             <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                                             <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
                                                 <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
@@ -213,6 +240,12 @@
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['categoria'] ?></td>
                         <?php if (isset($params['resultado'][$i]['hora_inicio'])) { ?>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_inicio'] ?></td>
+                            <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
+                                <?php if ($params['tipoPista'][$y]['id'] == $params['resultado'][$i]['id_tipo_pista']) { ?>
+                                    <td class="text-center align-middle"><?php echo $params['tipoPista'][$y]['nombre'] ?></td>
+                                <?php } ?>
+                            <?php } ?>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
                         <?php } else { ?>
                             <?php if ($_SESSION['rol'] == 'user') { ?>
                                 <form action="index.php?ruta=elegirUsuarioLista" method="POST">
@@ -238,11 +271,30 @@
                                         <?php } ?>
                                     </select>
                                 </td>
+                                <?php if (!isset($params['resultado'][$i]['id_tipo_pista'])) { ?>
+                                    <td class="text-center align-middle">
+                                        <select name="tipoPista">
+                                            <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
+                                                <option value="<?php echo $params['tipoPista'][$y]['id'] ?>"><?php echo $params['tipoPista'][$y]['nombre'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                <?php } ?>
+                                <?php if (!isset($params['resultado'][$i]['num_pista'])) { ?>
+                                    <td class="text-center align-middle">
+                                        <select name="numPista">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </td>
+                                <?php } ?>
                             <?php } ?>
                             <?php if ($_SESSION['rol'] == 'user') { ?>
                                 <td class="text-center">
                                     <?php if (!isset($params['resultado'][$i]['id_usuario_e']) && !isset($params['resultado'][$i]['hora_inicio']) && $params['resultado'][$i]['id_usuario_a'] <> $_SESSION['usuario']) { ?>
                                         <input type="hidden" name="id" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                                        <input type="hidden" name="usuarioA" value="<?php echo $params['resultado'][$i]['id_usuario_a'] ?>">
                                         <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                                         <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
                                             <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
