@@ -70,7 +70,7 @@
             </thead>
             <tbody>
                 <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
-                    <?php if (date('H') <= str_replace(':00', '', $params['resultado'][$i]['hora_inicio']) && date('Y-m-d') == $params['resultado4'][0]) { ?>
+                    <?php if (date('H') < str_replace(':00', '', $params['resultado'][$i]['hora_inicio']) && date('Y-m-d') == $params['resultado4'][0]) { ?>
                         <tr>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
