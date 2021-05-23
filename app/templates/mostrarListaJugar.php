@@ -136,6 +136,75 @@
             <tbody>
                 <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
                     <tr>
+                        <?php if (date('H') < str_replace(':00', '', $params['resultado'][$i]['hora_hasta']) && date('Y-m-d') == $params['resultado2']) { ?>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['id_usuario_a'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['id_usuario_e'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['fecha'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_desde'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_hasta'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['categoria'] ?></td>
+                            <?php if (isset($params['resultado'][$i]['hora_inicio'])) { ?>
+                                <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_inicio'] ?></td>
+                            <?php } else { ?>
+                                <?php if ($_SESSION['rol'] == 'user') { ?>
+                                    <form action="index.php?ruta=elegirUsuarioLista" method="POST">
+                                    <?php } ?>
+                                    <?php $horaDesde = intval(str_replace(":00", "", $params['resultado'][$i]['hora_desde'])); ?>
+                                    <?php $horaHasta = intval(str_replace(":00", "", $params['resultado'][$i]['hora_hasta'])); ?>
+                                    <td class="text-center align-middle">
+                                        <select name="horaInicio" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
+                                            <?php for ($x = $horaDesde; $x <= $horaHasta; $x++) { ?>
+                                                <?php if ($x < 10) { ?>
+                                                    <?php if ("0" . $x > date('H') && $params['resultado2'] == date('Y-m-d')) { ?>
+                                                        <option value="<?php echo "0" . $x . ":00" ?>"><?php echo "0" . $x . ":00" ?></option>
+                                                    <?php } elseif ($params['resultado2'] > date('Y-m-d')) { ?>
+                                                        <option value="<?php echo "0" . $x . ":00" ?>"><?php echo "0" . $x . ":00" ?></option>
+                                                    <?php } ?>
+                                                <?php } else { ?>
+                                                    <?php if ($x > date('H') && $params['resultado2'] == date('Y-m-d')) { ?>
+                                                        <option value="<?php echo $x . ":00" ?>"><?php echo $x . ":00" ?></option>
+                                                    <?php } elseif ($params['resultado2'] > date('Y-m-d')) { ?>
+                                                        <option value="<?php echo $x . ":00" ?>"><?php echo $x . ":00" ?></option>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </td>
+                                <?php } ?>
+                                <?php if ($_SESSION['rol'] == 'user') { ?>
+                                    <td class="text-center">
+                                        <?php if (!isset($params['resultado'][$i]['id_usuario_e']) && !isset($params['resultado'][$i]['hora_inicio']) && $params['resultado'][$i]['id_usuario_a'] <> $_SESSION['usuario']) { ?>
+                                            <input type="hidden" name="id" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                                            <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
+                                            <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
+                                                <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
+                                                <input type="hidden" name="categoriaP" value="<?php echo $params['resultado3'] ?>">
+                                            <?php } ?>
+                                            <input type="submit" class="btn btn-info" value="Elegir">
+                                    </form>
+                                <?php } elseif (isset($params['resultado'][$i]['id_usuario_e']) && $params['resultado'][$i]['hora_inicio']) { ?>
+                                    Jugador elegido
+                                <?php } else { ?>
+                                    <input type="submit" class="btn btn-info" value="Elegir" disabled>
+                                <?php } ?>
+                                </td>
+                            <?php } ?>
+                            <?php if ($_SESSION['rol'] == 'admin') { ?>
+                                <td class="justify-content-center align-middle" style="width: 3rem;">
+                                    <form action="index.php?ruta=eliminarUsuarioLista" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $params['resultado'][$i]['id'] ?>">
+                                        <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
+                                        <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
+                                            <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
+                                            <input type="hidden" name="categoriaP" value="<?php echo $params['resultado3'] ?>">
+                                        <?php } ?>
+                                        <input title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
+                                    </form>
+                                </td>
+                            <?php } ?>
+                    </tr>
+                <?php } elseif ($params['resultado2'] > date('Y-m-d')) { ?>
+                    <tr>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['id_usuario_a'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['id_usuario_e'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['fecha'] ?></td>
@@ -154,9 +223,17 @@
                                     <select name="horaInicio" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
                                         <?php for ($x = $horaDesde; $x <= $horaHasta; $x++) { ?>
                                             <?php if ($x < 10) { ?>
-                                                <option value="<?php echo "0" . $x . ":00" ?>"><?php echo "0" . $x . ":00" ?></option>
+                                                <?php if ("0" . $x > date('H') && $params['resultado2'] == date('Y-m-d')) { ?>
+                                                    <option value="<?php echo "0" . $x . ":00" ?>"><?php echo "0" . $x . ":00" ?></option>
+                                                <?php } elseif ($params['resultado2'] > date('Y-m-d')) { ?>
+                                                    <option value="<?php echo "0" . $x . ":00" ?>"><?php echo "0" . $x . ":00" ?></option>
+                                                <?php } ?>
                                             <?php } else { ?>
-                                                <option value="<?php echo $x . ":00" ?>"><?php echo $x . ":00" ?></option>
+                                                <?php if ($x > date('H') && $params['resultado2'] == date('Y-m-d')) { ?>
+                                                    <option value="<?php echo $x . ":00" ?>"><?php echo $x . ":00" ?></option>
+                                                <?php } elseif ($params['resultado2'] > date('Y-m-d')) { ?>
+                                                    <option value="<?php echo $x . ":00" ?>"><?php echo $x . ":00" ?></option>
+                                                <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
                                     </select>
@@ -195,6 +272,7 @@
                         <?php } ?>
                     </tr>
                 <?php } ?>
+            <?php } ?>
             </tbody>
         </table>
     </div>

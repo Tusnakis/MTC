@@ -13,6 +13,7 @@ class ListaJugarController
                 $params['resultado'] = ListaJugar::listarUsuariosListaPaginados(1);
                 $params['paginaActual'] = 1;
             }
+            $params['resultado2'] = date('Y-m-d');
             $params['paginas'] = ceil(count(ListaJugar::listarUsuariosLista()) / 10);
             require __DIR__ . '/../templates/mostrarListaJugar.php';
         } else if (isset($_SESSION['usuario'])) {
