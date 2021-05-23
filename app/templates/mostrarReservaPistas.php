@@ -40,13 +40,13 @@
                 <div class="form-group row">
                     <label for="fechaReserva" class="col-12 col-sm-2 col-form-label mt-3">Fecha</label>
                     <div class="col-12 col-sm-4 mt-3">
-                        <input type="date" class="form-control" id="fechaReserva" name="fecha" min="<?php //echo date("Y-m-d") 
-                                                                                                    ?>" max="<?php //echo date("Y-m-d", strtotime('+ 1 week')) 
-                                                                                                                                        ?>" value="<?php if (!empty($params['resultado4'])) {
-                                                                                                                                                                                                            echo $params['resultado4'][0];
-                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                            echo date("Y-m-d");
-                                                                                                                                                                                                        } ?>" required>
+                        <input type="date" class="form-control" id="fechaReserva" name="fecha" min="<?php echo date("Y-m-d") 
+                                                                                                    ?>" max="<?php echo date("Y-m-d", strtotime('+ 1 week')) 
+                                                                                                                ?>" value="<?php if (!empty($params['resultado4'])) {
+                                                                                                                                                        echo $params['resultado4'][0];
+                                                                                                                                                    } else {
+                                                                                                                                                        echo date("Y-m-d");
+                                                                                                                                                    } ?>" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-secondary mt-3">Buscar</button>
@@ -72,6 +72,52 @@
             <tbody>
                 <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
                     <?php if (date('H') < str_replace(':00', '', $params['resultado'][$i]['hora_inicio']) && date('Y-m-d') == $params['resultado4'][0]) { ?>
+                        <tr>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['patrocinador'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_inicio'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_fin'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['precio'] ?> €</td>
+                            <td class="text-center">
+                                <form action="index.php?ruta=reservarPista" method="POST">
+                                    <input type="hidden" name="usuario" value="<?php echo $_SESSION['usuario'] ?>">
+                                    <input type="hidden" name="tipoPista" value="<?php echo $params['resultado'][$i]['nombre'] ?>">
+                                    <input type="hidden" name="numPista" value="<?php echo $params['resultado'][$i]['num_pista'] ?>">
+                                    <input type="hidden" name="pista" value="<?php echo $params['resultado'][$i]['pista'] ?>">
+                                    <input type="hidden" name="tarifa" value="<?php echo $params['resultado'][$i]['tarifa'] ?>">
+                                    <input type="hidden" name="fecha" value="<?php if (!empty($params['resultado4'])) {
+                                                                                    echo $params['resultado4'][0];
+                                                                                } else {
+                                                                                    echo date("Y-m-d");
+                                                                                } ?>">
+                                    <?php $salida = 0 ?>
+                                    <?php for ($x = 0; $x < count($params['resultado3']); $x++) { ?>
+                                        <?php if ($params['resultado'][$i]['nombre'] == $params['resultado3'][$x]['nombre'] && $params['resultado'][$i]['num_pista'] == $params['resultado3'][$x]['num_pista'] && $params['resultado'][$i]['tarifa'] == $params['resultado3'][$x]['id_tarifa']) { ?>
+                                            Pista reservada
+                                            <?php $salida++; ?>
+                                        <?php } ?>
+                                    <?php } ?>
+                                    <?php if ($salida == 0 /*&& date('H') <= str_replace(':00','',$params['resultado'][$i]['hora_inicio']) && date('Y-m-d') == $params['resultado4'][0]*/) { ?>
+                                        <input type="submit" class="btn btn-info" value="Reservar">
+                                        <?php //} else { 
+                                        ?>
+                                        <?php //if($salida == 0) { 
+                                        ?>
+                                        <!-- Fuera de horario -->
+                                        <?php //}
+                                        ?>
+                                    <?php } ?>
+                                    <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
+                                    <?php if (isset($params['resultado6'])) { ?>
+                                        <input type="hidden" name="fechaP" value="<?php echo $params['resultado6'][2] ?>">
+                                        <input type="hidden" name="numPistaP" value="<?php echo $params['resultado6'][1] ?>">
+                                        <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado6'][0] ?>">
+                                    <?php } ?>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } elseif ($params['resultado4'][0] > date('Y-m-d')) { ?>
                         <tr>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
