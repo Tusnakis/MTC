@@ -4,7 +4,7 @@ class Reserva
 {
     public static function listarPistasReserva()
     {
-        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, p.patrocinador, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
         INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id
         INNER JOIN pista p ON tp.id = p.id_tipo_pista";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
@@ -16,7 +16,7 @@ class Reserva
     public static function listarPistasReservaPaginadas($pagina)
     {
         $pagina = $pagina * 10 - 10;
-        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, p.patrocinador, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
         INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id
         INNER JOIN pista p ON tp.id = p.id_tipo_pista
         LIMIT $pagina,10";
@@ -28,7 +28,7 @@ class Reserva
 
     public static function listarReservasFiltradas($tipoPista,$numPista)
     {
-        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, p.patrocinador, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
         INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id
         INNER JOIN pista p ON tp.id = p.id_tipo_pista
         WHERE tp.nombre = '$tipoPista'
@@ -42,7 +42,7 @@ class Reserva
     public static function listarReservasFiltradasPaginadas($tipoPista,$numPista,$pagina)
     {
         $pagina = $pagina * 10 - 10;
-        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        $sql = "SELECT t.id AS tarifa, p.id AS pista, tp.nombre, p.num_pista, p.patrocinador, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
         INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id
         INNER JOIN pista p ON tp.id = p.id_tipo_pista
         WHERE tp.nombre = '$tipoPista'
@@ -66,7 +66,7 @@ class Reserva
 
     public static function listarReservasHechas($fecha)
     {
-        $sql = "SELECT r.id, tp.nombre, r.usuario, p.num_pista, r.fecha, t.hora_inicio, t.hora_fin, r.id_tarifa FROM reserva r
+        $sql = "SELECT r.id, tp.nombre, r.usuario, p.num_pista, p.patrocinador, r.fecha, t.hora_inicio, t.hora_fin, r.id_tarifa FROM reserva r
         INNER JOIN tarifa t ON r.id_tarifa = t.id
         INNER JOIN pista p ON r.id_pista = p.id
         INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id
@@ -80,7 +80,7 @@ class Reserva
     public static function listarReservasHechasPaginadas($fecha,$pagina)
     {
         $pagina = $pagina * 10 - 10;
-        $sql = "SELECT r.id, tp.nombre, r.usuario, p.num_pista, r.fecha, t.hora_inicio, t.hora_fin, r.id_tarifa FROM reserva r
+        $sql = "SELECT r.id, tp.nombre, r.usuario, p.num_pista, p.patrocinador, r.fecha, t.hora_inicio, t.hora_fin, r.id_tarifa FROM reserva r
         INNER JOIN tarifa t ON r.id_tarifa = t.id
         INNER JOIN pista p ON r.id_pista = p.id
         INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id
@@ -106,8 +106,8 @@ class Reserva
     {
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
-        $param['pista'] = Pista::mostrarUnaPista($pista);
-        $param['tarifa'] = Tarifa::mostrarUnaTarifa($tarifa);
+        $params['pista'] = Pista::mostrarUnaPista($pista);
+        $params['tarifa'] = Tarifa::mostrarUnaTarifa($tarifa);
 
         try {
             //Server settings
@@ -138,7 +138,7 @@ class Reserva
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Reserva pista Marc Tennis Club';
             $mail->CharSet = 'UTF-8';
-            $mail->Body = 'Estimado/a ' . $usuario . ', <br/>Has reservado la pista nº ' . $param['pista'][0]['num_pista'] . ' de ' . $param['pista'][0]['nombre'] . ' el día ' . $fecha . '.<br/>La hora de inicio es a las ' . $param['tarifa'][0]['hora_inicio'] . ' y la hora de fin es a las ' . $param['tarifa'][0]['hora_fin'] . '.<br/>El precio de la pista es de ' . $param['tarifa'][0]['precio'] . ' €';
+            $mail->Body = 'Estimado/a ' . $usuario . ', <br/>Has reservado la pista nº ' . $params['pista'][0]['num_pista'] . ' (' . $params['pista'][0]['patrocinador'] . ')' . ' de ' . $params['pista'][0]['nombre'] . ' el día ' . $fecha . '.<br/>La hora de inicio es a las ' . $params['tarifa'][0]['hora_inicio'] . ' y la hora de fin es a las ' . $params['tarifa'][0]['hora_fin'] . '.<br/>El precio de la pista es de ' . $params['tarifa'][0]['precio'] . ' €';
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();

@@ -35,6 +35,7 @@
                     <th class="text-center">Usuario</th>
                     <th class="text-center">Tipo de pista</th>
                     <th class="text-center">N. de pista</th>
+                    <th class="text-center">Patrocinador</th>
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Hora inicio</th>
                     <th class="text-center">Hora fin</th>
@@ -49,6 +50,7 @@
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['usuario'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
+                        <td class="text-center align-middle"><?php echo $params['resultado'][$i]['patrocinador'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['fecha'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_inicio'] ?></td>
                         <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_fin'] ?></td>

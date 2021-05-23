@@ -62,6 +62,7 @@
                 <tr>
                     <th class="text-center">Tipo de pista</th>
                     <th class="text-center">N. pista</th>
+                    <th class="text-center">Patrocinador</th>
                     <th class="text-center">Hora inicio</th>
                     <th class="text-center">Hora fin</th>
                     <th class="text-center">Precio</th>
@@ -74,6 +75,7 @@
                         <tr>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['num_pista'] ?></td>
+                            <td class="text-center align-middle"><?php echo $params['resultado'][$i]['patrocinador'] ?></td>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_inicio'] ?></td>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['hora_fin'] ?></td>
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['precio'] ?> €</td>
