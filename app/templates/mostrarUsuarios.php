@@ -100,7 +100,8 @@
                         <form action="index.php?ruta=actualizarUsuarios" method="POST">
                             <td><input type="text" name="nuevoUsuario" class="form-control text-center" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['usuario'] ?>" required></td>
                             <input type="hidden" name="usuario" value="<?php echo $params['resultado'][$i]['usuario'] ?>">
-                            <td><input type="password" name="contrasena" class="form-control text-center" style="width: 8rem;" value="<?php //echo $params['resultado'][$i]['contrasena'] ?>" placeholder="********"></td>
+                            <td><input type="password" name="contrasena" class="form-control text-center" style="width: 8rem;" value="<?php //echo $params['resultado'][$i]['contrasena'] 
+                                                                                                                                        ?>" placeholder="********"></td>
                             <td><input type="text" name="nombre" class="form-control text-center" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['nombre'] ?>" required></td>
                             <td><input type="text" name="apellidos" class="form-control text-center" style="width: 10rem;" value="<?php echo $params['resultado'][$i]['apellidos'] ?>" required></td>
                             <td><input type="text" name="email" class="form-control text-center" style="width: 10rem;" value="<?php echo $params['resultado'][$i]['email'] ?>" required></td>
@@ -135,87 +136,89 @@
         </table>
     </div>
 </div>
-<div class="row mb-5">
-    <div class="col-12 d-flex justify-content-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-sm">
-                <?php if ($params['paginaActual'] == 1) { ?>
-                    <li class="page-item disabled">
-                        <?php if (isset($params['resultado5'])) { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] - 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } else { ?>
-                    <li class="page-item">
-                        <?php if (isset($params['resultado5'])) { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] - 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } ?>
-                <?php for ($i = 0; $i < $params['paginas']; $i++) { ?>
-                    <?php if ($params['paginaActual'] == $i + 1) { ?>
-                        <?php if (isset($params['resultado5'])) { ?>
-                            <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $i + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>"><?php echo $i + 1 ?></a></li>
-                        <?php } else { ?>
-                            <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
-                        <?php } ?>
+<?php if ($params['paginas'] > 1) { ?>
+    <div class="row mb-5">
+        <div class="col-12 d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-sm">
+                    <?php if ($params['paginaActual'] == 1) { ?>
+                        <li class="page-item disabled">
+                            <?php if (isset($params['resultado5'])) { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] - 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } ?>
+                        </li>
                     <?php } else { ?>
-                        <?php if (isset($params['resultado5'])) { ?>
-                            <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $i + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>"><?php echo $i + 1 ?></a></li>
+                        <li class="page-item">
+                            <?php if (isset($params['resultado5'])) { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] - 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                    <?php for ($i = 0; $i < $params['paginas']; $i++) { ?>
+                        <?php if ($params['paginaActual'] == $i + 1) { ?>
+                            <?php if (isset($params['resultado5'])) { ?>
+                                <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $i + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } else { ?>
+                                <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } ?>
                         <?php } else { ?>
-                            <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php if (isset($params['resultado5'])) { ?>
+                                <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $i + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } else { ?>
+                                <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } ?>
                         <?php } ?>
                     <?php } ?>
-                <?php } ?>
-                <?php if ($params['paginas'] == $params['paginaActual']) { ?>
-                    <li class="page-item disabled">
-                        <?php if (isset($params['resultado5'])) { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } else { ?>
-                    <li class="page-item">
-                        <?php if (isset($params['resultado5'])) { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } ?>
-            </ul>
-        </nav>
+                    <?php if ($params['paginas'] == $params['paginaActual']) { ?>
+                        <li class="page-item disabled">
+                            <?php if (isset($params['resultado5'])) { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } else { ?>
+                        <li class="page-item">
+                            <?php if (isset($params['resultado5'])) { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuariosFiltrados&pagina=<?php echo $params['paginaActual'] + 1 ?>&usuario=<?php echo $params['resultado5'][0] ?>&rol=<?php echo $params['resultado5'][1] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarUsuarios&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
+<?php } ?>
 
 <?php $contenido = ob_get_clean(); ?>
 

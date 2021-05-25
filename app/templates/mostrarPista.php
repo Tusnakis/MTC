@@ -114,87 +114,89 @@
         </table>
     </div>
 </div>
-<div class="row mb-5">
-    <div class="col-12 d-flex justify-content-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-sm">
-                <?php if ($params['paginaActual'] == 1) { ?>
-                    <li class="page-item disabled">
-                        <?php if (isset($params['resultado3'])) { ?>
-                            <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } else { ?>
-                    <li class="page-item">
-                        <?php if (isset($params['resultado3'])) { ?>
-                            <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } ?>
-                <?php for ($i = 0; $i < $params['paginas']; $i++) { ?>
-                    <?php if ($params['paginaActual'] == $i + 1) { ?>
-                        <?php if (isset($params['resultado3'])) { ?>
-                            <li class="page-item active"><a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>"><?php echo $i + 1 ?></a></li>
-                        <?php } else { ?>
-                            <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
-                        <?php } ?>
+<?php if ($params['paginas'] > 1) { ?>
+    <div class="row mb-5">
+        <div class="col-12 d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-sm">
+                    <?php if ($params['paginaActual'] == 1) { ?>
+                        <li class="page-item disabled">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } ?>
+                        </li>
                     <?php } else { ?>
-                        <?php if (isset($params['resultado3'])) { ?>
-                            <li class="page-item"><a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>"><?php echo $i + 1 ?></a></li>
+                        <li class="page-item">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] - 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] - 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                    <?php for ($i = 0; $i < $params['paginas']; $i++) { ?>
+                        <?php if ($params['paginaActual'] == $i + 1) { ?>
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <li class="page-item active"><a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } else { ?>
+                                <li class="page-item active"><a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } ?>
                         <?php } else { ?>
-                            <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <li class="page-item"><a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $i + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } else { ?>
+                                <li class="page-item"><a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
+                            <?php } ?>
                         <?php } ?>
                     <?php } ?>
-                <?php } ?>
-                <?php if ($params['paginas'] == $params['paginaActual']) { ?>
-                    <li class="page-item disabled">
-                        <?php if (isset($params['resultado3'])) { ?>
-                            <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } else { ?>
-                    <li class="page-item">
-                        <?php if (isset($params['resultado3'])) { ?>
-                            <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } else { ?>
-                            <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        <?php } ?>
-                    </li>
-                <?php } ?>
-            </ul>
-        </nav>
+                    <?php if ($params['paginas'] == $params['paginaActual']) { ?>
+                        <li class="page-item disabled">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } else { ?>
+                        <li class="page-item">
+                            <?php if (isset($params['resultado3'])) { ?>
+                                <a class="page-link" href="index.php?ruta=listarPistaFiltradas&pagina=<?php echo $params['paginaActual'] + 1 ?>&tipoPista=<?php echo $params['resultado3'] ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } else { ?>
+                                <a class="page-link" href="index.php?ruta=mostrarPista&pagina=<?php echo $params['paginaActual'] + 1 ?>" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
+<?php } ?>
 
 <?php $contenido = ob_get_clean(); ?>
 
