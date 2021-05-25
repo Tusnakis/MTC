@@ -69,8 +69,8 @@
     </div>
 </div>
 <hr>
-<div class="row mb-2">
-    <div class="col-12 d-flex justify-content-center">
+<div class="row <?php echo $sinPaginas = $params['paginas'] <= 1 ? "mb-5" : "" ?>">
+    <div class="col-12 d-flex justify-content-center my-4">
         <table class="table bg-light">
             <thead class="thead bg-secondary text-white">
                 <tr>
