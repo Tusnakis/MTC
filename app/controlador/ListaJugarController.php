@@ -119,7 +119,7 @@ class ListaJugarController
                     $tipoPista = $params['tipoPista'][$i]['nombre'];
                 }
             }
-            $mensaje = 'Has sido elegido por ' . $_SESSION['usuario'] . ' para jugar en la pista nº ' . $_POST['numPista'] . ' de ' . $tipoPista . ' a las ' . $_POST['horaInicio'] . ' horas';
+            $mensaje = 'Has sido elegido por ' . $_SESSION['usuario'] . ' para jugar en la pista nº ' . $_POST['numPista'] . ' de ' . $tipoPista . ' a las ' . $_POST['horaInicio'] . ' horas el día ' . $params['resultado2'];
             Mensaje::enviarMensaje($_SESSION['usuario'],$_POST['usuarioA'],$mensaje,date('Y-m-d'));
             require __DIR__ . '/../templates/mostrarListaJugar.php';
         } else if (isset($_SESSION['usuario'])) {

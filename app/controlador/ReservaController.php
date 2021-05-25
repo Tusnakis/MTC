@@ -84,6 +84,8 @@ class ReservaController
             $params['resultado3'] = Reserva::listarReservasHechas($_POST['fecha']);
             if (isset($_POST['fechaP'])) {
                 $params['resultado4'] = array($_POST['fechaP'], $_POST['numPistaP'], $_POST['tipoPistaP']);
+            } else {
+                $params['resultado4'] = [date('Y-m-d')];
             }
             $params['resultado5'] = Pista::listarNumPistas();
             if (isset($_POST['tipoPistaP']) && isset($_POST['numPistaP'])) {
