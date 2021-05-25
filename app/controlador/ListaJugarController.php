@@ -28,7 +28,11 @@ class ListaJugarController
     {
         session_start();
         if($_SESSION['rol'] == 'user') {
-            ListaJugar::añadirListaJugar($_SESSION['usuario'],$_POST['fecha'],$_POST['horaInicio'],$_POST['horaFin'],$_POST['categoria']);
+            if(intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")) > intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) || intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")) > date('G') || intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) < date('G')) {
+                $params['apuntado'] = "La hora de inicio no puede ser mayor que la hora de fin ni mayor que la hora actual";
+            } else {
+                ListaJugar::añadirListaJugar($_SESSION['usuario'],$_POST['fecha'],$_POST['horaInicio'],$_POST['horaFin'],$_POST['categoria']);
+            }
             if(isset($_POST['pagina']) && $_POST['fechaP'] && $_POST['categoriaP']) {
                 $params['resultado'] = ListaJugar::listarUsuariosListaFiltradosPaginados($_POST['fechaP'],$_POST['categoriaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];

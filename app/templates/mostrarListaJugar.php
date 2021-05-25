@@ -5,16 +5,16 @@
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#buscar">Buscar jugador</a>
+            <a class="nav-link <?php echo $apuntado = $params['apuntado'] !== NULL ? "" : "active" ?>" data-toggle="tab" href="#buscar">Buscar jugador</a>
         </li>
         <?php if ($_SESSION['rol'] == 'user') { ?>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#apuntarse">Apuntarse a la lista</a>
+                <a class="nav-link <?php echo $apuntado = $params['apuntado'] !== NULL ? "active" : "" ?>" data-toggle="tab" href="#apuntarse">Apuntarse a la lista</a>
             </li>
         <?php } ?>
     </ul>
     <div class="tab-content bg-white">
-        <div class="tab-pane fade show active" id="buscar">
+        <div class="tab-pane fade <?php echo $apuntado = $params['apuntado'] !== NULL ? "" : "show active" ?>" id="buscar">
             <br>
             <form action="index.php?ruta=listarUsuariosListaFiltrados" method="POST">
                 <div class="form-group row">
@@ -43,7 +43,7 @@
             </form>
         </div>
         <?php if ($_SESSION['rol'] == 'user') { ?>
-            <div class="tab-pane fade" id="apuntarse">
+            <div class="tab-pane fade <?php echo $apuntado = $params['apuntado'] !== NULL ? "show active" : "" ?>" id="apuntarse">
                 <br>
                 <form action="index.php?ruta=añadirListaJugar" method="POST">
                     <div class="form-group row">
@@ -111,7 +111,12 @@
                         <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
                         <input type="hidden" name="categoriaP" value="<?php echo $params['resultado3'] ?>">
                     <?php } ?>
-                    <button type="submit" class="btn btn-secondary mt-3">Apuntarse</button>
+                    <?php if ($params['apuntado'] !== NULL) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $params['apuntado'] ?>
+                        </div>
+                    <?php } ?>
+                    <button type="submit" class="btn btn-secondary mt-3" name="apuntarse">Apuntarse</button>
                 </form>
             </div>
         <?php } ?>
@@ -180,7 +185,7 @@
                                     </td>
                                     <?php if (!isset($params['resultado'][$i]['id_tipo_pista'])) { ?>
                                         <td class="text-center align-middle">
-                                            <select name="tipoPista">
+                                            <select name="tipoPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
                                                 <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
                                                     <option value="<?php echo $params['tipoPista'][$y]['id'] ?>"><?php echo $params['tipoPista'][$y]['nombre'] ?></option>
                                                 <?php } ?>
@@ -189,7 +194,7 @@
                                     <?php } ?>
                                     <?php if (!isset($params['resultado'][$i]['num_pista'])) { ?>
                                         <td class="text-center align-middle">
-                                            <select name="numPista">
+                                            <select name="numPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -273,7 +278,7 @@
                                 </td>
                                 <?php if (!isset($params['resultado'][$i]['id_tipo_pista'])) { ?>
                                     <td class="text-center align-middle">
-                                        <select name="tipoPista">
+                                        <select name="tipoPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
                                             <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
                                                 <option value="<?php echo $params['tipoPista'][$y]['id'] ?>"><?php echo $params['tipoPista'][$y]['nombre'] ?></option>
                                             <?php } ?>
@@ -282,7 +287,7 @@
                                 <?php } ?>
                                 <?php if (!isset($params['resultado'][$i]['num_pista'])) { ?>
                                     <td class="text-center align-middle">
-                                        <select name="numPista">
+                                        <select name="numPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

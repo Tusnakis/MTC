@@ -49,7 +49,7 @@
                                                                                                                                                     } ?>" required>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-secondary mt-3">Buscar</button>
+                <button type="submit" class="btn btn-secondary mt-3">Filtrar</button>
             </form>
         </div>
     </div>
