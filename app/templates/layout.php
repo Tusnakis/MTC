@@ -116,7 +116,20 @@
     </main>
     <footer class="footer mt-auto py-3 text-white">
         <div class="container-md">
-            - Footer -
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-3 mx-auto">
+                    <p>Encuentranos en Partida Salto del Agua s/n<br>
+                    03503 Benidorm (Alicante)<br>
+                    Teléfono: 636107109</p>
+                </div>
+                <div class="col-12 col-lg-3 mx-auto">
+                    <p class="mencion">&copy; 2021 MacWorks Dev S.L.</p>
+                </div>
+                <div class="col-12 col-lg-3 mx-auto">
+                    <p>Siguenos en Facebook <a href="#"><img src="images/fb.png" style="width: 30px; height: 30px" alt="facebook"></a></p>
+                    <p>Siguenos en Instagram <a href="#"><img src="images/insta.png" style="width: 30px; height: 30px" alt="facebook"></a></p>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
