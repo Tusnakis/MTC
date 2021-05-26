@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<h1 class="text-center mt-2">Usuarios</h1>
+<h1 class="text-center pt-5">Usuarios</h1>
 
 <!--<div class="row">-->
 <div class="bg-white px-3 py-3 rounded">

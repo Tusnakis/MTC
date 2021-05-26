@@ -3,7 +3,7 @@
 ob_start();
 
 ?>
-<div class="row justify-content-center pb-3">
+<div class="row justify-content-center pt-5">
     <div class="col-12">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -63,7 +63,7 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="col-12">
+<div class="col-12 mt-5">
     <img class="d-block w-100" style="height: 150px;" src="images/banner.jpg" alt="banner">
 </div>
 

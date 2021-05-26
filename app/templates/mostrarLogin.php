@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-<div class="row justify-content-center">
+<div class="row justify-content-center pt-5">
     <div class="col-12 col-lg-4 my-5">
         <div id="login1" class="card mx-auto border" style="width: 20rem; height: 21rem;">
             <div class="card-body">

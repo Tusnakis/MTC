@@ -17,7 +17,7 @@
                                                             echo 'index.php?ruta=inicio';
                                                         } else {
                                                             echo 'index.php?ruta=mostrarLogin';
-                                                        } ?>">MTC</a>
+                                                        } ?>"><img src="images/marc-1.1.png" alt="logo"></a>
             <?php if (isset($_SESSION['usuario'])) { ?>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -111,7 +111,7 @@
         <?php } ?>
         </div>
     </nav>
-    <main class="container-md">
+    <main class="container-md mt-5">
         <?php echo $contenido; ?>
     </main>
     <footer class="footer mt-auto py-3 text-white">
@@ -126,8 +126,8 @@
                     <p class="mencion">&copy; 2021 MacWorks Dev S.L.</p>
                 </div>
                 <div class="col-12 col-lg-3 mx-auto">
-                    <p>Siguenos en Facebook <a href="#"><img src="images/fb.png" style="width: 30px; height: 30px" alt="facebook"></a></p>
-                    <p>Siguenos en Instagram <a href="#"><img src="images/insta.png" style="width: 30px; height: 30px" alt="facebook"></a></p>
+                    <p>Siguenos en Facebook <a href="#"><img src="images/fb.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
+                    <p>Siguenos en Instagram <a href="#"><img src="images/insta.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
                 </div>
             </div>
         </div>

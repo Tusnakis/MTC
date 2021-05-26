@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<h1 class="text-center">Reservas</h1>
+<h1 class="text-center pt-5">Reservas</h1>
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">
         <li class="nav-item">

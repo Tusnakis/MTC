@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<h1 class="text-center mt-2">Pistas</h1>
+<h1 class="text-center pt-5">Pistas</h1>
 
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">

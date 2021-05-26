@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<h1 class="text-center">Lista jugadores</h1>
+<h1 class="text-center pt-5">Lista jugadores</h1>
 
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">

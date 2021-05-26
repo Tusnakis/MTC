@@ -1,8 +1,8 @@
 <?php ob_start(); ?>
 
-<h1 class="text-center">Perfil</h1>
+<h1 class="text-center pt-5">Perfil</h1>
 <div class="row mb-5">
-<div class="col-12 col-lg-6 my-3 d-flex justify-content-center">
+    <div class="col-12 col-lg-6 my-3 d-flex justify-content-center">
         <img src="<?php if (/*isset($_SESSION['foto']) && */file_exists($params['resultado'][0]['foto'])) {
                         echo $params['resultado'][0]['foto'];
                     } else {
@@ -18,7 +18,8 @@
                 </div>
                 <label for="exampleInputPassword1" class="col-sm-3 col-form-label">Contraseña</label>
                 <div class="col-sm-7">
-                    <input type="password" name="contrasena" class="form-control" value="<?php //echo $params['resultado'][0]['contrasena'] ?>" placeholder="********">
+                    <input type="password" name="contrasena" class="form-control" value="<?php //echo $params['resultado'][0]['contrasena'] 
+                                                                                            ?>" placeholder="********">
                 </div>
                 <label for="exampleInputName" class="col-sm-3 col-form-label">Nombre</label>
                 <div class="col-sm-7">
