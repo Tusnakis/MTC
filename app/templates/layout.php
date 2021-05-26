@@ -11,7 +11,7 @@
     <link rel="manifest" href="images/favicon_io/site.webmanifest">
     <link rel="stylesheet" href="<?php echo 'css/' . Config::$mvc_css ?>" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 
 <body>
@@ -30,83 +30,83 @@
                     <ul class="navbar-nav">
                         <?php if ($_SESSION['rol'] == 'user') { ?>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas">Reservas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas"><i class="fas fa-list-ol"></i>&nbsp;&nbsp;Reservas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservaPistas">Reservar pista</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservaPistas"><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Reservar pista</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarListaJugar">Lista jugadores</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarListaJugar"><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;Lista jugadores</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php echo ucwords($_SESSION['usuario']) ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
-                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes">Mensajes
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil"><i class="far fa-address-card"></i>&nbsp;&nbsp;Perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes"><i class="far fa-envelope"></i>&nbsp;&nbsp;Mensajes
                                         <?php if (count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) > 0) { ?>
                                             <span class="badge badge-danger"><?php echo count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) ?></span>
                                         <?php } ?>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
+                                    <a class="dropdown-item" href="index.php?ruta=logout"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar sesión</a>
                                 </div>
                             </li>
                         <?php } else if ($_SESSION['rol'] == 'emp') { ?>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarHorario">Ver horario</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarHorario"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;Ver horario</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php echo ucwords($_SESSION['usuario']) ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
-                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes">Mensajes
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil"><i class="far fa-address-card"></i>&nbsp;&nbsp;Perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes"><i class="far fa-envelope"></i>&nbsp;&nbsp;Mensajes
                                         <?php if (count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) > 0) { ?>
                                             <span class="badge badge-danger"><?php echo count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) ?></span>
                                         <?php } ?>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
+                                    <a class="dropdown-item" href="index.php?ruta=logout"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar sesión</a>
                                 </div>
                             </li>
                         <?php } else { ?>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarTipoPista">Tipo de pistas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarTipoPista"><i class="fas fa-table-tennis"></i>&nbsp;&nbsp;Tipo de pistas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarPista">Pistas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarPista"><i class="fas fa-list-ol"></i>&nbsp;&nbsp;Pistas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarTarifa">Tarifas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarTarifa"><i class="fas fa-euro-sign"></i>&nbsp;&nbsp;Tarifas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas">Reservas</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarReservasHechas"><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Reservas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarListaJugar">Lista jugadores</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarListaJugar"><i class="fas fa-clipboard-list"></i>&nbsp;&nbsp;Lista jugadores</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarHorario">Horarios</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarHorario"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;Horarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php?ruta=mostrarUsuarios">Usuarios</a>
+                                <a class="nav-link text-white" href="index.php?ruta=mostrarUsuarios"><i class="fas fa-users"></i>&nbsp;&nbsp;Usuarios</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php echo ucwords($_SESSION['usuario']) ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil">Perfil</a>
-                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes">Mensajes
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarPerfil"><i class="far fa-address-card"></i>&nbsp;&nbsp;Perfil</a>
+                                    <a class="dropdown-item" href="index.php?ruta=mostrarMensajes"><i class="far fa-envelope"></i>&nbsp;&nbsp;Mensajes
                                         <?php if (count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) > 0) { ?>
                                             <span class="badge badge-danger"><?php echo count(Mensaje::mensajesNoLeidos($_SESSION['usuario'])) ?></span>
                                         <?php } ?>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="index.php?ruta=logout">Cerrar sesión</a>
+                                    <a class="dropdown-item" href="index.php?ruta=logout"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar sesión</a>
                                 </div>
                             </li>
                     </ul>
