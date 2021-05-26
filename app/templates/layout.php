@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marc Tennis Club</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon_io/site.webmanifest">
     <link rel="stylesheet" href="<?php echo 'css/' . Config::$mvc_css ?>" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -117,15 +121,15 @@
     <footer class="footer mt-auto py-3 text-white">
         <div class="container-md">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-3 mx-auto">
-                    <p>Encuentranos en Partida Salto del Agua s/n<br>
+                <div class="col-12 col-lg-3 mx-auto text-center">
+                    <p>Encuéntranos en Partida Salto del Agua s/n<br>
                     03503 Benidorm (Alicante)<br>
                     Teléfono: 636107109</p>
                 </div>
-                <div class="col-12 col-lg-3 mx-auto">
+                <div class="col-12 col-lg-3 mx-auto text-center">
                     <p class="mencion">&copy; 2021 MacWorks Dev S.L.</p>
                 </div>
-                <div class="col-12 col-lg-3 mx-auto">
+                <div class="col-12 col-lg-3 mx-auto text-center">
                     <p>Siguenos en Facebook <a href="#"><img src="images/fb.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
                     <p>Siguenos en Instagram <a href="#"><img src="images/insta.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
                 </div>
