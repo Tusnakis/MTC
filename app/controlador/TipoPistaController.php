@@ -69,7 +69,16 @@ class TipoPistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            TipoPista::actualizarTipoPista($_POST['tipoPista'], $_POST['nuevoTipoPista']);
+            $params['tipoPistas'] = TipoPista::listarTipoPista();
+            $arrayPistas = array();
+            for($i = 0; $i < count($params['tipoPistas']); $i++) {
+                array_push($arrayPistas,strtolower($params['tipoPistas'][$i]['nombre']));
+            }
+            if(in_array(strtolower($_POST['nuevoTipoPista']),$arrayPistas)) {
+                $params['añadido'] = "El tipo de pista introducido ya existe.";
+            } else {
+                TipoPista::actualizarTipoPista($_POST['tipoPista'], $_POST['nuevoTipoPista']);
+            }
             if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
                 $params['resultado'] = TipoPista::listarTipoPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
