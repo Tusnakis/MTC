@@ -46,10 +46,10 @@
                     <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">
                 <?php } ?>
                 <?php if ($params['añadido'] !== NULL) { ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?php echo $params['añadido'] ?>
-                        </div>
-                    <?php } ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $params['añadido'] ?>
+                    </div>
+                <?php } ?>
                 <button type="submit" class="btn btn-secondary mt-3">Añadir</button>
             </form>
         </div>

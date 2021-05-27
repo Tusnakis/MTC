@@ -5,14 +5,14 @@
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#buscar">Buscar pista</a>
+            <a class="nav-link <?php echo $añadido = $params['añadido'] !== NULL ? "" : "active" ?>" data-toggle="tab" href="#buscar">Buscar pista</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#añadir">Añadir pista</a>
+            <a class="nav-link <?php echo $añadido = $params['añadido'] !== NULL ? "active" : "" ?>" data-toggle="tab" href="#añadir">Añadir pista</a>
         </li>
     </ul>
     <div class="tab-content bg-white">
-        <div class="tab-pane fade show active" id="buscar">
+        <div class="tab-pane fade <?php echo $añadido = $params['añadido'] !== NULL ? "" : "show active" ?>" id="buscar">
             <br>
             <form action="index.php?ruta=listarPistaFiltradas" method="POST">
                 <div class="form-group row">
@@ -32,7 +32,7 @@
                 <button type="submit" class="btn btn-secondary mt-3">Buscar</button>
             </form>
         </div>
-        <div class="tab-pane fade" id="añadir">
+        <div class="tab-pane fade <?php echo $añadido = $params['añadido'] !== NULL ? "show active" : "" ?>" id="añadir">
             <br>
             <form action="index.php?ruta=añadirPista" method="POST">
                 <div class="form-group row">
@@ -62,6 +62,11 @@
                 <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                 <?php if (isset($params['resultado3'])) { ?>
                     <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">
+                <?php } ?>
+                <?php if ($params['añadido'] !== NULL) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $params['añadido'] ?>
+                    </div>
                 <?php } ?>
                 <button type="submit" class="btn btn-secondary mt-3">Añadir</button>
             </form>

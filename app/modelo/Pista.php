@@ -4,7 +4,7 @@ class Pista
 {
     public static function listarPistas()
     {
-        $sql = "SELECT p.id, tp.nombre, p.num_pista, p.patrocinador FROM pista p
+        $sql = "SELECT p.id, tp.id as tipoPista, tp.nombre, p.num_pista, p.patrocinador FROM pista p
         INNER JOIN tipo_pista tp ON p.id_tipo_pista = tp.id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);

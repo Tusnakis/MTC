@@ -5,14 +5,14 @@
 <div class="bg-white px-3 py-3 rounded">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#buscar">Buscar tarifa</a>
+            <a class="nav-link <?php echo $añadido = $params['añadido'] !== NULL ? "" : "active" ?>" data-toggle="tab" href="#buscar">Buscar tarifa</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#añadir">Añadir tarifa</a>
+            <a class="nav-link <?php echo $añadido = $params['añadido'] !== NULL ? "active" : "" ?>" data-toggle="tab" href="#añadir">Añadir tarifa</a>
         </li>
     </ul>
     <div class="tab-content bg-white">
-        <div class="tab-pane fade show active" id="buscar">
+        <div class="tab-pane fade <?php echo $añadido = $params['añadido'] !== NULL ? "" : "show active" ?>" id="buscar">
             <br>
             <form action="index.php?ruta=listarTarifasFiltradas" method="POST">
                 <div class="form-group row">
@@ -32,7 +32,7 @@
                 <button type="submit" class="btn btn-secondary mt-3">Buscar</button>
             </form>
         </div>
-        <div class="tab-pane fade" id="añadir">
+        <div class="tab-pane fade <?php echo $añadido = $params['añadido'] !== NULL ? "show active" : "" ?>" id="añadir">
             <br>
             <form action="index.php?ruta=añadirTarifa" method="POST">
                 <div class="form-group row">
@@ -56,16 +56,47 @@
                 <div class="form-group row">
                     <label for="inputHoraInicio" class=" col-12 col-sm-2 col-form-label mt-3">Hora de inicio</label>
                     <div class="col-12 col-sm-4 mt-3">
-                        <input type="text" class="form-control" id="inputHoraInicio" name="horaInicio" required>
+                        <select name="horaInicio" class="form-control">
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                        </select>
                     </div>
                     <label for="inputHoraFin" class=" col-12 col-sm-2 col-form-label mt-3">Hora de fin</label>
                     <div class="col-12 col-sm-4 mt-3">
-                        <input type="text" class="form-control" id="inputHoraFin" name="horaFin" required>
+                        <select name="horaFin" class="form-control">
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                            <option value="22:00">22:00</option>
+                        </select>
                     </div>
                 </div>
                 <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                 <?php if (isset($params['resultado3'])) { ?>
-                    <input type="hidden" name="tipoPista" value="<?php echo $params['resultado3'] ?>">
+                    <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">
+                <?php } ?>
+                <?php if ($params['añadido'] !== NULL) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $params['añadido'] ?>
+                    </div>
                 <?php } ?>
                 <button type="submit" class="btn btn-secondary mt-3">Añadir</button>
             </form>
@@ -97,7 +128,7 @@
                             <td><input type="text" name="precio" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['precio'] ?>" required></td>
                             <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                             <?php if (isset($params['resultado3'])) { ?>
-                                <input type="hidden" name="tipoPista" value="<?php echo $params['resultado3'] ?>">
+                                <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">
                             <?php } ?>
                             <td class="justify-content-center align-middle" style="width: 3rem;">
                                 <input title="Actualizar" type="image" src="images/actualizar.png" id="actualizar" alt="actualizar" width="20" height="20" />
@@ -108,7 +139,7 @@
                                 <input type="hidden" name="idTarifa" value="<?php echo $params['resultado'][$i]['id'] ?>">
                                 <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                                 <?php if (isset($params['resultado3'])) { ?>
-                                    <input type="hidden" name="tipoPista" value="<?php echo $params['resultado3'] ?>">
+                                    <input type="hidden" name="tipoPistaP" value="<?php echo $params['resultado3'] ?>">
                                 <?php } ?>
                                 <input title="Eliminar" type="image" src="images/eliminar.png" id="eliminar" alt="eliminar" width="20" height="20" />
                             </form>

@@ -4,7 +4,7 @@ class Tarifa
 {
     public static function listarTarifas()
     {
-        $sql = "SELECT t.id, tp.nombre, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
+        $sql = "SELECT t.id, tp.id AS tipoPista, tp.nombre, t.hora_inicio, t.hora_fin, t.precio FROM tarifa t
         INNER JOIN tipo_pista tp ON t.id_tipo_pista = tp.id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarConsulta($sql);

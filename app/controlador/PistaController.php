@@ -27,7 +27,16 @@ class PistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Pista::añadirPista($_POST['numPista'],$_POST['tipoPista'],$_POST['patrocinador']);
+            $params['pistas'] = Pista::listarPistas();
+            $params['añadido'];
+            for($i = 0; $i < count($params['pistas']); $i++) {
+                if($_POST['numPista'] == $params['pistas'][$i]['num_pista'] && $_POST['tipoPista'] == $params['pistas'][$i]['tipoPista']) {
+                    $params['añadido'] = "El número de pista ya existe en ese tipo de pista.";
+                }
+            }
+            if($params['añadido'] == NULL) {
+                Pista::añadirPista($_POST['numPista'],$_POST['tipoPista'],$_POST['patrocinador']);
+            }
             if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
                 $params['resultado'] = Pista::listarPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
@@ -87,7 +96,16 @@ class PistaController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Pista::actualizarPista($_POST['pista'],$_POST['numPista'],$_POST['patrocinador']);
+            $params['pistas'] = Pista::listarPistas();
+            $params['añadido'];
+            for($i = 0; $i < count($params['pistas']); $i++) {
+                if($_POST['numPista'] == $params['pistas'][$i]['num_pista'] && $_POST['pista'] == $params['pistas'][$i]['tipoPista']) {
+                    $params['añadido'] = "El número de pista ya existe en ese tipo de pista";
+                }
+            }
+            if($params['añadido'] == NULL) {
+                Pista::actualizarPista($_POST['pista'],$_POST['numPista'],$_POST['patrocinador']);
+            }
             if(isset($_POST['pagina']) && isset($_POST['tipoPistaP'])) {
                 $params['resultado'] = Pista::listarPistaFiltradasPaginadas($_POST['tipoPistaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
