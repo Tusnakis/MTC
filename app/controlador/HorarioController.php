@@ -232,9 +232,14 @@ class HorarioController
     {
         session_start();
         if ($_SESSION['rol'] == 'emp') {
-            $texto = "El empleado " . $_SESSION['usuario'] . " ha solicitado vacaciones con fecha de inicio " . $_POST['fechaInicio'] . " y fecha de fin " . $_POST['fechaFin'];
-            $params['usuarioPara'] = Usuario::listarUsuariosPorRol('admin');
-            Mensaje::enviarMensaje($_SESSION['usuario'],$params['usuarioPara'][0]['usuario'],$texto,date("Y-m-d"));
+            $params['enviado'] = NULL;
+            if($_POST['fechaInicio'] > $_POST['fechaFin']) {
+                $params['enviado'] = "La fecha de inicio no puede ser mayor que la fecha de fin";
+            } else {
+                $texto = "El empleado " . $_SESSION['usuario'] . " ha solicitado vacaciones con fecha de inicio " . $_POST['fechaInicio'] . " y fecha de fin " . $_POST['fechaFin'];
+                $params['usuarioPara'] = Usuario::listarUsuariosPorRol('admin');
+                Mensaje::enviarMensaje($_SESSION['usuario'],$params['usuarioPara'][0]['usuario'],$texto,date("Y-m-d"));
+            }
             $params['resultado'] = Usuario::listarEmpleados();
             $mes = Horario::meses();
             $params['resultado2'] = $this->generarMesHorario($mes[date('n')][0]);
@@ -259,7 +264,7 @@ class HorarioController
             for($i = 0; $i < count($params['asignacionesUsuario']); $i++) {
                 array_push($params['resultado8'], $params['asignacionesUsuario'][$i]['fecha']);
             }
-            $params['enviado'] = $_POST['enviado'];
+            //$params['enviado'] = $enviado;
             require __DIR__ . '/../templates/mostrarHorario.php';
         } else if (isset($_SESSION['usuario'])) {
             require __DIR__ . '/../templates/inicio.php';
