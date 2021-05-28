@@ -229,7 +229,16 @@ class UsuarioController
     {
         session_start();
         if ($_SESSION['rol'] == 'admin') {
-            Usuario::añadirEmpleado($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['rol']);
+            $params['usuarios'] = Usuario::listarTodosUsuarios();
+            $usuarios = array();
+            for($i = 0; $i < count($params['usuarios']); $i++) {
+                array_push($usuarios,strtolower($params['usuarios'][$i]['usuario']));
+            }
+            if(in_array(strtolower($_POST['usuario']),$usuarios)) {
+                $params['añadido'] = "El usuario ya existe.";
+            } else {
+                Usuario::añadirEmpleado($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email'], $_POST['rol']);
+            }
             if (isset($_POST['pagina'])) {
                 if (empty($_POST['usuarioP']) && empty($_POST['rolP'])) {
                     $params['resultado'] = Usuario::listarUsuariosPaginados($_SESSION['usuario'], $_POST['pagina']);
