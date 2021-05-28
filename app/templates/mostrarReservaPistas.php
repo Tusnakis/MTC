@@ -49,6 +49,11 @@
                                                                                                                             } ?>" required>
                     </div>
                 </div>
+                <?php if ($params['reservado'] !== NULL) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo $params['reservado'] ?>
+                    </div>
+                <?php } ?>
                 <button type="submit" class="btn btn-secondary mt-3">Filtrar</button>
             </form>
         </div>

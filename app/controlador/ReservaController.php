@@ -94,6 +94,7 @@ class ReservaController
             } else {
                 $params['paginas'] = ceil(count(Reserva::listarPistasReserva()) / 10);
             }
+            $params['reservado'] = "Has reservado la pista. Consulta el email para ver los detalles de la reserva.";
             Reserva::enviarEmailReserva($_POST['usuario'], $_POST['pista'], $_POST['tarifa'], $_POST['fecha'],$_SESSION['email']);
             require __DIR__ . '/../templates/mostrarReservaPistas.php';
         } else {
