@@ -3,6 +3,7 @@
 ob_start();
 
 ?>
+
 <div class="row justify-content-center pt-5">
     <div class="col-12">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -32,8 +33,8 @@ ob_start();
             </a>
         </div>
     </div>
-    <div class="col-12 text-right mt-3">
-        <time class="inicio"><strong>Fecha:</strong> <?php echo date('d-m-y') ?><br><strong>Hora: </strong> <span id="reloj"></span></time>
+    <div class="col-12 text-right mt-3 inicio">
+        <time><strong>Fecha:</strong> <?php echo date('d-m-y') ?><br><strong>Hora: </strong> <span id="reloj"></span></time>
     </div>
     <div class="col-12 col-lg-4">
         <div class="card border border-secondary mx-auto my-3" style="width: 18rem;">
