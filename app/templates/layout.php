@@ -130,8 +130,8 @@
                     <p class="mencion">&copy; 2021 MacWorks Dev S.L.</p>
                 </div>
                 <div class="col-12 col-lg-3 mx-auto text-center">
-                    <p>Siguenos en Facebook <a href="#"><img src="images/fb.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
-                    <p>Siguenos en Instagram <a href="#"><img src="images/insta.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
+                    <p>Siguenos en Facebook <a href="https://facebook.com/Marc-Tennis-Club-106259655001553"><img src="images/fb.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
+                    <p>Siguenos en Instagram <a href="https://instagram.com/marctennisclub"><img src="images/insta.png" style="width: 30px; height: 30px;" alt="facebook"></a></p>
                 </div>
             </div>
         </div>
