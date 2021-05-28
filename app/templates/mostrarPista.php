@@ -56,7 +56,7 @@
                 <div class="form-group row">
                     <label for="inputNumPista" class=" col-12 col-sm-2 col-form-label mt-3">Número de pista</label>
                     <div class="col-12 col-sm-4 mt-3">
-                        <input type="text" class="form-control" id="inputNumPista" name="numPista" required>
+                        <input type="number" min="1" class="form-control" id="inputNumPista" name="numPista" required>
                     </div>
                 </div>
                 <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
