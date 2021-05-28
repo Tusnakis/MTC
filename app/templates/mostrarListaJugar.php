@@ -112,7 +112,7 @@
                         <input type="hidden" name="categoriaP" value="<?php echo $params['resultado3'] ?>">
                     <?php } ?>
                     <?php if ($params['apuntado'] !== NULL) { ?>
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-<?php echo $aviso ?>" role="alert">
                             <?php echo $params['apuntado'] ?>
                         </div>
                     <?php } ?>

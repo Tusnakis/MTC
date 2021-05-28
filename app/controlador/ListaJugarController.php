@@ -28,9 +28,12 @@ class ListaJugarController
     {
         session_start();
         if($_SESSION['rol'] == 'user') {
-            if(intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")) > intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) || intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")) > date('G') || intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) < date('G')) {
+            if(intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")) > intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) || intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) < date('G')) {
                 $params['apuntado'] = "La hora de inicio no puede ser mayor que la hora de fin ni mayor que la hora actual";
+                $aviso = "danger";
             } else {
+                $params['apuntado'] = "Te has apuntado correctamente. Recibirás un mensaje del usuario que te haya elegido.";
+                $aviso = "success";
                 ListaJugar::añadirListaJugar($_SESSION['usuario'],$_POST['fecha'],$_POST['horaInicio'],$_POST['horaFin'],$_POST['categoria']);
             }
             if(isset($_POST['pagina']) && $_POST['fechaP'] && $_POST['categoriaP']) {
