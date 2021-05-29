@@ -134,7 +134,7 @@
                     <th class="text-center">Desde</th>
                     <th class="text-center">Hasta</th>
                     <th class="text-center">Categoría</th>
-                    <th class="text-center">Fecha inicio</th>
+                    <th class="text-center">Hora inicio</th>
                     <th class="text-center">T. de pista</th>
                     <th class="text-center">Pista</th>
                     <th></th>
