@@ -31,7 +31,7 @@ class PistaController
             $params['añadido'];
             for($i = 0; $i < count($params['pistas']); $i++) {
                 if($_POST['numPista'] == $params['pistas'][$i]['num_pista'] && $_POST['tipoPista'] == $params['pistas'][$i]['tipoPista']) {
-                    $params['añadido'] = "El número de pista ya existe en ese tipo de pista.";
+                    $params['añadido'] = "El número de pista ya existe para ese tipo de pista.";
                 }
             }
             if($params['añadido'] == NULL) {
