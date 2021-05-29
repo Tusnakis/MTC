@@ -106,6 +106,16 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="inputHoraFin" class="col-12 col-sm-2 col-form-label mt-3">Tipo de pista</label>
+                        <div class="col-12 col-sm-4 mt-3">
+                            <select name="tipoPista">
+                                <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
+                                    <option value="<?php echo $params['tipoPista'][$y]['id'] ?>"><?php echo $params['tipoPista'][$y]['nombre'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
                     <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                     <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
                         <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
@@ -183,15 +193,13 @@
                                             <?php } ?>
                                         </select>
                                     </td>
-                                    <?php if (!isset($params['resultado'][$i]['id_tipo_pista'])) { ?>
-                                        <td class="text-center align-middle">
-                                            <select name="tipoPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
-                                                <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
-                                                    <option value="<?php echo $params['tipoPista'][$y]['id'] ?>"><?php echo $params['tipoPista'][$y]['nombre'] ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </td>
-                                    <?php } ?>
+                                    <td class="text-center align-middle">
+                                        <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
+                                            <?php if ($params['resultado'][$i]['id_tipo_pista'] == $params['tipoPista'][$y]['id']) { ?>
+                                                <?php echo $params['tipoPista'][$y]['nombre'] ?>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </td>
                                     <?php if (!isset($params['resultado'][$i]['num_pista'])) { ?>
                                         <td class="text-center align-middle">
                                             <select name="numPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
@@ -276,15 +284,13 @@
                                         <?php } ?>
                                     </select>
                                 </td>
-                                <?php if (!isset($params['resultado'][$i]['id_tipo_pista'])) { ?>
-                                    <td class="text-center align-middle">
-                                        <select name="tipoPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>
-                                            <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
-                                                <option value="<?php echo $params['tipoPista'][$y]['id'] ?>"><?php echo $params['tipoPista'][$y]['nombre'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </td>
-                                <?php } ?>
+                                <td class="text-center align-middle">
+                                    <?php for ($y = 0; $y < count($params['tipoPista']); $y++) { ?>
+                                        <?php if ($params['resultado'][$i]['id_tipo_pista'] == $params['tipoPista'][$y]['id']) { ?>
+                                            <?php echo $params['tipoPista'][$y]['nombre'] ?>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </td>
                                 <?php if (!isset($params['resultado'][$i]['num_pista'])) { ?>
                                     <td class="text-center align-middle">
                                         <select name="numPista" <?php echo $siAdmin = $_SESSION['rol'] == 'admin' ? "disabled" : "" ?>>

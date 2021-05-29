@@ -26,10 +26,10 @@ class ListaJugar
         return $resultado;
     }
 
-    public static function añadirListaJugar($usuario_p,$fecha,$hora_desde,$hora_hasta,$categoria)
+    public static function añadirListaJugar($usuario_p,$fecha,$hora_desde,$hora_hasta,$categoria,$idTipoPista)
     {
-        $sql = "INSERT INTO lista_jugar (id_usuario_a,fecha,hora_desde,hora_hasta,categoria)
-        VALUES ('$usuario_p','$fecha','$hora_desde','$hora_hasta',$categoria)";
+        $sql = "INSERT INTO lista_jugar (id_usuario_a,fecha,hora_desde,hora_hasta,categoria,id_tipo_pista)
+        VALUES ('$usuario_p','$fecha','$hora_desde','$hora_hasta',$categoria,$idTipoPista)";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);
         $con->cerrarConexion();
@@ -76,6 +76,15 @@ class ListaJugar
         WHERE id = $id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);
+        $con->cerrarConexion();
+        return $resultado;
+    }
+
+    public static function listarTodosUsuariosLista()
+    {
+        $sql = "SELECT * FROM lista_jugar";
+        $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
+        $resultado = $con->ejecutarConsulta($sql);
         $con->cerrarConexion();
         return $resultado;
     }

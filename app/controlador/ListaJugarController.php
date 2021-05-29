@@ -28,13 +28,24 @@ class ListaJugarController
     {
         session_start();
         if($_SESSION['rol'] == 'user') {
-            if(intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")) > intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) || intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) < date('G')) {
-                $params['apuntado'] = "La hora de inicio no puede ser mayor que la hora de fin o la hora de fin menor que la hora actual";
+            $params['listaJugadores'] = ListaJugar::listarTodosUsuariosLista();
+            $existe = false;
+            for($i = 0; $i < count($params['listaJugadores']); $i++) {
+                $arrayHoras = range(intval(ltrim(str_replace(":00","",$params['listaJugadores'][$i]['hora_desde']),"0")),intval(ltrim(str_replace(":00","",$params['listaJugadores'][$i]['hora_hasta']),"0")));
+                if($_SESSION['usuario'] == $params['listaJugadores'][$i]['id_usuario_a'] && $_POST['fecha'] == $params['listaJugadores'][$i]['fecha'] && (in_array(intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")),$arrayHoras) || in_array(intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")),$arrayHoras)) && $params['listaJugadores'][$i]['id_usuario_e'] == NULL) {
+                    $existe = true;
+                }
+            }
+            if(intval(ltrim(str_replace(":00","",$_POST['horaInicio']),"0")) > intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) || (intval(ltrim(str_replace(":00","",$_POST['horaFin']),"0")) < date('G') && $_POST['fecha'] == date('Y-m-d'))) {
+                $params['apuntado'] = "La hora de inicio no puede ser mayor que la hora de fin o la hora de fin menor que la hora actual.";
+                $aviso = "danger";
+            } elseif($existe) {
+                $params['apuntado'] = "Ya te has apuntado ese día dentro de ese intervalo de horas.";
                 $aviso = "danger";
             } else {
                 $params['apuntado'] = "Te has apuntado correctamente. Recibirás un mensaje del usuario que te haya elegido.";
                 $aviso = "success";
-                ListaJugar::añadirListaJugar($_SESSION['usuario'],$_POST['fecha'],$_POST['horaInicio'],$_POST['horaFin'],$_POST['categoria']);
+                ListaJugar::añadirListaJugar($_SESSION['usuario'],$_POST['fecha'],$_POST['horaInicio'],$_POST['horaFin'],$_POST['categoria'],$_POST['tipoPista']);
             }
             if(isset($_POST['pagina']) && $_POST['fechaP'] && $_POST['categoriaP']) {
                 $params['resultado'] = ListaJugar::listarUsuariosListaFiltradosPaginados($_POST['fechaP'],$_POST['categoriaP'],$_POST['pagina']);
@@ -99,6 +110,8 @@ class ListaJugarController
         session_start();
         if($_SESSION['rol'] == 'user') {
             ListaJugar::elegirUsuarioLista($_POST['id'],$_SESSION['usuario'],$_POST['tipoPista'],$_POST['numPista'],$_POST['horaInicio']);
+            $params['apuntado'] = "Has elegido a un usuario para tu partida. Recibirá un mensaje con los detalles de la partida.";
+            $aviso = "success";
             if(isset($_POST['pagina']) && $_POST['fechaP'] && $_POST['categoriaP']) {
                 $params['resultado'] = ListaJugar::listarUsuariosListaFiltradosPaginados($_POST['fechaP'],$_POST['categoriaP'],$_POST['pagina']);
                 $params['paginaActual'] = $_POST['pagina'];
