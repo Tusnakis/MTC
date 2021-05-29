@@ -38,7 +38,7 @@
                 </div>
                 <?php if ($_SESSION['rol'] == 'admin') { ?>
                     <div class="form-group row">
-                        <label for="usuario" class="col-12 col-sm-2 col-form-label mt-3">Usuario</label>
+                        <label for="usuario" class="col-12 col-sm-2 col-form-label mt-3">Empleado</label>
                         <div class="col-12 col-sm-4 mt-3">
                             <select id="usuario" name="usuario">
                                 <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
