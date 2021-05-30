@@ -92,7 +92,7 @@
                         <form action="index.php?ruta=actualizarPista" method="POST">
                             <td class="text-center align-middle"><?php echo $params['resultado'][$i]['nombre'] ?></td>
                             <input type="hidden" name="pista" value="<?php echo $params['resultado'][$i]['id'] ?>">
-                            <td><input type="text" name="numPista" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['num_pista'] ?>" required></td>
+                            <td><input type="number" name="numPista" min="1" class="form-control text-center mx-auto" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['num_pista'] ?>" required></td>
                             <td><input type="text" name="patrocinador" class="form-control text-center mx-auto" style="width: 14rem;" value="<?php echo $params['resultado'][$i]['patrocinador'] ?>" required></td>
                             <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                             <?php if (isset($params['resultado3'])) { ?>
