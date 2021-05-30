@@ -103,7 +103,7 @@
                 <?php for ($i = 0; $i < count($params['resultado']); $i++) { ?>
                     <tr>
                         <form action="index.php?ruta=actualizarUsuarios" method="POST">
-                            <td><input type="text" name="nuevoUsuario" class="form-control text-center" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['usuario'] ?>" disabled required></td>
+                            <td><input type="text" name="nuevoUsuario" class="form-control text-center" style="width: 8rem;" value="<?php echo $params['resultado'][$i]['usuario'] ?>" readonly required></td>
                             <input type="hidden" name="usuario" value="<?php echo $params['resultado'][$i]['usuario'] ?>">
                             <td><input type="password" name="contrasena" class="form-control text-center" style="width: 8rem;" value="<?php //echo $params['resultado'][$i]['contrasena'] 
                                                                                                                                         ?>" placeholder="********"></td>
