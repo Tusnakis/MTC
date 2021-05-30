@@ -553,7 +553,7 @@
             <div class="modal-body">
                 <form action="index.php?ruta=asignarHorario" method="POST" class="asignar">
                     <div class="form-group row">
-                        <label for="usuario" class="col-12 col-sm-2 col-form-label mt-3">Usuario</label>
+                        <label for="usuario" class="col-12 col-sm-2 col-form-label mt-3">Empleado</label>
                         <div class="col-12 col-sm-4 mt-3">
                             <input type="text" class="form-control" name="usuario" value="<?php echo $params['resultado5'] ?>" readonly>
                         </div>
@@ -604,7 +604,7 @@
             <div class="modal-body">
                 <form action="index.php?ruta=actualizarHorario" method="POST" class="asignar">
                     <div class="form-group row">
-                        <label for="usuario" class="col-12 col-sm-2 col-form-label mt-3">Usuario</label>
+                        <label for="usuario" class="col-12 col-sm-2 col-form-label mt-3">Empleado</label>
                         <div class="col-12 col-sm-4 mt-3">
                             <input type="text" class="form-control" name="usuario" value="<?php echo $params['resultado5'] ?>" readonly>
                         </div>
