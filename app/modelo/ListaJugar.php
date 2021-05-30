@@ -60,9 +60,9 @@ class ListaJugar
         return $resultado;
     }
 
-    public static function elegirUsuarioLista($id,$usuario,$tipoPista,$numPista,$hora_inicio)
+    public static function elegirUsuarioLista($id,$usuario,$numPista,$hora_inicio)
     {
-        $sql = "UPDATE lista_jugar SET id_usuario_e = '$usuario', id_tipo_pista = $tipoPista, num_pista = $numPista, hora_inicio = '$hora_inicio'
+        $sql = "UPDATE lista_jugar SET id_usuario_e = '$usuario', num_pista = $numPista, hora_inicio = '$hora_inicio'
         WHERE id = $id";
         $con = new Conexion(Config::$mvc_bd_hostname, Config::$mvc_bd_usuario, Config::$mvc_bd_clave, Config::$mvc_bd_nombre);
         $resultado = $con->ejecutarNoConsulta($sql);

@@ -109,7 +109,7 @@ class ListaJugarController
     {
         session_start();
         if($_SESSION['rol'] == 'user') {
-            ListaJugar::elegirUsuarioLista($_POST['id'],$_SESSION['usuario'],$_POST['tipoPista'],$_POST['numPista'],$_POST['horaInicio']);
+            ListaJugar::elegirUsuarioLista($_POST['id'],$_SESSION['usuario'],$_POST['numPista'],$_POST['horaInicio']);
             $params['apuntado'] = "Has elegido a un jugador para tu partida. Este jugador recibirá un mensaje con los detalles de la partida.";
             $aviso = "success";
             if(isset($_POST['pagina']) && $_POST['fechaP'] && $_POST['categoriaP']) {
