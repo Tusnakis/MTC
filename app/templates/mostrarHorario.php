@@ -96,7 +96,6 @@
     </div>
 </div>
 <hr>
-<?php echo $params['fecha'] ?>
 <div class="row mb-5">
     <div class="col-12 col-sm-10 col-lg-10 d-flex justify-content-center my-4">
         <table class="table table-bordered bg-light">
