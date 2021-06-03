@@ -215,6 +215,8 @@
                                         <?php if (!isset($params['resultado'][$i]['id_usuario_e']) && !isset($params['resultado'][$i]['hora_inicio']) && $params['resultado'][$i]['id_usuario_a'] <> $_SESSION['usuario']) { ?>
                                             <input type="hidden" name="id" value="<?php echo $params['resultado'][$i]['id'] ?>">
                                             <input type="hidden" name="usuarioA" value="<?php echo $params['resultado'][$i]['id_usuario_a'] ?>">
+                                            <input type="hidden" name="idTipoPista" value="<?php echo $params['resultado'][$i]['id_tipo_pista'] ?>">
+                                            <input type="hidden" name="fechaE" value="<?php echo $params['resultado'][$i]['fecha'] ?>">
                                             <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                                             <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
                                                 <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
@@ -306,6 +308,8 @@
                                     <?php if (!isset($params['resultado'][$i]['id_usuario_e']) && !isset($params['resultado'][$i]['hora_inicio']) && $params['resultado'][$i]['id_usuario_a'] <> $_SESSION['usuario']) { ?>
                                         <input type="hidden" name="id" value="<?php echo $params['resultado'][$i]['id'] ?>">
                                         <input type="hidden" name="usuarioA" value="<?php echo $params['resultado'][$i]['id_usuario_a'] ?>">
+                                        <input type="hidden" name="idTipoPista" value="<?php echo $params['resultado'][$i]['id_tipo_pista'] ?>">
+                                        <input type="hidden" name="fechaE" value="<?php echo $params['resultado'][$i]['fecha'] ?>">
                                         <input type="hidden" name="pagina" value="<?php echo $params['paginaActual'] ?>">
                                         <?php if (isset($params['resultado2']) && isset($params['resultado3'])) { ?>
                                             <input type="hidden" name="fechaP" value="<?php echo $params['resultado2'] ?>">
