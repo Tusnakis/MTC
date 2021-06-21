@@ -36,7 +36,7 @@ class UsuarioController
         } else {
             $params['resultado'] = Usuario::datosUsuario($_POST['usuario']);
             if(empty($params['resultado'])) {
-                Usuario::registroUsuario($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellidos'], $_POST['email']);
+                Usuario::registroUsuario($_POST['usuario'], sha1($_POST['contrasena']), $_POST['nombre'], $_POST['apellidos'], $_POST['email']);
                 require __DIR__ . '/../templates/mostrarLogin.php';
             } else {
                 $params['resultado'] = "El usuario ya existe";
